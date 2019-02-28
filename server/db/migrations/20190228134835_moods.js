@@ -4,6 +4,7 @@ exports.up = function (knex, Promise) {
     table.integer('emotion_id').references('emotions.id')
     table.integer('meal_id').references('meals.id')
     table.string('note')
+    table.timestamp('time').defaultTo(knex.fn.now())
   })
 }
 
