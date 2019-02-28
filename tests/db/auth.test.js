@@ -3,6 +3,12 @@ const db = require('../../server/db/users')
 
 let testDb = null
 
+const user = {
+  username: 'billy',
+  email: 'billy@hotmail.com',
+  password: '1234'
+}
+
 beforeEach(() => {
   testDb = testEnv.getTestDb()
   return testEnv.initialise(testDb)
@@ -12,11 +18,7 @@ afterEach(() => testEnv.cleanup(testDb))
 
 test('registerUser registers a new user', () => {
   const expectedId = 1
-  const user = {
-    username: 'billy',
-    email: 'billy@hotmail.com',
-    password: '1234'
-  }
+  
   return db
     .registerUser(user, testDb)
     .then(user => {
@@ -28,11 +30,6 @@ test('registerUser registers a new user', () => {
 
 test('registerUser does not re-register same user', () => {
   const expectedError = 'UNIQUE constraint failed: users.username'
-  const user = {
-    username: 'billy',
-    email: 'billy@hotmail.com',
-    password: '1234'
-  }
   return db
     .registerUser(user, testDb)
     .then(() => {
@@ -46,18 +43,13 @@ test('registerUser does not re-register same user', () => {
 })
 
 test('registerUser has unique id', () => {
-  const user1 = {
-    username: 'billy',
-    email: 'billy@hotmail.com',
-    password: '1234'
-  }
   const user2 = {
     username: 'sammy',
     email: 'sammy@hotmail.com',
     password: '1234'
   }
   return db
-    .registerUser(user1, testDb)
+    .registerUser(user, testDb)
     .then(res1 => {
       db.registerUser(user2, testDb).then(res2 => {
         expect(res1[0]).not.toBe(res2[0])
@@ -67,11 +59,6 @@ test('registerUser has unique id', () => {
 })
 
 test('registerUser hashes password', () => {
-  const user = {
-    username: 'billy',
-    email: 'billy@hotmail.com',
-    password: '1234'
-  }
   return db
     .registerUser(user, testDb)
     .then(() => {
@@ -85,11 +72,6 @@ test('registerUser hashes password', () => {
 })
 
 test('getUser returns user with correct username', () => {
-  const user = {
-    username: 'billy',
-    email: 'billy@hotmail.com',
-    password: '1234'
-  }
   return db
     .registerUser(user, testDb)
     .then(() => {
@@ -104,11 +86,6 @@ test('getUser returns user with correct username', () => {
 })
 
 test('getUser returns undefined with incorrect username', () => {
-  const user = {
-    username: 'billy',
-    email: 'billy@hotmail.com',
-    password: '1234'
-  }
   return db
     .registerUser(user, testDb)
     .then(() => {
