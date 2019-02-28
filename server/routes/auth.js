@@ -9,8 +9,8 @@ router.post('/login', validateLogin, checkUser, token.issue)
 
 function register (req, res, next) {
   db.registerUser(req.body)
-    .then(([id]) => {
-      res.locals.userId = id
+    .then((user) => {
+      res.locals.userId = user[0]
       next()
     })
     .catch(({message}) => {
