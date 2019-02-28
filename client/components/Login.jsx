@@ -41,12 +41,10 @@ class Login extends React.Component {
     }
 
     const {name, surname, password} = this.state
-    const style = {
-      alignText: 'center'
-    }
+  
     return (
       <Grid container justify = "center">
-        <div className='signin' style={style}>
+        <div>
           <form>
             <div>
               <h1>Login To Food Mood</h1>
@@ -56,25 +54,31 @@ class Login extends React.Component {
             <br/><br/>
             <br/><br/>
             <div>
-              <label htmlFor="firstname">
-              
-            Firstname: <TextField id='firstname' name='name' variant="outlined" placeholder='firstname' onChange={this.handleChange} value={name} /> </label>
+              <label>
+            Firstname:
+                <br/>
+                <TextField id='firstname' name='name' variant="outlined" placeholder='firstname' onChange={this.handleChange} value={name} />
+              </label>
             </div>
             <div>
-
-              <label htmlFor="lastname">
-            Lastname: <TextField id='lastname' variant="outlined" name='surname' placeholder='lastname' onChange={this.handleChange} value={surname} /></label>
+              <label>
+            Lastname:
+                <br/>
+                <TextField id='lastname' variant="outlined" name='surname' placeholder='lastname' onChange={this.handleChange} value={surname} />
+              </label>
             </div>
             <div>
-
-          Password: <TextField id='password' variant="outlined" name='password' placeholder='password' onChange={this.handleChange} value={password} type='password' />
+              <label>
+          Password:
+                <br/>
+                <TextField id='password' variant="outlined" name='password' placeholder='password' onChange={this.handleChange} value={password} type='password' />
+              </label>
             </div>
-            <div>
-              <Grid container justify = "center">
-                <label htmlFor="signinBtn" >
-                  <Button name='signinBtn' id='signinBtn' onClick={this.handleSubmit}>Login</Button></label>
-              </Grid>
-            </div>
+            <Grid container justify = "center">
+              <div>
+                <Button type='signinBtn' id='signinBtn' onClick={this.handleSubmit}>Login</Button>
+              </div>
+            </Grid>
           </form>
         </div>
       </Grid>
