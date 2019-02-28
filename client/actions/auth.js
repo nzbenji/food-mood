@@ -45,23 +45,26 @@ export const signin = (user) => dispatch => {
   dispatch(signinPending())
   return signinApi(user)
     .then(res => {
-      setToken(res.body.token)
-      dispatch(signinSuccess(res.body.id))
+      setToken(res.token)
+      dispatch(signinSuccess(res.userId))
     })
-    .catch(err => dispatch(signinError(err.response.body.error)))
+    .catch(err => dispatch(signinError(err)))
 }
 
 export const register = (user) => dispatch => {
   dispatch(registerPending())
   return registerApi(user)
     .then(res => {
-      setToken(res.body.token)
-      dispatch(registerSuccess(res.body.id))
+      setToken(res.token)
+      dispatch(registerSuccess(res.userId))
     })
-    .catch(err => dispatch(registerError(err.response.body.error)))
+    .catch(err => {
+      console.log(err)
+      return dispatch(registerError(err))
+    })
 }
 
-export const logout = _ => {
+export const logout = () => {
   return {
     type: 'LOGOUT'
   }
