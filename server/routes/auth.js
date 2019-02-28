@@ -7,19 +7,6 @@ const hash = require('../auth/hash')
 router.post('/register', validateRegister, register, token.issue)
 router.post('/signin', validateLogin, checkUser, token.issue)
 
-function register (req, res, next) {
-  db.registerUser(req.body)
-    .then((user) => {
-      res.locals.userId = user[0]
-      next()
-    })
-    .catch(({message}) => {
-      message.includes('UNIQUE constraint failed: users.username')
-        ? registrationError(res, 'User already exists.', 400)
-        : registrationError(res, `Something bad happened. We don't know why.`, 500)
-    })
-}
-
 function validateRegister (req, res, next) {
   const {username, email, password} = req.body
   if (!username) {
@@ -33,6 +20,19 @@ function validateRegister (req, res, next) {
   }
 
   next()
+} 
+
+function register (req, res, next) {
+  db.registerUser(req.body)
+    .then((user) => {
+      res.locals.userId = user[0]
+      next()
+    })
+    .catch(({message}) => {
+      message.includes('UNIQUE constraint failed: users.username')
+        ? registrationError(res, 'User already exists.', 400)
+        : registrationError(res, `Something bad happened. We don't know why.`, 500)
+    })
 }
 
 function validateLogin (req, res, next) {
