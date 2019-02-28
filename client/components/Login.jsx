@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {signin} from '../actions/auth'
 import {TextField, Button} from '@material-ui/core'
+import Grid from '@material-ui/core/Grid'
 
 class Login extends React.Component {
   constructor (props) {
@@ -44,19 +45,38 @@ class Login extends React.Component {
       alignText: 'center'
     }
     return (
-      <div className='signin' style={style}>
-        <form>
-          <label htmlFor="firstname">
+      <Grid container justify = "center">
+        <div className='signin' style={style}>
+          <form>
+            <div>
+              <h1>Login To Food Mood</h1>
+            </div>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <div>
+              <label htmlFor="firstname">
             Firstname: <TextField id='firstname' name='name' variant="outlined" placeholder='firstname' onChange={this.handleChange} value={name} /> </label>
+            </div>
+            <div>
 
-          <label htmlFor="lastname">
+              <label htmlFor="lastname">
             Lastname: <TextField id='lastname' variant="outlined" name='surname' placeholder='lastname' onChange={this.handleChange} value={surname} /></label>
+            </div>
+            <div>
 
           Password: <TextField id='password' variant="outlined" name='password' placeholder='password' onChange={this.handleChange} value={password} type='password' />
-          <label htmlFor="signinBtn" >
-            <Button name='signinBtn' id='signinBtn' onClick={this.handleSubmit}>Login</Button></label>
-        </form>
-      </div>
+            </div>
+            <div>
+              <Grid container justify = "center">
+                <label htmlFor="signinBtn" >
+                  <Button name='signinBtn' id='signinBtn' onClick={this.handleSubmit}>Login</Button></label>
+              </Grid>
+            </div>
+          </form>
+        </div>
+      </Grid>
     )
   }
 }
