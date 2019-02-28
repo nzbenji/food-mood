@@ -9,8 +9,7 @@ class Login extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      name: '',
-      surname: '',
+      username: '',
       password: ''
     }
     this.handleChange = this.handleChange.bind(this)
@@ -27,21 +26,18 @@ class Login extends React.Component {
   handleSubmit (e) {
     const user = this.state
     this.props.dispatch(signin(user))
-    this.setState({
-      name: '',
-      surname: '',
-      password: ''
-    })
-    e.preventDefault()
+    // e.preventDefault()
   }
 
   render () {
-    if (this.props.auth.loggedIn) {
+    if (this.props.loggedIn) {
       return <Redirect to='/' />
     }
 
-    const {name, surname, password} = this.state
-  
+    const {username, password} = this.state
+    const style = {
+      alignText: 'center'
+    }
     return (
       <Grid container justify = "center">
         <div>
@@ -54,31 +50,21 @@ class Login extends React.Component {
             <br/><br/>
             <br/><br/>
             <div>
-              <label>
-            Firstname:
-                <br/>
-                <TextField id='firstname' name='name' variant="outlined" placeholder='firstname' onChange={this.handleChange} value={name} />
-              </label>
+              <label htmlFor="firstname">
+
+            Username: <TextField id='username' name='username' variant="outlined" placeholder='username' onChange={this.handleChange} value={username} /> </label>
             </div>
             <div>
-              <label>
-            Lastname:
-                <br/>
-                <TextField id='lastname' variant="outlined" name='surname' placeholder='lastname' onChange={this.handleChange} value={surname} />
-              </label>
+
+          Password: <TextField id='password' variant="outlined" name='password' placeholder='password' onChange={this.handleChange} value={password} type='password' />
             </div>
             <div>
-              <label>
-          Password:
-                <br/>
-                <TextField id='password' variant="outlined" name='password' placeholder='password' onChange={this.handleChange} value={password} type='password' />
-              </label>
+              <Grid container justify = "center">
+                <label htmlFor="signinBtn" >
+                  <Button name='signinBtn' id='signinBtn' onClick={this.handleSubmit}>Login</Button></label>
+              </Grid>
+              {this.props.error && <p>Incorrect login credentials. Please try again</p>}
             </div>
-            <Grid container justify = "center">
-              <div>
-                <Button type='signinBtn' id='signinBtn' onClick={this.handleSubmit}>Login</Button>
-              </div>
-            </Grid>
           </form>
         </div>
       </Grid>
@@ -86,5 +72,11 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = ({auth}) => ({auth})
+const mapStateToProps = (state) => {
+  return {
+    loggedIn: state.auth.loggedIn,
+    error: state.auth.error
+  }
+}
+
 export default connect(mapStateToProps)(Login)
