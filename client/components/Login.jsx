@@ -40,7 +40,7 @@ class Login extends React.Component {
     }
     return (
       <Grid container justify = "center">
-        <div className='signin' style={style}>
+        <div>
           <form>
             <div>
               <h1>Login To Food Mood</h1>

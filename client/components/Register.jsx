@@ -2,6 +2,8 @@ import React from 'react'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {register} from '../actions/auth'
+import {TextField, Button} from '@material-ui/core'
+import Grid from '@material-ui/core/Grid'
 
 class Register extends React.Component {
 
@@ -30,14 +32,43 @@ class Register extends React.Component {
     }
 
     return (
+      <Grid container justify = "center">
       <div>
+      <form>
+        <div>
         <h1>Register</h1>
-        <input type='text' name='username' value={this.state.username} onChange={this.handleChange} />
-        <input type='text' name='email' value={this.state.email} onChange={this.handleChange} />
-        <input type='text' name='password' value={this.state.password} onChange={this.handleChange} />
-        <input type='submit' value='Submit' onClick={this.handleSubmit} />
+        </div>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <div>
+            <label> 
+            Username: 
+            <br/><TextField id='username' name='username' variant="outlined" placeholder='username' value={this.state.username} onChange={this.handleChange} /> 
+            </label>
+            </div>
+            <div>
+            <label> 
+            Email: 
+            <br/>
+            <TextField id='email' name='email' variant="outlined" placeholder='email' value={this.state.email} onChange={this.handleChange} /> 
+            </label>
+            </div>
+            <div>
+            <label> 
+            Password:
+            <br/>
+            <TextField id='password' name='password' variant="outlined" placeholder='password' value={this.state.password} onChange={this.handleChange} /> 
+            </label>
+            </div>
+            <Grid container justify = "center">
+            <div>
+        <Button type='submit' value='Submit' onClick={this.handleSubmit} >Submit</Button>
+        </div>
+        </Grid>
         {this.props.error && <p>That username is already taken</p>}
+        </form>
       </div>
+      </Grid>
     )
   }
 
