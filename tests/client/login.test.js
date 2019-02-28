@@ -1,5 +1,4 @@
 import nock from 'nock'
-
 import * as auth from '../../client/actions/auth'
 
 let state = null
@@ -11,10 +10,10 @@ beforeAll(() => {
     .reply(201, {ok: true, token: '0123456789ABCDEF'})
     .post('/api/v1/auth/login', {username: 'abc'})
     .reply(401, {ok: false, error: 'No password provided.'})
-    .post('/api/v1/auth/register', {username: 'abc', password: '123', email: 'bar@foo'})
+    .post('/api/v1/auth/login', {username: 'abc', password: '123', email: 'bar@foo'})
     .reply(201, {ok: true, token: '0123456789ABCDEF'})
-    .post('/api/v1/auth/register', {username: 'xyz', password: '321'})
-    .reply(401, {ok: false, error: 'No email provided.'})
+    .post('/api/v1/auth/login', {username: 'xyz', password: '321'})
+    .reply(201, {ok: false, error: 'No email provided'})
 })
 
 afterAll(() => {
@@ -39,30 +38,30 @@ test('signinSuccess matches the last snapshot', () => {
 })
 
 test('signinError matches the last snapshot', () => {
-  expect(auth.signinError('badness happened')).toMatchSnapshot()
+  expect(auth.signinError('something wrong happend')).toMatchSnapshot()
 })
 
-test('login dispatches PENDING', () => {
-  expect.assertions(1)
-  const expected = {type: 'SIGNIN_PENDING'}
-  const dispatch = jest.fn()
-  return auth.login('foo', 'bar')(dispatch)
-    .then(() => expect(dispatch).toHaveBeenCalledWith(expected))
-})
-
-test('login dispatches SUCCESS', () => {
+// To fix signin
+test('sign in dispatches PENDING', () => {
   expect.assertions(1)
   const expected = {type: 'SIGNIN_SUCCESS'}
   const dispatch = jest.fn()
-  return auth.login('abc', '123')(dispatch)
+  return auth.signin('abc', '123')(dispatch)
     .then(() => expect(dispatch).toHaveBeenCalledWith(expected))
 })
 
-test('login dispatches FAILURE on error', () => {
+test('sign in dispatches SUCCESS', () => {
   expect.assertions(1)
-  const expected = {type: 'SIGNIN_FAILURE', error: 'No password provided.'}
+  const expected = {type: 'SIGNIN_PENDING'}
   const dispatch = jest.fn()
-  return auth.login('abc')(dispatch)
+  return auth.signin('abc', '123')(dispatch)
     .then(() => expect(dispatch).toHaveBeenCalledWith(expected))
 })
 
+test('sign in dispatches FAILURE on error', () => {
+  expect.assertions(1)
+  const expected = {type: 'SIGNIN_ERROR', error: 'No password provided'}
+  const dispatch = jest.fn()
+  return auth.signin('abc')(dispatch)
+    .then(() => expect(dispatch).toHaveBeenCalledWith(expected))
+})
