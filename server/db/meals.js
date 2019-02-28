@@ -2,7 +2,8 @@ const connection = require('./index')
 
 module.exports = {
     userMeals,
-    newMeal
+    newMeal,
+    latestMeal
   }
 
 function userMeals (db = connection) {
@@ -20,3 +21,7 @@ function newMeal (meals, db = connection) {
     .insert(newMeal)
 }
 
+function latestMeal (db = connection) {
+    return db('meals')
+    .select('')
+}
