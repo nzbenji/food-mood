@@ -4,7 +4,7 @@ const router = express.Router()
 const token = require('../auth/token')
 const hash = require('../auth/hash')
 
-router.post('/register', register, token.issue)
+router.post('/register', validateRegister, register, token.issue)
 router.post('/signin', validateLogin, checkUser, token.issue)
 
 function register (req, res, next) {
@@ -18,6 +18,21 @@ function register (req, res, next) {
         ? registrationError(res, 'User already exists.', 400)
         : registrationError(res, `Something bad happened. We don't know why.`, 500)
     })
+}
+
+function validateRegister (req, res, next) {
+  const {username, email, password} = req.body
+  if (!username) {
+    return next(new Error('No username provided'))
+  }
+  if (!email) {
+    return next(new Error('No email provided'))
+  }
+  if (!password) {
+    return next(new Error('No password provided'))
+  }
+
+  next()
 }
 
 function validateLogin (req, res, next) {
