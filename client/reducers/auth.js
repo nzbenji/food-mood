@@ -4,7 +4,8 @@ const initialState = {
   error: null,
   loggedIn: !!getToken(),
   newRegistration: false,
-  pending: false
+  pending: false,
+  userId: NaN
 }
 
 export default function authReducer (state = initialState, action) {
@@ -21,7 +22,8 @@ export default function authReducer (state = initialState, action) {
         ...state,
         error: null,
         loggedIn: true,
-        pending: false
+        pending: false,
+        userId: action.id
       }
     case 'REGISTER_SUCCESS':
       return {
@@ -29,7 +31,8 @@ export default function authReducer (state = initialState, action) {
         error: null,
         newRegistration: true,
         loggedIn: true,
-        pending: false
+        pending: false,
+        userId: action.id
       }
     case 'SIGNIN_ERROR':
     case 'REGISTER_ERROR':
@@ -37,13 +40,14 @@ export default function authReducer (state = initialState, action) {
         ...state,
         error: true,
         loggedIn: false,
-        pending: false
-
+        pending: false,
+        userId: NaN
       }
     case 'LOGOUT':
       return {
         ...state,
-        loggedIn: false
+        loggedIn: false,
+        userId: NaN
       }
     default:
       return state
