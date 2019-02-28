@@ -23,10 +23,10 @@ module.exports = {
     },
     useNullAsDefault: true,
     migrations: {
-      directory: 'tests/db/migrations'
+      directory: 'server/db/migrations'
     },
     seeds: {
-      directory: 'tests/db/seeds'
+      directory: 'server/db/seeds'
     }
   },
 
