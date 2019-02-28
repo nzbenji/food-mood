@@ -38,7 +38,7 @@ class Meal extends React.Component {
       }
 
     render() {
-        console.log(this.state)
+        console.log(this.state.meal)
         const { classes } = this.props;
         const { selectedDate } = this.state;
         return (
