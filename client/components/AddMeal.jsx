@@ -20,8 +20,9 @@ export class AddMeal extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
+          <h1>Add meal</h1><br></br>
+          <h4>Add notes about your last meal</h4>
           <label>
-          Add meal
             <input type="text" name="Notes" />
           </label>
           <input type="submit" value="Submit" />
