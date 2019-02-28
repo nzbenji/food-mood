@@ -17,7 +17,7 @@ class App extends React.Component {
   render () {
     return (
       <Switch>
-        <Route path ='/calendar' component={Calendar} />
+        <Route path ='/meal' component={Meal} />
         <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />
         <Route path='/addMeal' component={AddMeal} />
