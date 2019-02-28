@@ -11,13 +11,9 @@ function userMeals (id, db = connection) {
     .where('user_id', id)
 }
 
-function newMeal (meals, db = connection) {
-    newMeal = {
-        title: meals.title,
-        time: meals.time
-    }
+function newMeal (meal, db = connection) {
     return db('meals')
-    .insert(newMeal)
+    .insert(meal)
 }
 
 function latestMeal (id, db = connection) {
