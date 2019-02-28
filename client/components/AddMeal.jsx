@@ -10,7 +10,7 @@ import {TextField} from '@material-ui/core'
 
 const styles = {
     grid: {
-      width: '60%',
+      width: '100%',
     },
   };
 
@@ -36,39 +36,41 @@ class Meal extends React.Component {
         return (
             <div>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <Grid container className={classes.grid} justify="space-around" >
+                <Grid container className={classes.grid} alignContent="center" justify="center" >
                 <div>
-                <h3>Date: 
-                <DatePicker
+                <h3 style={{textAlign:'center', fontSize: '20px'}}>Enter a date:</h3>
+                <DatePicker style={{marginLeft: '30px'}}
                     margin="normal"
                     label="Date picker"
                     value={selectedDate}
                     onChange={this.handleDateChange}
                 />
-                </h3>
                 
                 </div>
-                </Grid>
-                <Grid container className={classes.grid} justify="space-around" >
+
+                <Grid container className={classes.grid} alignContent="center" justify="center" ></Grid>
                 <div>
-                    <h3>Time:      
+                    <h3 style={{textAlign:'center', fontSize: '20px'}}>Enter a time: </h3>
                     <TimePicker
                         margin="normal"
                         label="Time picker"
                         value={selectedDate}
                         onChange={this.handleDateChange}/>
-                    </h3>
                 </div>
                 </Grid>
-                <Grid container className={classes.grid} justify="space-around" >
+                <Grid container className={classes.grid} alignContent="center" justify="center" >
                 <div> 
-                    <h3>Notes: <TextField name='notes' variant="outlined" value={this.state.notes} onChange={this.handleChange} /> 
-                        <Button positive>Submit</Button>
-                    </h3> 
+                    <h3 style={{textAlign:'center', fontSize: '20px'}}>Notes:</h3> 
+                    <TextField
+                    name='notes' 
+                    variant="outlined" 
+                    value={this.state.notes} 
+                    onChange={this.handleChange} 
+                    style={{width: '40rem', height: '18rem'}}
+                    /> 
+                        <Button positive style={{height: '53px', width: '8rem', marginLeft: '18px'}}>Submit</Button>
                 </div>
                 </Grid>
-                
-                
             </MuiPickersUtilsProvider>
             </div>
         )
