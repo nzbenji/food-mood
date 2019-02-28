@@ -48,7 +48,9 @@ export const signin = (user) => dispatch => {
       setToken(res.token)
       dispatch(signinSuccess(res.userId))
     })
-    .catch(err => dispatch(signinError(err)))
+    .catch(err => {
+      dispatch(signinError(err))
+    })
 }
 
 export const register = (user) => dispatch => {
@@ -59,7 +61,6 @@ export const register = (user) => dispatch => {
       dispatch(registerSuccess(res.userId))
     })
     .catch(err => {
-      console.log(err)
       return dispatch(registerError(err))
     })
 }
