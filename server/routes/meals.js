@@ -17,7 +17,7 @@ router.post('/:userId', (req, res) => {
 const userId = Number(req.params.userId)
 const meal = req.body
 meal.user_id = userId
-db.newMeal(meal, req.body)
+db.newMeal(meal)
 .then((data) => {
     res.json(data[0])
   })
