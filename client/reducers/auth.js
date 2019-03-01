@@ -1,11 +1,11 @@
-import {getToken} from '../utils/tokens'
+import {getToken, clearToken} from '../utils/tokens'
 
 const initialState = {
   error: null,
   loggedIn: !!getToken(),
   newRegistration: false,
   pending: false,
-  userId: NaN
+  userId: -1
 }
 
 export default function authReducer (state = initialState, action) {
@@ -26,6 +26,7 @@ export default function authReducer (state = initialState, action) {
         userId: action.id
       }
     case 'REGISTER_SUCCESS':
+      console.log(action)
       return {
         ...state,
         error: null,
@@ -41,13 +42,14 @@ export default function authReducer (state = initialState, action) {
         error: true,
         loggedIn: false,
         pending: false,
-        userId: NaN
+        userId: -1
       }
     case 'LOGOUT':
+      clearToken()
       return {
         ...state,
         loggedIn: false,
-        userId: NaN
+        userId: -1
       }
     default:
       return state

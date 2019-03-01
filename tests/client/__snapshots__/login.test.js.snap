@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`signinError matches the last snapshot 1`] = `
+Object {
+  "error": "badness happened",
+  "type": "SIGNIN_ERROR",
+}
+`;
+
+exports[`signinPending matches the last snapshot 1`] = `
+Object {
+  "type": "SIGNIN_PENDING",
+}
+`;
+
+exports[`signinSuccess matches the last snapshot 1`] = `
+Object {
+  "id": undefined,
+  "type": "SIGNIN_SUCCESS",
+}
+`;
