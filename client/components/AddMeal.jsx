@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button } from 'semantic-ui-react'
 import 'date-fns';
-import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
@@ -18,8 +17,17 @@ class Meal extends React.Component {
     state = {
         // The first commit of Material-UI
         selectedDate: new Date(),
-        notes: ''
+        notes: '',
+        meal: ''
       };
+
+      handleChange = (event) => {
+        this.setState({meal: event.target.value})
+      }
+    
+      handleSubmit = (event) => {
+        this.setState({meal: event.target.value})
+      }
     
       handleDateChange = date => {
         this.setState({ selectedDate: date });
@@ -30,11 +38,16 @@ class Meal extends React.Component {
       }
 
     render() {
-        console.log(this.state)
+        console.log(this.state.meal)
         const { classes } = this.props;
         const { selectedDate } = this.state;
         return (
             <div>
+                <center>
+                <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Add Meal </h3>
+                <br></br>
+              </center>
+
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container className={classes.grid} alignContent="center" justify="center" >
                 <div>
@@ -62,6 +75,7 @@ class Meal extends React.Component {
                 <Grid container className={classes.grid} alignContent="center" justify="center" >
                 <div> 
                     {/* <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px'}}>Notes:</h3>  */}
+
                       <Form style={{margin:'40px'}}>
                             <TextArea 
                             placeholder='Tell us more' 
