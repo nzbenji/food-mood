@@ -44,13 +44,8 @@ class Meal extends React.Component {
         return (
             <div>
                 <center>
-                <form onSubmit={this.handleSubmit}>
-                {{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}} >Add Meal</h3><br></br>
-                <label>
-                  <input type="text"/>
-                </label>
-                <input type="submit" value="Submit" />
-              </form>
+                <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Add Meal </h3>
+                <br></br>
               </center>
 
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
