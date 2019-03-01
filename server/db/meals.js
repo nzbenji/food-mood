@@ -19,6 +19,6 @@ function newMeal (meal, db = connection) {
 function latestMeal (id, db = connection) {
     return db('meals')
     .where('user_id', id)
-    .orderBy('time')
+    .orderBy('time', 'desc')
     .first()
 }
