@@ -37,5 +37,15 @@ db.latestMeal(userId)
  })
 })
 
+router.get('/moods/:mealId', (req, res) => {
+   const mealId = Number(req.params.mealId)
+   db.allMealMoods(mealId)
+   .then(mood => {
+      res.json(mood)
+   })
+   .catch(err => {
+      res.status(500).send(err)
+   })
+})
 
 module.exports = router
