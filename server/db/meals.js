@@ -6,22 +6,19 @@ module.exports = {
     latestMeal
   }
 
-function userMeals (db = connection) {
+function userMeals (id, db = connection) {
     return db('meals')
-    .join('users', 'user_id', 'users.id')
     .where('user_id', id)
 }
 
-function newMeal (meals, db = connection) {
-    newMeal = {
-        title: meals.title,
-        time: meals.time
-    }
+function newMeal (meal, db = connection) {
     return db('meals')
-    .insert(newMeal)
+    .insert(meal)
 }
 
-function latestMeal (db = connection) {
+function latestMeal (id, db = connection) {
     return db('meals')
-    .select('')
+    .where('user_id', id)
+    .orderBy('time', 'desc')
+    .first()
 }
