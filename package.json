@@ -10,7 +10,7 @@
     "client": "webpack --watch",
     "server": "nodemon server --ignore server/public",
     "updateDb": "rm -f dev.sqlite3 && yarn knex migrate:latest && yarn knex seed:run",
-    "test": "jest --testPathIgnorePatterns tests/cypress",
+    "test": "jest",
     "e2e": "nodemon server --ignore server/public & webpack --watch & cypress open"
   },
   "babel": {
