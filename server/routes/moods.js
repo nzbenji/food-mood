@@ -1,10 +1,10 @@
 const express = require('express')
-const db = require('../db/meals')
+const db = require('../db/moods')
 const router = express.Router()
 
 router.get('/mostRecent/:userId', (req, res) => {
-    const mealId = Number(req.params.userId)
-    db.latestMood(mealId)
+    const userId = Number(req.params.userId)
+    db.latestMood(userId)
     .then(mood => {
         res.json(mood)
      })

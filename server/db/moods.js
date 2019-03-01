@@ -4,11 +4,11 @@ module.exports = {
     latestMood
   }
 
-function latestMood (id, db = connection) {
+function latestMood (userId, db = connection) {
     return db('moods')
     .join('meals', 'meals.id', 'meal_id')
-    .where('meals.user_id', id)
-    .orderBy('time', 'desc')
+    .where('meals.user_id', userId)
+    .orderBy('moods.time', 'desc')
     .first()
 }
 
