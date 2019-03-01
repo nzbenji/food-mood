@@ -6,6 +6,10 @@ const isLoading = (state = initialLoadingState, action) => {
       return true
     case 'RECEIVING_EMOTIONS':
       return false
+    case 'REQUESTING_API':
+      return true
+    case 'RECEIVING_API':
+      return false
     default:
       return state
   }
