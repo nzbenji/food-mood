@@ -43,13 +43,16 @@ class Meal extends React.Component {
         const { selectedDate } = this.state;
         return (
             <div>
-              <form onSubmit={this.handleSubmit}>
-                <h1>Add meal</h1><br></br>
+                <center>
+                <form onSubmit={this.handleSubmit}>
+                {{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}} >Add Meal</h3><br></br>
                 <label>
                   <input type="text"/>
                 </label>
                 <input type="submit" value="Submit" />
               </form>
+              </center>
+
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container className={classes.grid} alignContent="center" justify="center" >
                 <div>
@@ -77,6 +80,7 @@ class Meal extends React.Component {
                 <Grid container className={classes.grid} alignContent="center" justify="center" >
                 <div> 
                     {/* <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px'}}>Notes:</h3>  */}
+
                       <Form style={{margin:'40px'}}>
                             <TextArea 
                             placeholder='Tell us more' 
