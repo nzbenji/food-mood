@@ -1,62 +1,68 @@
 import React from 'react'
-import BigCalendar from 'react-big-calendar'
-import moment from 'moment'
+import {Button} from 'semantic-ui-react'
+import 'date-fns'
+import Grid from '@material-ui/core/Grid'
+import {withStyles} from '@material-ui/core/styles'
+import DateFnsUtils from '@date-io/date-fns'
+import {MuiPickersUtilsProvider, DatePicker} from 'material-ui-pickers'
+import {Route} from 'react-router-dom'
 
-const localizer = BigCalendar.momentLocalizer(moment)
+import MealDay from './MealDay'
+
+const styles = {
+  grid: {
+    width: '100%',
+  },
+}
 
 class Calendar extends React.Component {
-  state = {
-    date: []
-  }
-  componentDidMount () {
-    // Fetch events from database here
+  constructor(props) {
+    super(props)
+    this.state = {
+      selectedDate: new Date()
+    }
   }
 
-  selectDate = selectedDate => {
-    this.setState({
-      date: selectedDate
-    })
+  handleDateChange = date => {
+    this.setState({ selectedDate: date });
   }
+
+  // renderRedirect = () => {
+  //   return <Route exact path='/day'
+  //           render={(props) => <Day {...props} handleDateChange={this.handleDateChange}/> } 
+  //          />
+  // }
+
   render () {
-    console.log(this.state.date.start)
-    const dummyEvents = [
-      {
-        allDay: true,
-        end: new Date(),
-        start: new Date(),
-        title: 'CHICKEN SAMWICH'
-      },
-      {
-        allDay: true,
-        end: new Date('March 10, 2019 11:13:00'),
-        start: new Date('March 11, 2019 12:16:00'),
-        title: 'PIE'
-      },
-      {
-        allDay: true,
-        end: new Date('March 11, 2019 12:13:00'),
-        start: new Date('March 12, 2019 13:13:00'),
-        title: 'PIIIIIZAAAAA'
-      },
-      {
-        allDay: true,
-        end: new Date('March 11, 2019 12:13:00'),
-        start: new Date('March 12, 2019 13:13:00'),
-        title: 'ANOTHER ONE'
-      }
-    ]
+    const choosenDate = this.state.selectedDate
+    const { classes } = this.props
+    const { selectedDate } = this.state
     return (
-      <div style={{height: '100rem'}}>
-        <BigCalendar
-          selectable
-          onSelectSlot={this.selectDate}
-          events={dummyEvents}
-          startAccessor="start"
-          endAccessor="end"
-          localizer={localizer}
-        />
+      <div>
+        <MealDay abc={'hgfhg'}/>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Grid container className={classes.grid} alignContent="center" justify="center" >
+            <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}
+            >Enter a date:</h3>
+            <DatePicker style={{marginLeft: '30px'}}
+              margin="normal"
+              label="Date picker"
+              value={selectedDate}
+              onChange={this.handleDateChange}/>
+          </Grid>
+          <Grid container className={classes.grid} alignContent="center" justify="center" >
+          
+          <Button 
+            positive 
+            style={{height: '53px', width: '8rem', marginLeft: '18px'}}
+            onClick={this.renderRedirect}
+            >Submit</Button>
+          </Grid>
+          
+        </MuiPickersUtilsProvider>
       </div>
     )
   }
 }
-export default Calendar
+
+export default withStyles(styles)(Calendar)
