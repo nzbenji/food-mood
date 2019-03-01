@@ -1,6 +1,8 @@
-import {combineReducers} from 'redux'
-import auth from './auth'
+// import {combineReducers} from 'redux'
+// import auth from './auth'
+// import calendarReducer from './meals'
 
-export default combineReducers({
-  auth
-})
+// export default combineReducers({
+//   auth,
+//   calendarReducer
+// })
