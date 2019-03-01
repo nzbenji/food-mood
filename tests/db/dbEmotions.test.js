@@ -13,7 +13,7 @@ afterEach(() => testEnv.cleanup(testDb))
 test('getEmotions returns all emotions', () => {
   const expectedLength = 3
   return db
-    .getEmotions()
+    .getEmotions(testDb)
     .then(emotions => {
       const actualLength = emotions.length
       expect(actualLength).toBe(expectedLength)
@@ -23,7 +23,7 @@ test('getEmotions returns all emotions', () => {
 
 test('emotion contain id, ranking and emoji', () => {
   return db
-    .getEmotions()
+    .getEmotions(testDb)
     .then(emotions => {
       expect(emotions[0].id).toBeTruthy()
       expect(emotions[0].ranking).toBeTruthy()
