@@ -45,6 +45,7 @@
     "nock": "^10.0.6",
     "path": "^0.12.7",
     "prop-types": "^15.7.2",
+    "react-awesome-button": "^6.0.0",
     "react-bootstrap": "^1.0.0-beta.5",
     "react-circular-progressbar": "^1.0.0",
     "react-datetime-picker": "^2.1.1",
