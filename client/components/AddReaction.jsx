@@ -10,6 +10,7 @@ import { Form, TextArea } from 'semantic-ui-react'
 import {addMealApi} from '../api/meals'
 import {connect} from 'react-redux'
 import {Redirect, withRouter} from 'react-router-dom'
+import {saveNewMood} from '../actions/moods'
 
 const styles = {
     grid: {
@@ -25,9 +26,10 @@ class AddReaction extends React.Component {
         // The first commit of Material-UI
         mood: {
           time: new Date().toISOString().slice(0, 19).replace('T', ' '),
-          note: '',
+          notes: '',
           emotion_id: ''
-        }
+        },
+        submitted: false
       };
   }
     
@@ -38,7 +40,8 @@ class AddReaction extends React.Component {
   }
 
   handleSubmit = (event) => {
-  
+  this.props.dispatch(saveNewMood(this.state.mood, this.props.match.params.mealId))
+  this.setState({submitted:true})
   }
 
   handleDateChange = date => {
@@ -60,6 +63,9 @@ class AddReaction extends React.Component {
   
     const { classes } = this.props;
     const { time } = this.state.mood;
+    if (this.state.submitted){
+      return <Redirect to ='/'/>
+    }
     return (
       <div>
         <center>

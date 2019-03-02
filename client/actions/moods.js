@@ -24,13 +24,15 @@ function receiveMood (mood) {
   }
 }
 
-export function saveNewMood (mood) {
+export function saveNewMood (mood, currentMealId) {
   return function (dispatch) {
     // we're optimistic ;)
     dispatch(requestAddMood())
-    dispatch(updateMood(mood))
-    addMoodApi(mood)
-      .then(() => {
+    addMoodApi(mood, currentMealId)
+      .then((id) => {
+        mood.id = id
+        mood.meal_id = currentMealId
+        dispatch(updateMood(mood))
         dispatch(receiveAddMood())
       })
       .catch(err => {
