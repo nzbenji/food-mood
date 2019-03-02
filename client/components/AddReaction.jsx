@@ -48,8 +48,12 @@ class AddReaction extends React.Component {
     this.setState({mood: updatemood})
   }
 
-  handleClick = (event) => {
-    
+  handleClick = (id) => {
+    return () => {
+      const updatemood = {...this.state.mood}
+      updatemood.emotion_id = id
+      this.setState({mood: updatemood})
+    }
   }
 
   render() {
@@ -68,7 +72,7 @@ class AddReaction extends React.Component {
         </center>
         <center>
           <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
-          {this.props.emotions.map(emotion => { return <p key={emotion.emoji} name={emotion.id} onClick={this.handleClick}>{emotion.emoji}</p>})}</h3>
+          {this.props.emotions.map(emotion => { return <p key={emotion.emoji} onClick={this.handleClick(emotion.id)}>{emotion.emoji}</p>})}</h3>
           <br></br>
         </center>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
