@@ -4,9 +4,11 @@ import Register from './Register'
 import Login from './Login'
 import {connect} from 'react-redux'
 import {logout} from '../actions/auth'
-import Meal from './AddMeal';
-import Stats from './Stats'
 
+import Calendar from './Calendar'
+import AddMeal from './AddMeal';
+import MealDay from './MealDay'
+import Stats from './Stats'
 
 class App extends React.Component {
 
@@ -18,11 +20,13 @@ class App extends React.Component {
     return (
       <h1>Food mood</h1>
       <Switch>
-        <Route path ='/meal' component={Meal} />
+        <Route path='/calendar' component={Calendar} />
+        <Route path ='/addmeal' component={AddMeal} />
         <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />
-        <Route path='/stats' component={Stats} />
         <button name='logout' onClick={this.handleLogout} >Log out</button>
+        <Route path='/mealday' component={MealDay} />} />
+        <Route path='/stats' component={Stats} />
       </Switch>
     )
   }
