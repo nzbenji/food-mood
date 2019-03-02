@@ -7,7 +7,7 @@ import DateFnsUtils from '@date-io/date-fns'
 import {MuiPickersUtilsProvider, DatePicker} from 'material-ui-pickers'
 import {Route} from 'react-router-dom'
 
-import MealDay from './MealDay'
+import App from './App'
 
 const styles = {
   grid: {
@@ -39,7 +39,7 @@ class Calendar extends React.Component {
     const { selectedDate } = this.state
     return (
       <div>
-        <MealDay abc={'hgfhg'}/>
+        <App choosenDate={choosenDate}/>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container className={classes.grid} alignContent="center" justify="center" >
             <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}
