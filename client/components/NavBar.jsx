@@ -1,20 +1,24 @@
 import React from 'react'
-import {GoCalendar} from 'react-icons/go'
-import {GoHome} from 'react-icons/go'
-import {IoIosAdd} from 'react-icons/io'
-import {TiChartLine} from 'react-icons/ti'
-import {MdSettings} from 'react-icons/md'
+import { Link } from 'react-router-dom'
+
+const dashboardIcon = '/images/dashboard-icon.png'
+const calendarIcon = '/images/calendar-icon.png'
+const addIcon = '/images/add-icon.svg'
+const statsIcon = '/images/stats-icon.png'
+const settingsIcon = './images/settings-icon.png'
 
 class NavBar extends React.Component {
   render () {
     return (
-      <div>
-        <h3><GoHome />Dashboard</h3>
-        <h3><GoCalendar />Calender</h3>
-        <h3><IoIosAdd />Add Meal</h3>
-        <h3><TiChartLine />Stats</h3>
-        <h3><MdSettings />Settings</h3>
-      </div>
+      <div className='nav-div'>
+      <ul className="nav-ul">
+        <li className="nav-li"><Link to="/dashboard"><img className="icon" src={dashboardIcon}/></Link></li>
+        <li className="nav-li"><Link to="/calendar"><img className="icon" src={calendarIcon}/></Link></li>
+        <li className="nav-li"><Link to="/meal"><img className="icon" src={addIcon}/></Link></li>
+        <li className="nav-li"><Link to="/stats"><img className="icon" src={statsIcon}/></Link></li>
+        <li className="nav-li"><Link to="/logout"><img className="icon" src={settingsIcon}/></Link></li>
+      </ul>
+</div>
     )
   }
 }
