@@ -17,7 +17,6 @@ class App extends React.Component {
   render () {
     return (
       <Switch>
-             <h1>Food mood</h1>
         <Route path ='/meal' component={Meal} />
         <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />
