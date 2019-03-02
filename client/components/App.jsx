@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, withRouter} from 'react-router-dom'
 import Register from './Register'
 import Login from './Login'
 import {connect} from 'react-redux'
@@ -35,4 +35,4 @@ class App extends React.Component {
   }
 }
 
-export default connect()(App)
+export default withRouter(connect()(App))

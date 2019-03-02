@@ -14,7 +14,7 @@ class NavBar extends React.Component {
       <ul className="nav-ul">
         <li className="nav-li"><Link to="/dashboard"><img className="icon" src={dashboardIcon}/></Link></li>
         <li className="nav-li"><Link to="/calendar"><img className="icon" src={calendarIcon}/></Link></li>
-        <li className="nav-li"><Link to="/meal"><img className="icon" src={addIcon}/></Link></li>
+        <li className="nav-li"><Link to="/addmeal"><img className="icon" src={addIcon}/></Link></li>
         <li className="nav-li"><Link to="/stats"><img className="icon" src={statsIcon}/></Link></li>
         <li className="nav-li"><Link to="/logout"><img className="icon" src={settingsIcon}/></Link></li>
       </ul>
