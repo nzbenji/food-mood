@@ -1,5 +1,5 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {register} from '../actions/auth'
 import {TextField, Button} from '@material-ui/core'
@@ -38,8 +38,11 @@ class Register extends React.Component {
         <div>
         <h1>Register</h1>
         </div>
-        <br/><br/><br/>
-        <br/><br/><br/>
+        <br/><br/>
+        <div>
+          <h3>Already have an account? Login <Link to='/login'>here</Link></h3>
+        </div>
+        <br/><br/><br/><br/>
         <div>
             <label> 
             Username: 
@@ -81,4 +84,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps)(Register)
+export default withRouter(connect(mapStateToProps)(Register))

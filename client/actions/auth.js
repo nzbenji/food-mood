@@ -57,11 +57,14 @@ export const register = (user) => dispatch => {
   dispatch(registerPending())
   return registerApi(user)
     .then(res => {
+      console.log(res)
+      console.log('heeeeeeeeeellllllllllllo we should be logged in bumhole')
       setToken(res.token)
       setUserId(res.userId)
       dispatch(registerSuccess())
     })
     .catch(err => {
+      console.log(err)
       return dispatch(registerError(err))
     })
 }
