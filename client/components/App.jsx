@@ -29,9 +29,9 @@ class App extends React.Component {
             }} />
             <Route path='/register' component={Register} />
             <Route path='/login' component={Login} />
-            <button name='logout' onClick={this.handleLogout} >Log out</button>
-            <Route path='/mealday' component={MealDay} />} />
+            <Route path='/mealday' component={MealDay} />
             <Route path='/stats' component={Stats} />
+            <button name='logout' onClick={this.handleLogout} >Log out</button> 
           </Switch>
           <NavBar />
       </div>      
