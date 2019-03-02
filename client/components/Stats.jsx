@@ -1,4 +1,4 @@
-import Dummygraph from '../../server/public/Dummygraph'
+import Dummygraph from '../Images/Dummygraph'
 import React, {Component} from 'react'
 
 export class Stats extends Component {
