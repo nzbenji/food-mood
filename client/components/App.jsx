@@ -27,7 +27,7 @@ class App extends React.Component {
       <div>
         <h1>Food mood</h1>
           <Switch>
-          <Route path='/addmood/:mealid' component={AddReaction}/> 
+          <Route path='/addmood/:mealId' component={AddReaction}/> 
             <Route path='/calendar' component={Calendar} />
             <Route path ='/addmeal' render={() => {
               return this.props.loggedIn
