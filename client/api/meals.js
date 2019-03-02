@@ -2,9 +2,10 @@ import request from 'superagent'
 
 const url = 'http://localhost:3000/api/v1/meals'
 
-export function addMealApi (newMeal) {
-  request
-    .get(`${url}/${newMeal}`)
+export function addMealApi (userId, newMeal) {
+  return request
+    .post(`${url}/${userId}`)
+    .send(newMeal)
     .then(res => res.body)
     .catch(err => {
       if (err) throw Error('Cannot add meal')
@@ -12,7 +13,7 @@ export function addMealApi (newMeal) {
 }
 
 export function mostRecentMealApi (meal) {
-  request
+  return request
     .get(`${url}/${meal}`)
     .then(res => res.body)
     .catch(err => {
@@ -21,7 +22,7 @@ export function mostRecentMealApi (meal) {
 }
 
 export function getMealsApi (allMeals) {
-  request
+  return request
     .get(`${url}/${allMeals}`)
     .then(res => res.body)
     .catch(err => {
