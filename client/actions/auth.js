@@ -1,4 +1,5 @@
 import {setToken} from '../utils/tokens'
+import {setUserId} from '../utils/userId'
 import {register as registerApi, signin as signinApi} from '../api/auth'
 
 export const signinPending = () => {
@@ -7,10 +8,9 @@ export const signinPending = () => {
   }
 }
 
-export const signinSuccess = (id) => {
+export const signinSuccess = () => {
   return {
-    type: 'SIGNIN_SUCCESS',
-    id
+    type: 'SIGNIN_SUCCESS'
   }
 }
 
@@ -27,10 +27,9 @@ export const registerPending = () => {
   }
 }
 
-export const registerSuccess = (id) => {
+export const registerSuccess = () => {
   return {
-    type: 'REGISTER_SUCCESS',
-    id
+    type: 'REGISTER_SUCCESS'
   }
 }
 
@@ -46,7 +45,8 @@ export const signin = (user) => dispatch => {
   return signinApi(user)
     .then(res => {
       setToken(res.token)
-      dispatch(signinSuccess(res.userId))
+      setUserId(res.userId)
+      dispatch(signinSuccess())
     })
     .catch(err => {
       dispatch(signinError(err))
@@ -58,7 +58,8 @@ export const register = (user) => dispatch => {
   return registerApi(user)
     .then(res => {
       setToken(res.token)
-      dispatch(registerSuccess(res.userId))
+      setUserId(res.userId)
+      dispatch(registerSuccess())
     })
     .catch(err => {
       return dispatch(registerError(err))
