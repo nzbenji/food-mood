@@ -18,12 +18,12 @@ class Calendar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedDate: new Date().toISOString().slice(0, 19).replace('T', ' ')
+      selectedDate: new Date().toISOString().slice(0, 10).replace('T', ' ')
     }
   }
 
   handleDateChange = date => {
-    this.setState({ selectedDate: date.toISOString().slice(0, 19).replace('T', ' ') });
+    this.setState({ selectedDate: date.toISOString().slice(0, 10).replace('T', ' ') });
   }
 
   renderRedirect = () => {
@@ -33,9 +33,13 @@ class Calendar extends React.Component {
   }
 
   render () {
+    console.log(this.state)
     const choosenDate = this.state.selectedDate
+    const objToString = JSON.stringify(choosenDate)
+    console.log(objToString)
     const { classes } = this.props
-    const { selectedDate } = this.state
+    const {selectedDate} = this.state
+    
     return (
       <div>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -49,13 +53,13 @@ class Calendar extends React.Component {
               onChange={this.handleDateChange}/>
           </Grid>
           <Grid container className={classes.grid} alignContent="center" justify="center" >
-          
-          {/* <Button 
-            positive 
-            style={{height: '53px', width: '8rem', marginLeft: '18px'}}
-            onClick={this.renderRedirect}
-            >Submit</Button>*/}
-            <Link to='/mealday' >Submit</Link>
+    
+            <Link 
+            
+              to={{
+              pathname: '/mealday',
+              state: {date: objToString}
+            }}>Select</Link>
           </Grid> 
           
           
