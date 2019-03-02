@@ -4,7 +4,6 @@ import Register from './Register'
 import Login from './Login'
 import {connect} from 'react-redux'
 import {logout} from '../actions/auth'
-import Calendar from './Calendar'
 import Meal from './AddMeal';
 import Stats from './Stats'
 
