@@ -2,8 +2,10 @@ import request from 'superagent'
 
 const url = 'http://localhost:3000/api/v1/emotions'
 
-export function getEmotionsApi (user) {
+const emotionGetter = () => {
   return request
-    .post(`${url}/`)
+    .get(`${url}/`)
     .then(res => res.body)
 }
+
+export default emotionGetter
