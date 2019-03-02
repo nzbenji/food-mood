@@ -18,16 +18,20 @@ class App extends React.Component {
 
   render () {
     return (
-      <h1>Food mood</h1>
-      <Switch>
-        <Route path='/calendar' component={Calendar} />
-        <Route path ='/addmeal' component={AddMeal} />
-        <Route path='/register' component={Register} />
-        <Route path='/login' component={Login} />
-        <button name='logout' onClick={this.handleLogout} >Log out</button>
-        <Route path='/mealday' component={MealDay} />} />
-        <Route path='/stats' component={Stats} />
-      </Switch>
+      <div>
+        <h1>Food mood</h1>
+          <Switch>
+            <Route path='/calendar' component={Calendar} />
+            <Route path ='/addmeal' component={AddMeal} />
+            <Route path='/register' component={Register} />
+            <Route path='/login' component={Login} />
+            <button name='logout' onClick={this.handleLogout} >Log out</button>
+            <Route path='/mealday' component={MealDay} />} />
+            <Route path='/stats' component={Stats} />
+          </Switch>
+      </div>
+
+      
     )
   }
 }
