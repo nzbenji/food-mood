@@ -20,6 +20,7 @@ class App extends React.Component {
         <Route path ='/meal' component={Meal} />
         <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />
+        <Route path='/stats' component={Stats} />
         <button name='logout' onClick={this.handleLogout} >Log out</button>
       </Switch>
     )
