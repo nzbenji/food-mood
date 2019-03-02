@@ -8,7 +8,8 @@ import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pic
 import { Form, TextArea } from 'semantic-ui-react'
 import {addMealApi} from '../api/meals'
 import {connect} from 'react-redux'
-import {Redirect, withRouter} from 'react-router-dom'
+import {Redirect, withRouter, Route} from 'react-router-dom'
+import {updateCurrentMeal} from '../actions/meals'
 
 const styles = {
     grid: {
@@ -37,8 +38,9 @@ class AddMeal extends React.Component {
   }
 
   handleSubmit = (event) => {
+    this.props.dispatch(updateCurrentMeal(this.state.meal.title))
     return addMealApi(this.props.userId, this.state.meal)
-      .then((mealId) => {return <Redirect to='/login' />
+      .then((mealId) => {
         this.setState({
           mealId
         })

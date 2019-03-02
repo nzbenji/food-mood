@@ -1,6 +1,7 @@
 import request from 'superagent'
 
 const url = 'http://localhost:3000/api/v1/meals/moods'
+const addMoodUrl= 'http://localhost:3000/api/v1/moods'
 
 export function moodMealApi (meal) {
   return request
@@ -17,8 +18,9 @@ export function getMostRecentMoodApi (userId) {
     .then(res => res.body)
 }
 
-export function addMoodApi (mood) {
+export function addMoodApi (mood, currentMealId) {
   return request
-    .get(`${url}/${mood}`)
+    .post(`${addMoodUrl}/${currentMealId}`)
+    .send(mood)
     .then(res => res.body)
 }

@@ -3,7 +3,7 @@ exports.up = function (knex, Promise) {
     table.increments('id').primary()
     table.integer('emotion_id').references('emotions.id')
     table.integer('meal_id').references('meals.id')
-    table.string('note')
+    table.string('notes')
     table.timestamp('time').defaultTo(knex.fn.now())
   })
 }

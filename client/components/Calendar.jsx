@@ -5,9 +5,8 @@ import Grid from '@material-ui/core/Grid'
 import {withStyles} from '@material-ui/core/styles'
 import DateFnsUtils from '@date-io/date-fns'
 import {MuiPickersUtilsProvider, DatePicker} from 'material-ui-pickers'
-import {Route} from 'react-router-dom'
-
-import App from './App'
+import {Route, withRouter, Link} from 'react-router-dom'
+import MealDay from './MealDay'
 
 const styles = {
   grid: {
@@ -19,27 +18,30 @@ class Calendar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedDate: new Date()
+      selectedDate: new Date().toISOString().slice(0, 10).replace('T', ' ')
     }
   }
 
   handleDateChange = date => {
-    this.setState({ selectedDate: date });
+    this.setState({ selectedDate: date.toISOString().slice(0, 10).replace('T', ' ') });
   }
 
-  // renderRedirect = () => {
-  //   return <Route exact path='/day'
-  //           render={(props) => <Day {...props} handleDateChange={this.handleDateChange}/> } 
-  //          />
-  // }
+  renderRedirect = () => {
+    return <Route exact path='/day'
+            render={(props) => <MealDay {...props} handleDateChange={this.handleDateChange}/> } 
+           />
+  }
 
   render () {
+    console.log(this.state)
     const choosenDate = this.state.selectedDate
+    const objToString = JSON.stringify(choosenDate)
+    console.log(objToString)
     const { classes } = this.props
-    const { selectedDate } = this.state
+    const {selectedDate} = this.state
+    
     return (
       <div>
-        <App choosenDate={choosenDate}/>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container className={classes.grid} alignContent="center" justify="center" >
             <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}
@@ -51,13 +53,15 @@ class Calendar extends React.Component {
               onChange={this.handleDateChange}/>
           </Grid>
           <Grid container className={classes.grid} alignContent="center" justify="center" >
+    
+            <Link 
+            
+              to={{
+              pathname: '/mealday',
+              state: {date: objToString}
+            }}>Select</Link>
+          </Grid> 
           
-          <Button 
-            positive 
-            style={{height: '53px', width: '8rem', marginLeft: '18px'}}
-            onClick={this.renderRedirect}
-            >Submit</Button>
-          </Grid>
           
         </MuiPickersUtilsProvider>
       </div>
@@ -65,4 +69,4 @@ class Calendar extends React.Component {
   }
 }
 
-export default withStyles(styles)(Calendar)
+export default withRouter(withStyles(styles)(Calendar))
