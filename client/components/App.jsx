@@ -10,6 +10,8 @@ import MealDay from './MealDay'
 import Stats from './Stats'
 import NavBar from './NavBar'
 import AddReaction from './AddReaction'
+import Settings from './Settings'
+import Dashboard from './Dashboard'
 import {getEmotions} from '../actions/emotions'
 
 class App extends React.Component {
@@ -27,20 +29,45 @@ class App extends React.Component {
       <div>
         <h1>Food mood</h1>
           <Switch>
-          <Route path='/addmood/:mealId' component={AddReaction}/> 
-            <Route path='/calendar' component={Calendar} />
+            <Route exact path='/' render={() => {
+              return this.props.loggedIn
+                ? <Dashboard />
+                : <Redirect to='/login' push={true} />
+            }} />
+            <Route path='/addmood/:mealId' render={() => {
+              if(!this.props.loggedIn) return <Redirect to='/login' push={true} />
+              if(this.props.currentMeal) return <AddReaction />
+              return <Redirect to='/' push={true} />
+            }} /> 
+            <Route path='/calendar' render={() => {
+              return this.props.loggedIn
+                ? <Calendar />
+                : <Redirect to='/login' push={true} />
+            }} />
             <Route path ='/addmeal' render={() => {
               return this.props.loggedIn
                 ? <AddMeal />
                 : <Redirect to='/login' push={true} />
             }} />
+            <Route path='/mealday' render={() => {
+              return this.props.loggedIn
+                ? <MealDay />
+                : <Redirect to='/login' push={true} />
+            }} />
+            <Route path='/stats' render={() => {
+              return this.props.loggedIn
+                ? <Stats />
+                : <Redirect to='/login' push={true} />
+            }} />
+            <Route path='/settings' render={() => {
+              return this.props.loggedIn
+                ? <Settings />
+                : <Redirect to='/login' push={true} />
+            }} />
             <Route path='/register' component={Register} />
             <Route path='/login' component={Login} />
-            <Route path='/mealday' component={MealDay} /> 
-            <Route path='/stats' component={Stats} />
-            <button name='logout' onClick={this.handleLogout} >Log out</button>
           </Switch>
-          <NavBar />
+          {this.props.loggedIn && <NavBar />}
       </div>      
     )
   }
@@ -49,7 +76,8 @@ class App extends React.Component {
 function mapStateToProps (state) {
   return {
     userId: state.auth.userId,
-    loggedIn: state.auth.loggedIn
+    loggedIn: state.auth.loggedIn,
+    currentMeal: state.auth.currentMeal
   }
 }
 

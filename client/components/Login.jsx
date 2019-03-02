@@ -1,5 +1,5 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {signin} from '../actions/auth'
 import {TextField, Button} from '@material-ui/core'
@@ -35,9 +35,6 @@ class Login extends React.Component {
     }
 
     const {username, password} = this.state
-    const style = {
-      alignText: 'center'
-    }
     return (
       <Grid container justify = "center">
         <div>
@@ -46,18 +43,22 @@ class Login extends React.Component {
               <h1>Login To Food Mood</h1>
             </div>
             <br/><br/>
+            <div>
+              <h3>Don't have an account? Sign up <Link to='/register'>here</Link></h3>
+            </div>
             <br/><br/>
             <br/><br/>
             <br/><br/>
+
             <div>
               <label htmlFor="firstname">
-
-            Username: <TextField id='username' name='username' variant="outlined" placeholder='username' onChange={this.handleChange} value={username} /> </label>
+              Username: <TextField id='username' name='username' variant="outlined" placeholder='username' onChange={this.handleChange} value={username} /> </label>
             </div>
+
             <div>
-
-          Password: <TextField id='password' variant="outlined" name='password' placeholder='password' onChange={this.handleChange} value={password} type='password' />
+            Password: <TextField id='password' variant="outlined" name='password' placeholder='password' onChange={this.handleChange} value={password} type='password' />
             </div>
+
             <div>
               <Grid container justify = "center">
                 <label htmlFor="signinBtn" >
@@ -79,4 +80,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Login)
+export default withRouter(connect(mapStateToProps)(Login))
