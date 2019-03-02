@@ -1,13 +1,12 @@
-import React from 'react'
-import { Route, Switch } from 'react-router-dom'
-
-import React, { Component } from 'react'
+import {Route, Switch} from 'react-router-dom'
+import Dummygraph from '../../server/public/Dummygraph'
+import React, {Component} from 'react'
 
 export class Stats extends Component {
-  render() {
+  render () {
     return (
       <div>
-        
+        <img src={Dummygraph} alt="Dummygraph" />
       </div>
     )
   }
