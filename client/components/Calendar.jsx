@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import {withStyles} from '@material-ui/core/styles'
 import DateFnsUtils from '@date-io/date-fns'
 import {MuiPickersUtilsProvider, DatePicker} from 'material-ui-pickers'
-import {Route} from 'react-router-dom'
+import {Route, withRouter} from 'react-router-dom'
 
 import App from './App'
 
@@ -65,4 +65,4 @@ class Calendar extends React.Component {
   }
 }
 
-export default withStyles(styles)(Calendar)
+export default withRouter(withStyles(styles)(Calendar))

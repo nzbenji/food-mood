@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
 import { Form, TextArea } from 'semantic-ui-react'
+import {Route} from 'react-router-dom'
 
 const styles = {
     grid: {
@@ -35,6 +36,13 @@ class Meal extends React.Component {
 
       handleChange = event => {
         this.setState({ notes: event.target.value });
+      }
+
+      handleRedirect = () => {
+        return <Route
+          path='/dashboard'
+          render={(props) => <Mealday {...props} isAuthed={true} />}
+        />
       }
 
     render() {
@@ -82,7 +90,10 @@ class Meal extends React.Component {
                             value={this.state.notes} 
                             onChange={this.handleChange} 
                             style={{width: '40rem', height: '53px', fontSize: '18px', fontFamily:'Laila', letterSpacing:'4px'}}/>
-                            <Button positive style={{height: '53px', width: '8rem', marginLeft: '18px'}}>Submit</Button>
+                            <Button 
+                            positive style={{height: '53px', width: '8rem', marginLeft: '18px'}}
+                            onClick={this.handleRedirect}
+                            >Submit</Button>
                         </Form>
                 </div>
                 </Grid>
