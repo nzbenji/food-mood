@@ -5498,6 +5498,11 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-awesome-button@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/react-awesome-button/-/react-awesome-button-6.0.0.tgz#46eb77a6af30a17819551063d8fb7d361e2b658a"
+  integrity sha512-HZoYu7SaeM/fNtghK7BymSFBtWqnaNrqYUkwIOx5Q5CN5bEsNff6CoOkNoVEdhu/drdFdRQs8F/OlC4Qv/pBHw==
+
 react-bootstrap@^1.0.0-beta.5:
   version "1.0.0-beta.5"
   resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-1.0.0-beta.5.tgz#cf2c45a78bb0603c086d3fee3b454e21c3b5de6e"
