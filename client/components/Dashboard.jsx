@@ -9,7 +9,7 @@ class Dashboard extends React.Component {
       <div>
         <h1>Dashboard</h1>
         <div>
-          <Link to='/meal'><Button
+          <Link to='/addmeal'><Button
             textAlign="center"
             style={{
               width: '60rem',
