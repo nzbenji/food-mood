@@ -1,4 +1,3 @@
-import {Route, Switch} from 'react-router-dom'
 import Dummygraph from '../../server/public/Dummygraph'
 import React, {Component} from 'react'
 
