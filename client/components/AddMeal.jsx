@@ -6,6 +6,9 @@ import { withStyles } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
 import { Form, TextArea } from 'semantic-ui-react'
+import {addMealApi} from '../api/meals'
+import {connect} from 'react-redux'
+import {Redirect, withRouter} from 'react-router-dom'
 
 const styles = {
     grid: {
@@ -13,83 +16,109 @@ const styles = {
     },
   };
 
-class Meal extends React.Component {
-    state = {
+class AddMeal extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
         // The first commit of Material-UI
-        selectedDate: new Date(),
-        notes: '',
-        meal: ''
+        meal: {
+          time: new Date().toISOString().slice(0, 19).replace('T', ' '),
+          title: ''
+        },
+        mealId: -1
       };
-
-      handleChange = (event) => {
-        this.setState({meal: event.target.value})
-      }
+  }
     
-      handleSubmit = (event) => {
-        this.setState({meal: event.target.value})
-      }
-    
-      handleDateChange = date => {
-        this.setState({ selectedDate: date });
-      };
+  handleChange = (event) => {
+    const updatemeal = {...this.state.meal}
+    updatemeal[event.target.name] = event.target.value
+    this.setState({meal: updatemeal})
+  }
 
-      handleChange = event => {
-        this.setState({ notes: event.target.value });
-      }
+  handleSubmit = (event) => {
+    return addMealApi(this.props.userId, this.state.meal)
+      .then((mealId) => {return <Redirect to='/login' />
+        this.setState({
+          mealId
+        })
+      })
+      .catch(({message}) => console.log("Whoops"))
+  }
 
-    render() {
-        console.log(this.state.meal)
-        const { classes } = this.props;
-        const { selectedDate } = this.state;
-        return (
-            <div>
-                <center>
-                <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Add Meal </h3>
-                <br></br>
-              </center>
+  handleDateChange = date => {
+    const dbDate = date.toISOString().slice(0, 19).replace('T', ' ')
+    const updatemeal = {...this.state.meal}
+    updatemeal.time = dbDate
+    this.setState({meal: updatemeal})
+  }
 
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <Grid container className={classes.grid} alignContent="center" justify="center" >
-                <div>
-                <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}
-                >Enter a date:</h3>
-                <DatePicker style={{marginLeft: '30px'}}
-                    margin="normal"
-                    label="Date picker"
-                    value={selectedDate}
-                    onChange={this.handleDateChange}
-                />
-                
-                </div>
-
-                <Grid container className={classes.grid} alignContent="center" justify="center" ></Grid>
-                <div>
-                    <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Enter a time: </h3>
-                    <TimePicker style={{marginLeft: '30px'}}
-                        margin="normal"
-                        label="Time picker"
-                        value={selectedDate}
-                        onChange={this.handleDateChange}/>
-                </div>
-                </Grid>
-                <Grid container className={classes.grid} alignContent="center" justify="center" >
-                <div> 
-                    {/* <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px'}}>Notes:</h3>  */}
-
-                      <Form style={{margin:'40px'}}>
-                            <TextArea 
-                            placeholder='Tell us more' 
-                            value={this.state.notes} 
-                            onChange={this.handleChange} 
-                            style={{width: '40rem', height: '53px', fontSize: '18px', fontFamily:'Laila', letterSpacing:'4px'}}/>
-                            <Button positive style={{height: '53px', width: '8rem', marginLeft: '18px'}}>Submit</Button>
-                        </Form>
-                </div>
-                </Grid>
-            </MuiPickersUtilsProvider>
-            </div>
-        )
+  render() {
+    if(this.state.mealId > 0){
+      return (
+        <Redirect to={`/addMood/${this.state.mealId}`} />
+      )
     }
+
+    const { classes } = this.props;
+    const { time } = this.state.meal;
+    return (
+      <div>
+        <center>
+          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Add Meal </h3>
+          <br></br>
+        </center>
+
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <Grid container className={classes.grid} alignContent="center" justify="center" >
+          <div> 
+          <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
+              Meal Name:
+            </h3>
+            <Form style={{margin:'40px'}}>
+                  <TextArea 
+                  placeholder='Meal Name' 
+                  name='title'
+                  value={this.state.meal.title} 
+                  onChange={this.handleChange} 
+                  style={{width: '40rem', height: '53px', fontSize: '18px', fontFamily:'Laila', letterSpacing:'4px'}}/>
+            </Form>
+          </div>
+        </Grid>
+
+        <Grid container className={classes.grid} alignContent="center" justify="center" >
+          <div>
+            <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
+              Enter a date:
+            </h3>
+            <DatePicker style={{marginLeft: '30px'}}
+                margin="normal"
+                label="Date picker"
+                value={time}
+                onChange={this.handleDateChange}
+            />        
+          </div>
+          <div>
+              <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Enter a time: </h3>
+              <TimePicker style={{marginLeft: '30px'}}
+                  margin="normal"
+                  label="Time picker"
+                  value={time}
+                  onChange={this.handleDateChange}/>
+          </div>
+        </Grid>
+        <Button positive style={{height: '53px', width: '8rem', marginLeft: '18px'}} onClick={this.handleSubmit}>Submit</Button>
+      </MuiPickersUtilsProvider>
+      </div>
+    )
+  }
 }
 
-export default withStyles(styles)(Meal);
+function mapStateToProps (state) {
+  return {
+    userId: state.auth.userId,
+    loggedIn: state.auth.loggedIn
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(withStyles(styles)(AddMeal)))

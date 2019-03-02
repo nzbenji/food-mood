@@ -1,11 +1,12 @@
 import {getToken, clearToken} from '../utils/tokens'
+import {clearUserId, getUserId} from '../utils/userId'
 
 const initialState = {
   error: null,
   loggedIn: !!getToken(),
   newRegistration: false,
   pending: false,
-  userId: -1
+  userId: getUserId()
 }
 
 export default function authReducer (state = initialState, action) {
@@ -22,18 +23,15 @@ export default function authReducer (state = initialState, action) {
         ...state,
         error: null,
         loggedIn: true,
-        pending: false,
-        userId: action.id
+        pending: false
       }
     case 'REGISTER_SUCCESS':
-      console.log(action)
       return {
         ...state,
         error: null,
         newRegistration: true,
         loggedIn: true,
-        pending: false,
-        userId: action.id
+        pending: false
       }
     case 'SIGNIN_ERROR':
     case 'REGISTER_ERROR':
@@ -41,15 +39,14 @@ export default function authReducer (state = initialState, action) {
         ...state,
         error: true,
         loggedIn: false,
-        pending: false,
-        userId: -1
+        pending: false
       }
     case 'LOGOUT':
       clearToken()
+      clearUserId()
       return {
         ...state,
-        loggedIn: false,
-        userId: -1
+        loggedIn: false
       }
     default:
       return state
