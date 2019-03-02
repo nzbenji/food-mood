@@ -5,9 +5,8 @@ import Grid from '@material-ui/core/Grid'
 import {withStyles} from '@material-ui/core/styles'
 import DateFnsUtils from '@date-io/date-fns'
 import {MuiPickersUtilsProvider, DatePicker} from 'material-ui-pickers'
-import {Route, withRouter} from 'react-router-dom'
-
-import App from './App'
+import {Route, withRouter, Link} from 'react-router-dom'
+import MealDay from './MealDay'
 
 const styles = {
   grid: {
@@ -19,19 +18,19 @@ class Calendar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedDate: new Date()
+      selectedDate: new Date().toISOString().slice(0, 19).replace('T', ' ')
     }
   }
 
   handleDateChange = date => {
-    this.setState({ selectedDate: date });
+    this.setState({ selectedDate: date.toISOString().slice(0, 19).replace('T', ' ') });
   }
 
-  // renderRedirect = () => {
-  //   return <Route exact path='/day'
-  //           render={(props) => <Day {...props} handleDateChange={this.handleDateChange}/> } 
-  //          />
-  // }
+  renderRedirect = () => {
+    return <Route exact path='/day'
+            render={(props) => <MealDay {...props} handleDateChange={this.handleDateChange}/> } 
+           />
+  }
 
   render () {
     const choosenDate = this.state.selectedDate
@@ -39,7 +38,6 @@ class Calendar extends React.Component {
     const { selectedDate } = this.state
     return (
       <div>
-        <App choosenDate={choosenDate}/>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container className={classes.grid} alignContent="center" justify="center" >
             <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}
@@ -52,12 +50,14 @@ class Calendar extends React.Component {
           </Grid>
           <Grid container className={classes.grid} alignContent="center" justify="center" >
           
-          <Button 
+          {/* <Button 
             positive 
             style={{height: '53px', width: '8rem', marginLeft: '18px'}}
             onClick={this.renderRedirect}
-            >Submit</Button>
-          </Grid>
+            >Submit</Button>*/}
+            <Link to='/mealday' >Submit</Link>
+          </Grid> 
+          
           
         </MuiPickersUtilsProvider>
       </div>
