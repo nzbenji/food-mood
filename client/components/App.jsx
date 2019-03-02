@@ -1,12 +1,11 @@
 import React from 'react'
-import {Route, Switch, withRouter} from 'react-router-dom'
+import {Route, Switch, withRouter, Redirect} from 'react-router-dom'
 import Register from './Register'
 import Login from './Login'
 import {connect} from 'react-redux'
 import {logout} from '../actions/auth'
 import Calendar from './Calendar'
 import AddMeal from './AddMeal';
-import {Redirect, withRouter} from 'react-router-dom'
 import MealDay from './MealDay'
 import Stats from './Stats'
 import NavBar from './NavBar'
@@ -30,9 +29,9 @@ class App extends React.Component {
             }} />
             <Route path='/register' component={Register} />
             <Route path='/login' component={Login} />
-            <button name='logout' onClick={this.handleLogout} >Log out</button>
             <Route path='/mealday' component={MealDay} />} />
             <Route path='/stats' component={Stats} />
+            <button name='logout' onClick={this.handleLogout} >Log out</button>
           </Switch>
           <NavBar />
       </div>      
