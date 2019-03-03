@@ -14,9 +14,9 @@ describe("auth reducer", () => {
         pending: false,
         userId: getUserId()
       };
-      
+
       const action = {
-        type: "DATA_LOADER/REQUEST_DATA",
+        type: 'SIGNIN_PENDING',
         payload: {
          session: { sessionId: "sid" }
         }
