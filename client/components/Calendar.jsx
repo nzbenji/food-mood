@@ -35,8 +35,6 @@ class Calendar extends React.Component {
   render () {
     console.log(this.state)
     const choosenDate = this.state.selectedDate
-    const objToString = JSON.stringify(choosenDate)
-    console.log(objToString)
     const { classes } = this.props
     const {selectedDate} = this.state
     
@@ -58,7 +56,7 @@ class Calendar extends React.Component {
             
               to={{
               pathname: '/mealday',
-              state: {date: objToString}
+              state: {date: choosenDate}
             }}>Select</Link>
           </Grid> 
           
