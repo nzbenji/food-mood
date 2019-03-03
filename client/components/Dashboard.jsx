@@ -1,5 +1,6 @@
 import React from 'react'
 import {getMostRecentMood} from '../actions/moods'
+import {mostRecentMealApi} from '../api/meals'
 import {Button} from 'semantic-ui-react'
 import {withStyles} from '@material-ui/core/styles'
 import {connect} from 'react-redux'
@@ -14,20 +15,23 @@ class Dashboard extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      mood: null
+      mood: {},
+      recentMeal: {}
     }
   }
 
   componentDidMount () {
     this.props.dispatch(getMostRecentMood(this.props.userId))
+    mostRecentMealApi(this.props.userId).then(meal => {
+      this.setState({recentMeal: meal})
+    })
   }
 
   render () {
     const {emotions, currentMood} = this.props
     let emoji = ''
     if (emotions.length > 0) {
-      const emot = emotions.find(emotion => emotion.id === currentMood.emotion_id)
-      emoji = emot.emoji
+      emoji = emotions.find(emotion => emotion.id === currentMood.emotion_id).emoji
     }
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
@@ -47,6 +51,10 @@ class Dashboard extends React.Component {
           <br/><br/>
           <Link to='/addreaction'>
             <Button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor:'#0ba8bc'}}>Add Reaction</Button>
+          <Link to={{
+            pathname: `/addmood/${this.state.recentMeal.id}`,
+            state: {meal: this.state.recentMeal}}}>
+            <Button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center'}}>Add Mood to Last Meal</Button>
           </Link>
         </div>
       </div>
