@@ -12,9 +12,9 @@ export function addMealApi (userId, newMeal) {
     })
 }
 
-export function mostRecentMealApi (meal) {
+export function mostRecentMealApi (userId) {
   return request
-    .get(`${url}/${meal}`)
+    .get(`${url}/mostRecent/${userId}`)
     .then(res => res.body)
     .catch(err => {
       if (err) throw Error('Cannot get most recent meal')
