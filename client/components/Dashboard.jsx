@@ -10,7 +10,7 @@ class Dashboard extends React.Component {
         <h1>Dashboard</h1>
         <div>
           <Link to='/addmeal'><Button
-            textAlign="center"
+            textalign="center"
             style={{
               width: '60rem',
               margin: '20px',
