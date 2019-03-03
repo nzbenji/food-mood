@@ -1,3 +1,7 @@
+body {
+  background-color: aquamarine;
+}
+
 .nav-ul {
     list-style-type: none;
     height: 55px;
@@ -28,5 +32,7 @@
     margin-right: 30px;
   }
 
-
+.button {
+  background-color: #00bba7
+}
   

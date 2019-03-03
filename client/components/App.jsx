@@ -26,8 +26,8 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
-        <h1>Food mood</h1>
+   <div>
+      <h1 style={{fontSize:'2.4rem', fontFamily:'Laila', color:'orange', textAlign:'center'}}>Food mood</h1>
           <Switch>
             <Route exact path='/' component={Dashboard} />
             <Route path ='/addmeal' component={AddMeal} />
@@ -38,7 +38,7 @@ class App extends React.Component {
             <Route path='/calendar' component={Calendar} />
             <Route path='/register' component={Register} />
             <Route path='/login' component={Login} />
-          </Switch>
+          </Switch><br></br>
           {this.props.loggedIn && <NavBar />}
       </div>      
     )

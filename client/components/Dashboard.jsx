@@ -38,16 +38,19 @@ class Dashboard extends React.Component {
     }
     return (
       <div>
-        <h1>Dashboard</h1>
+        <br></br>
+        <h1 style={{fontSize: '4rem', fontFamily: 'Laila', textAlign: 'center'}}>Dashboard</h1><br></br>
         <div>
           <h3 style={{textAlign: 'center', fontSize: '40px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>Last Mood</h3>
           {currentMood && emotions.length > 0
             ? <h3 style={{fontSize: '100px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center'}}> {emoji} </h3>
             : <div></div>}
           <Link to='/addmeal'>
-            <Button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center'}}>Add Meal</Button>
+            <Button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor:'#0ba8bc'}}>Add Meal</Button>
           </Link>
           <br/><br/>
+          <Link to='/addreaction'>
+            <Button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor:'#0ba8bc'}}>Add Reaction</Button>
           <Link to={{
             pathname: `/addmood/${this.state.recentMeal.id}`,
             state: {meal: this.state.recentMeal}}}>
