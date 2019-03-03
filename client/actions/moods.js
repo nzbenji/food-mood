@@ -60,3 +60,9 @@ export const updateMood = (mood) => {
     mood
   }
 }
+
+export function clearMood () {
+  return {
+    type: 'CLEAR_MOOD'
+  }
+}
