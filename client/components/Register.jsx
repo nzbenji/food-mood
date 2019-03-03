@@ -60,7 +60,7 @@ class Register extends React.Component {
             <label> 
             Password:
             <br/>
-            <TextField id='password' name='password' variant="outlined" placeholder='password' value={this.state.password} onChange={this.handleChange} /> 
+            <TextField id='password' name='password' type='password' variant="outlined" placeholder='password' value={this.state.password} onChange={this.handleChange} /> 
             </label>
             </div>
             <Grid container justify = "center">
