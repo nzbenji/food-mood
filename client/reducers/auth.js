@@ -47,7 +47,6 @@ export default function authReducer (state = initialState, action) {
     case 'LOGOUT':
       clearToken()
       clearUserId()
-      console.log(getUserId())
       return {
         ...state,
         loggedIn: false,
