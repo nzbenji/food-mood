@@ -5,9 +5,16 @@ import auth from '../../client/reducers/auth'
 // A reducer is a pure function that takes the previous state and an action
 // Then it returns the next state
 
-describe("dataloader reducers", () => {
-    test("dataRequested", () => {
-      const initialState = {};
+describe("auth reducer", () => {
+    test("auth reducer", () => {
+      const initialState = {
+        error: null,
+        loggedIn: !!getToken(),
+        newRegistration: false,
+        pending: false,
+        userId: getUserId()
+      };
+      
       const action = {
         type: "DATA_LOADER/REQUEST_DATA",
         payload: {
