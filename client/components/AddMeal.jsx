@@ -67,8 +67,7 @@ class AddMeal extends React.Component {
     return (
       <div>
         <center>
-          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Add Meal </h3>
-          <br></br>
+          <h3 style={{textAlign:'center', fontSize: '4rem',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Add Meal </h3>
         </center>
 
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
