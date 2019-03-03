@@ -11,6 +11,7 @@ export function getMostRecentMood (userId) {
   }
 }
 
+// Various actions to do with mood
 function requestMood () {
   return {
     type: 'REQUESTING_MOOD'
@@ -41,6 +42,7 @@ export function saveNewMood (mood, currentMealId) {
   }
 }
 
+// Actions which request, receibe and save moods
 function requestAddMood () {
   return {
     type: 'REQUESTING_ADD_MOOD'
