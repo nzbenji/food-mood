@@ -1,6 +1,7 @@
 import {getToken, clearToken} from '../utils/tokens'
 import {clearUserId, getUserId} from '../utils/userId'
 
+// Our default state
 const initialState = {
   error: null,
   loggedIn: !!getToken(),
