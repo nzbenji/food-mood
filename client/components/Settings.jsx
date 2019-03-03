@@ -1,6 +1,5 @@
 import React from 'react'
 import {Route, Switch, withRouter, Redirect} from 'react-router-dom'
-import { Button } from 'semantic-ui-react'
 import Register from './Register'
 import Login from './Login'
 import {connect} from 'react-redux'

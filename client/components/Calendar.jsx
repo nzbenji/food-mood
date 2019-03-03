@@ -1,5 +1,4 @@
 import React from 'react'
-import {Button} from 'semantic-ui-react'
 import 'date-fns'
 import Grid from '@material-ui/core/Grid'
 import {withStyles} from '@material-ui/core/styles'
