@@ -21,7 +21,8 @@ class Dashboard extends React.Component {
                 fontWeight: '300',
                 letterSpacing: '5px',
                 textTransform: 'uppercase',
-                display: 'flex'
+                display: 'flex',
+                backgroundColor: '#00bba7'
               }}
               positive
             >Add Meal</Button></Link>
@@ -36,8 +37,8 @@ class Dashboard extends React.Component {
                 fontSize: '3rem',
                 fontWeight: '300',
                 letterSpacing: '5px',
-                textTransform: 'uppercase'
-
+                textTransform: 'uppercase',
+                backgroundColor: '#00bba7'
               }}
               positive>Add Reaction</Button>
           </Link>
