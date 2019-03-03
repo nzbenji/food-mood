@@ -9,12 +9,8 @@ import AddMeal from './AddMeal';
 import MealDay from './MealDay'
 import Stats from './Stats'
 import NavBar from './NavBar'
-<<<<<<< HEAD
-import AddReaction from './AddReaction'
-=======
 import AddMood from './AddMood'
 import Settings from './Settings'
->>>>>>> 466f647fdca8c91dbdc74218e1b513764269eae6
 import Dashboard from './Dashboard'
 import {getEmotions} from '../actions/emotions'
 
