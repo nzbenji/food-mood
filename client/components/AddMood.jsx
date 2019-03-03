@@ -38,8 +38,9 @@ class AddMood extends React.Component {
   }
 
   handleSubmit = (event) => {
-  this.props.dispatch(saveNewMood(this.state.mood, this.props.location.state.meal.id))
-  this.setState({submitted:true})
+    this.props.dispatch(saveNewMood(this.state.mood, this.props.location.state.meal.id))
+    this.setState({submitted:true})
+    event.preventDefault()
   }
 
   handleDateChange = date => {
@@ -94,14 +95,14 @@ class AddMood extends React.Component {
           <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
               Notes:
             </h3>
-            <Form style={{margin:'40px'}}>
-                  <TextArea 
+            <form style={{margin:'40px'}}>
+                  <input 
                   placeholder='Notes' 
                   name='notes'
                   value={this.state.mood.notes} 
                   onChange={this.handleChange} 
                   style={{width: '40rem', height: '53px', fontSize: '18px', fontFamily:'Laila', letterSpacing:'4px'}}/>
-            </Form>
+            </form>
           </div>
         </Grid>
 
@@ -127,7 +128,7 @@ class AddMood extends React.Component {
           </div>
         </Grid>
         <Grid container className={classes.grid} alignContent="center" justify="center" >
-        <Button positive style={{height: '53px', width: '8rem', marginTop:'50px', marginBottom:'40px', marginLeft: '18px'}} onClick={this.handleSubmit}>Submit</Button>
+        <button positive style={{height: '53px', width: '8rem', marginTop:'50px', marginBottom:'40px', marginLeft: '18px'}} onClick={this.handleSubmit}>Submit</button>
         </Grid>
       </MuiPickersUtilsProvider>
       </div>
