@@ -1,12 +1,10 @@
 import React from 'react'
 
-import { Button } from 'semantic-ui-react'
 import 'date-fns';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
-import { Form, TextArea } from 'semantic-ui-react'
 import {addMealApi} from '../api/meals'
 import {connect} from 'react-redux'
 import {Redirect, withRouter} from 'react-router-dom'
