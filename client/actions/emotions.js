@@ -19,6 +19,34 @@ export function getEmotions () {
   }
 }
 
+export function getRecentEmotion (id) {
+  return function (dispatch) {
+    dispatch(requestRecentEmotion())
+    request
+    .get(`${url}/mostRecent/${id}`)
+    .then(res  => res.body)
+    .then(res => {
+      dispatch(receiveRecentEmotion(res))
+  })
+  .catch(err => {
+    console.log(err)
+  })
+ }
+}
+
+function requestRecentEmotion () {
+  return {
+    type: 'REQUEST_RECENT_EMOTION'
+  }
+}
+
+function receiveRecentEmotion (recentEmoji) {
+  return {
+    type: 'RECEIVE_RECENT_EMOTION',
+    recentEmoji
+  }
+}
+
 function requestEmotions () {
   return {
     type: 'REQUESTING_EMOTIONS'
