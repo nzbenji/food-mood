@@ -7,6 +7,7 @@ router.get('/:userId', (req, res) => {
   db.allUserMealsAndMoods(userId)
     .then(meals => {
       res.json(moodToMoodArr(meals))
+      
     })
     .catch(err => {
       res.status(500).send(err)

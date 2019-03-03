@@ -21,7 +21,7 @@ export function mostRecentMealApi (meal) {
     })
 }
 
-export function getMealsApi (userId) {
+export function getMealsAndMoods (userId) {
   return request
     .get(`${url}/${userId}`)
     .then(res => res.body)
