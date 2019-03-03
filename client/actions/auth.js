@@ -2,6 +2,8 @@ import {setToken} from '../utils/tokens'
 import {setUserId} from '../utils/userId'
 import {register as registerApi, signin as signinApi} from '../api/auth'
 
+// Actions are payloads of information that send data from your application to your store. 
+
 // Actions for signing in and registering
 export const signinPending = () => {
   return {
