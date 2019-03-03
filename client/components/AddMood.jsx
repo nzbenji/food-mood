@@ -18,7 +18,7 @@ const styles = {
     },
   };
 
-class AddReaction extends React.Component {
+class AddMood extends React.Component {
 
   constructor (props) {
     super(props)
@@ -40,7 +40,7 @@ class AddReaction extends React.Component {
   }
 
   handleSubmit = (event) => {
-  this.props.dispatch(saveNewMood(this.state.mood, this.props.match.params.mealId))
+  this.props.dispatch(saveNewMood(this.state.mood, this.props.location.state.meal.id))
   this.setState({submitted:true})
   }
 
@@ -66,6 +66,15 @@ class AddReaction extends React.Component {
     if (this.state.submitted){
       return <Redirect to ='/'/>
     }
+
+    if (!this.props.loggedIn) {
+      return <Redirect to='/login'/>
+    }
+
+    if(!this.props.location.state) {
+      return <Redirect to='/'/>
+    }
+    
     return (
       <div>
         <center>
@@ -73,7 +82,7 @@ class AddReaction extends React.Component {
           <br></br>
         </center>
           <center>
-          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>{this.props.currentMeal} </h3>
+          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>{this.props.location.state.meal.title}</h3>
           <br></br>
         </center>
         <center>
@@ -119,7 +128,9 @@ class AddReaction extends React.Component {
                   onChange={this.handleDateChange}/>
           </div>
         </Grid>
-        <Button positive style={{height: '53px', width: '8rem', marginLeft: '18px'}} onClick={this.handleSubmit}>Submit</Button>
+        <Grid container className={classes.grid} alignContent="center" justify="center" >
+        <Button positive style={{height: '53px', width: '8rem', marginTop:'50px', marginBottom:'40px', marginLeft: '18px'}} onClick={this.handleSubmit}>Submit</Button>
+        </Grid>
       </MuiPickersUtilsProvider>
       </div>
     )
@@ -130,9 +141,8 @@ function mapStateToProps (state) {
   return {
     userId: state.auth.userId,
     loggedIn: state.auth.loggedIn,
-    currentMeal: state.currentMeal,
     emotions: state.emotions
   }
 }
 
-export default withRouter(connect(mapStateToProps)(withStyles(styles)(AddReaction)))
+export default withRouter(connect(mapStateToProps)(withStyles(styles)(AddMood)))

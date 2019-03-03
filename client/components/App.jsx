@@ -9,7 +9,7 @@ import AddMeal from './AddMeal';
 import MealDay from './MealDay'
 import Stats from './Stats'
 import NavBar from './NavBar'
-import AddReaction from './AddReaction'
+import AddMood from './AddMood'
 import Settings from './Settings'
 import Dashboard from './Dashboard'
 import {getEmotions} from '../actions/emotions'
@@ -29,27 +29,11 @@ class App extends React.Component {
    <div>
       <h1 style={{fontSize:'2.4rem', fontFamily:'Laila', color:'orange', textAlign:'center'}}>Food mood</h1>
           <Switch>
-            <Route exact path='/' render={() => {
-              return this.props.loggedIn
-                ? <Dashboard />
-                : <Redirect to='/login' push={true} />
-            }} />
-            <Route path ='/addmeal' render={() => {
-              return this.props.loggedIn
-                ? <AddMeal />
-                : <Redirect to='/login' push={true} />
-            }} />
-            <Route path='/stats' render={() => {
-              return this.props.loggedIn
-                ? <Stats />
-                : <Redirect to='/login' push={true} />
-            }} />
-            <Route path='/settings' render={() => {
-              return this.props.loggedIn
-                ? <Settings />
-                : <Redirect to='/login' push={true} />
-            }} />
-            <Route path='/addmood/:mealId' component={AddReaction} />
+            <Route exact path='/' component={Dashboard} />
+            <Route path ='/addmeal' component={AddMeal} />
+            <Route path='/stats' component={Stats} />
+            <Route path='/settings' component={Settings} />
+            <Route path='/addmood/:mealId' component={AddMood} />
             <Route path='/mealday' component={MealDay} />
             <Route path='/calendar' component={Calendar} />
             <Route path='/register' component={Register} />

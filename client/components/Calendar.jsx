@@ -5,8 +5,9 @@ import Grid from '@material-ui/core/Grid'
 import {withStyles} from '@material-ui/core/styles'
 import DateFnsUtils from '@date-io/date-fns'
 import {MuiPickersUtilsProvider, DatePicker} from 'material-ui-pickers'
-import {Route, withRouter, Link} from 'react-router-dom'
+import {Route, withRouter, Link, Redirect} from 'react-router-dom'
 import MealDay from './MealDay'
+import {connect} from 'react-redux'
 
 const styles = {
   grid: {
@@ -33,6 +34,9 @@ class Calendar extends React.Component {
   }
 
   render () {
+    if (!this.props.loggedIn) {
+      return <Redirect to='/login'/>
+    }
     console.log(this.state)
     const choosenDate = this.state.selectedDate
     const { classes } = this.props
@@ -69,4 +73,10 @@ class Calendar extends React.Component {
   }
 }
 
-export default withRouter(withStyles(styles)(Calendar))
+function mapStateToProps (state) {
+  return {
+    loggedIn: state.auth.loggedIn
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(withStyles(styles)(Calendar)))
