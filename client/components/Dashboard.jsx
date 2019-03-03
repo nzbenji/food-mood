@@ -8,13 +8,14 @@ class Dashboard extends React.Component {
     return (
       <div>
         <br></br>
-        <h1 style={{fontSize:'4rem'}}>Dashboard</h1><br></br>
+        <h1 style={{ fontSize:'4rem',fontFamily:'Laila'}}>Dashboard</h1><br></br>
         <div>
           <Link to='/addmeal'>
             <Button
-              textalign="center"
               style={{
-                width: '40rem',
+                textAlign:'center',
+                padding: '2rem',
+                width: '24rem',
                 margin: '20px',
                 height: '7rem',
                 fontSize: '3rem',
@@ -22,7 +23,8 @@ class Dashboard extends React.Component {
                 letterSpacing: '5px',
                 textTransform: 'uppercase',
                 display: 'flex',
-                backgroundColor: '#00bba7'
+                backgroundColor: '#00bba7',
+                fontFamily:'Laila'
               }}
               positive
             >Add Meal</Button></Link>
@@ -31,14 +33,15 @@ class Dashboard extends React.Component {
           <Link to='/reaction'>
             <Button
               style={{
-                width: '40rem',
+                width: '38rem',
                 margin: '20px',
                 height: '7rem',
                 fontSize: '3rem',
                 fontWeight: '300',
                 letterSpacing: '5px',
                 textTransform: 'uppercase',
-                backgroundColor: '#00bba7'
+                backgroundColor: '#00bba7',
+                fontFamily:'Laila'
               }}
               positive>Add Reaction</Button>
           </Link>

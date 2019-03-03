@@ -74,16 +74,16 @@ class AddMeal extends React.Component {
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container className={classes.grid} alignContent="center" justify="center" >
           <div> 
-          <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
+          <h3 style={{textAlign:'center', color:'#FFFFFF', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
               Meal Name:
             </h3>
-            <Form style={{margin:'40px'}}>
+            <Form style={{margin:'40px', backgroundColor:'#00bba7'}}>
                   <TextArea 
                   placeholder='Meal Name' 
                   name='title'
                   value={this.state.meal.title} 
                   onChange={this.handleChange} 
-                  style={{width: '40rem', height: '53px', fontSize: '18px', fontFamily:'Laila', letterSpacing:'4px'}}/>
+                  style={{width: '40rem', height: '53px', fontSize: '18px', fontFamily:'Laila', letterSpacing:'4px', backgroundColor:'grey', color:'#FFFFFF', opacity:'0.4'}}/>
             </Form>
           </div>
         </Grid>
@@ -110,7 +110,7 @@ class AddMeal extends React.Component {
           </div>
         </Grid>
         <Grid container className={classes.grid} alignContent="center" justify="center">
-        <Button positive style={{height: '53px', width: '8rem', marginTop: '50px', marginBottom: '30px', marginLeft: '18px'}} onClick={this.handleSubmit}>Submit</Button>
+        <Button positive style={{height: '53px', width: '8rem', marginTop: '50px', marginBottom: '30px', marginLeft: '18px', backgroundColor: '#00bba7'}} onClick={this.handleSubmit}>Submit</Button>
         </Grid>
       </MuiPickersUtilsProvider>
       </div>
