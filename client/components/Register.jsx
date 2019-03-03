@@ -20,8 +20,9 @@ class Register extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
     this.props.dispatch(register(this.state))
+    e.preventDefault()
   }
 
   render () {
