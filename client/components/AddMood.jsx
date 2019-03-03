@@ -18,7 +18,7 @@ const styles = {
     },
   };
 
-class AddReaction extends React.Component {
+class AddMood extends React.Component {
 
   constructor (props) {
     super(props)
@@ -143,4 +143,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(withStyles(styles)(AddReaction)))
+export default withRouter(connect(mapStateToProps)(withStyles(styles)(AddMood)))

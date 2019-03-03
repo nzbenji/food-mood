@@ -9,7 +9,7 @@ import AddMeal from './AddMeal';
 import MealDay from './MealDay'
 import Stats from './Stats'
 import NavBar from './NavBar'
-import AddReaction from './AddReaction'
+import AddMood from './AddMood'
 import Settings from './Settings'
 import Dashboard from './Dashboard'
 import {getEmotions} from '../actions/emotions'
@@ -33,7 +33,7 @@ class App extends React.Component {
             <Route path ='/addmeal' component={AddMeal} />
             <Route path='/stats' component={Stats} />
             <Route path='/settings' component={Settings} />
-            <Route path='/addmood/:mealId' component={AddReaction} />
+            <Route path='/addmood/:mealId' component={AddMood} />
             <Route path='/mealday' component={MealDay} />
             <Route path='/calendar' component={Calendar} />
             <Route path='/register' component={Register} />
