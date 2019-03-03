@@ -42,11 +42,11 @@ class Dashboard extends React.Component {
             ? <h3 style={{fontSize: '100px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center'}}> {emoji} </h3>
             : <div></div>}
           <Link to='/addmeal'>
-            <Button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center'}}>Add Meal</Button>
+            <Button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor:'#0ba8bc'}}>Add Meal</Button>
           </Link>
           <br/><br/>
           <Link to='/addreaction'>
-            <Button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center'}}>Add Reaction</Button>
+            <Button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor:'#0ba8bc'}}>Add Reaction</Button>
           </Link>
         </div>
       </div>
