@@ -24,6 +24,11 @@ class Dashboard extends React.Component {
 
   render () {
     const {emotions, currentMood} = this.props
+    let emoji = ''
+    if (emotions.length > 0) {
+      const emot = emotions.find(emotion => emotion.id === currentMood.emotion_id)
+      emoji = emot.emoji
+    }
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
     }
@@ -33,7 +38,7 @@ class Dashboard extends React.Component {
         <div>
           <h3 style={{textAlign: 'center', fontSize: '40px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>Last Mood</h3>
           {currentMood && emotions.length > 0
-            ? <h3 style={{fontSize: '100px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center'}}> {emotions.find(emotion => emotion.id === currentMood.emotion_id).emoji} </h3>
+            ? <h3 style={{fontSize: '100px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center'}}> {emoji} </h3>
             : <div></div>}
           <Link to='/addmeal'>
             <Button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center'}}>Add Meal</Button>
