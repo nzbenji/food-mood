@@ -2,7 +2,7 @@ import request from 'superagent'
 
 const url = 'http://localhost:3000/api/v1/meals/moods'
 const moodUrl = 'http://localhost:3000/api/v1/moods'
-const addMoodUrl= 'http://localhost:3000/api/v1/moods'
+const addMoodUrl = 'http://localhost:3000/api/v1/moods'
 
 export function moodMealApi (meal) {
   return request
