@@ -1,7 +1,6 @@
 import React from 'react'
 import {getMostRecentMood} from '../actions/moods'
 import {mostRecentMealApi} from '../api/meals'
-import {Button} from 'semantic-ui-react'
 import {withStyles} from '@material-ui/core/styles'
 import {connect} from 'react-redux'
 import {Link, Redirect, withRouter} from 'react-router-dom'
@@ -39,21 +38,21 @@ class Dashboard extends React.Component {
     return (
       <div>
         <br></br>
-        <h1 style={{fontSize: '4rem', fontFamily: 'Laila', textAlign: 'center'}}>Dashboard</h1><br></br>
+        <h1 style={{fontSize: '3rem', fontFamily: 'Laila', textAlign: 'center'}}>Dashboard</h1><br></br>
         <div>
-          {this.state.recentMeal && <h3 style={{textAlign: 'center', fontSize: '40px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>Last Mood</h3>}
+          {this.state.recentMeal && <h3 style={{textAlign: 'center', fontSize: '3rem', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>Last Mood</h3>}
           {currentMood && emotions.length > 0
             ? <h3 style={{fontSize: '100px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center'}}> {emoji} </h3>
             : <div></div>}
           <Link to='/addmeal'>
-            <Button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>Add Meal</Button>
+            <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>Add Meal</button>
           </Link>
           <br/><br/>
           {this.state.recentMeal &&
             <Link to={{
               pathname: `/addmood/${this.state.recentMeal.id}`,
               state: {meal: this.state.recentMeal}}}>
-              <Button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>Add Mood to Last Meal</Button>
+              <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>Add Mood to Last Meal</button>
             </Link>
           }
         </div>
