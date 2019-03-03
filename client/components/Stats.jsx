@@ -9,7 +9,7 @@ export class Stats extends Component {
     }
     return (
       <div>
-        <img src='/images/Dummygraph.png' alt="dummygraph" style={{width:'300px'}}/>
+        <img src='/images/Dummygraph.png' alt="dummygraph" style={{width: '300px'}}/>
       </div>
     )
   }
