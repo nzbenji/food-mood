@@ -2,6 +2,7 @@ import {setToken} from '../utils/tokens'
 import {setUserId} from '../utils/userId'
 import {register as registerApi, signin as signinApi} from '../api/auth'
 
+// Actions for signing in and registering
 export const signinPending = () => {
   return {
     type: 'SIGNIN_PENDING'
@@ -39,7 +40,7 @@ export const registerError = error => {
     error
   }
 }
-
+// Sign in. Tokens are encrypted versions of a users password. This protects your password from Hackers.
 export const signin = (user) => dispatch => {
   dispatch(signinPending())
   return signinApi(user)
@@ -53,6 +54,8 @@ export const signin = (user) => dispatch => {
     })
 }
 
+// The dispatch sends the data typed in to our store
+// Our register action
 export const register = (user) => dispatch => {
   dispatch(registerPending())
   return registerApi(user)
@@ -66,6 +69,7 @@ export const register = (user) => dispatch => {
     })
 }
 
+// Log out action
 export const logout = () => {
   return {
     type: 'LOGOUT'
