@@ -26,8 +26,8 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
-      <h1 style={{fontSize:'2.4rem', fontFamily:'Laila'}}>Food mood</h1>
+   <div>
+      <h1 style={{fontSize:'2.4rem', fontFamily:'Laila', color:'orange', textAlign:'center'}}>Food mood</h1>
           <Switch>
             <Route exact path='/' render={() => {
               return this.props.loggedIn
