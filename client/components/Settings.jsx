@@ -1,5 +1,6 @@
 import React from 'react'
 import {Route, Switch, withRouter, Redirect} from 'react-router-dom'
+import { Button } from 'semantic-ui-react'
 import Register from './Register'
 import Login from './Login'
 import {connect} from 'react-redux'
@@ -22,8 +23,8 @@ class Settings extends React.Component {
       return <Redirect to='/login' push={true} />
     }
     return (
-      <div>
-        <button name='logout' onClick={this.handleLogout} >Log out</button>
+      <div>   
+            <Button positive style={{height: '53px', width: '8rem', marginTop:'50px', marginBottom:'40px', marginLeft: '18px', display: 'flex'}} name='logout' onClick={this.handleLogout}>Log out</Button>
       </div>      
     )
   }
