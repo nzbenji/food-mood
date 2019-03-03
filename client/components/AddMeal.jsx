@@ -9,7 +9,6 @@ import { Form, TextArea } from 'semantic-ui-react'
 import {addMealApi} from '../api/meals'
 import {connect} from 'react-redux'
 import {Redirect, withRouter, Route} from 'react-router-dom'
-import {updateCurrentMeal} from '../actions/meals'
 
 const styles = {
     grid: {
@@ -38,14 +37,13 @@ class AddMeal extends React.Component {
   }
 
   handleSubmit = (event) => {
-    this.props.dispatch(updateCurrentMeal(this.state.meal.title))
     return addMealApi(this.props.userId, this.state.meal)
       .then((mealId) => {
         this.setState({
           mealId
         })
       })
-      .catch(({message}) => console.log("Whoops"))
+      .catch(({message}) => console.log("whoops"))
   }
 
   handleDateChange = date => {
@@ -57,9 +55,17 @@ class AddMeal extends React.Component {
 
   render() {
     if(this.state.mealId > 0){
+      const meal = {...this.state.meal, id: this.state.mealId}
       return (
-        <Redirect to={`/addMood/${this.state.mealId}`} />
+        <Redirect to={{
+          pathname:`/addMood/${this.state.mealId}`,
+          state: {meal}
+          }} />
       )
+    }
+
+    if (!this.props.loggedIn) {
+      return <Redirect to='/login'/>
     }
 
     const { classes } = this.props;
@@ -109,7 +115,9 @@ class AddMeal extends React.Component {
                   onChange={this.handleDateChange}/>
           </div>
         </Grid>
-        <Button positive style={{height: '53px', width: '8rem', marginLeft: '18px'}} onClick={this.handleSubmit}>Submit</Button>
+        <Grid container className={classes.grid} alignContent="center" justify="center">
+        <Button positive style={{height: '53px', width: '8rem', marginTop: '50px', marginBottom: '30px', marginLeft: '18px'}} onClick={this.handleSubmit}>Submit</Button>
+        </Grid>
       </MuiPickersUtilsProvider>
       </div>
     )

@@ -9,7 +9,12 @@ import AddMeal from './AddMeal';
 import MealDay from './MealDay'
 import Stats from './Stats'
 import NavBar from './NavBar'
+<<<<<<< HEAD
 import AddReaction from './AddReaction'
+=======
+import AddMood from './AddMood'
+import Settings from './Settings'
+>>>>>>> 466f647fdca8c91dbdc74218e1b513764269eae6
 import Dashboard from './Dashboard'
 import {getEmotions} from '../actions/emotions'
 
@@ -28,21 +33,17 @@ class App extends React.Component {
       <div>
         <h1>Food mood</h1>
           <Switch>
-          <Route path='/dashboard' component={Dashboard}/>
-          <Route path='/addmood/:mealId' component={AddReaction}/> 
+            <Route exact path='/' component={Dashboard} />
+            <Route path ='/addmeal' component={AddMeal} />
+            <Route path='/stats' component={Stats} />
+            <Route path='/settings' component={Settings} />
+            <Route path='/addmood/:mealId' component={AddMood} />
+            <Route path='/mealday' component={MealDay} />
             <Route path='/calendar' component={Calendar} />
-            <Route path ='/addmeal' render={() => {
-              return this.props.loggedIn
-                ? <AddMeal />
-                : <Redirect to='/login' push={true} />
-            }} />
             <Route path='/register' component={Register} />
             <Route path='/login' component={Login} />
-            <Route path='/mealday' component={MealDay} /> 
-            <Route path='/stats' component={Stats} />
-            <button name='logout' onClick={this.handleLogout} >Log out</button>
           </Switch>
-          <NavBar />
+          {this.props.loggedIn && <NavBar />}
       </div>      
     )
   }
@@ -51,7 +52,8 @@ class App extends React.Component {
 function mapStateToProps (state) {
   return {
     userId: state.auth.userId,
-    loggedIn: state.auth.loggedIn
+    loggedIn: state.auth.loggedIn,
+    currentMeal: state.auth.currentMeal
   }
 }
 

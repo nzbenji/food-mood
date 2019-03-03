@@ -12,11 +12,11 @@ class NavBar extends React.Component {
     return (
       <div className='nav-div'>
         <ul className="nav-ul">
-          <li className="nav-li"><Link to="/dashboard"><img className="icon" src={dashboardIcon}/></Link></li>
+          <li className="nav-li"><Link to="/"><img className="icon" src={dashboardIcon}/></Link></li>
           <li className="nav-li"><Link to="/calendar"><img className="icon" src={calendarIcon}/></Link></li>
           <li className="nav-li"><Link to="/addmeal"><img className="icon" src={addIcon}/></Link></li>
           <li className="nav-li"><Link to="/stats"><img className="icon" src={statsIcon}/></Link></li>
-          <li className="nav-li"><Link to="/logout"><img className="icon" src={settingsIcon}/></Link></li>
+          <li className="nav-li"><Link to="/settings"><img className="icon" src={settingsIcon}/></Link></li>
         </ul>
       </div>
     )

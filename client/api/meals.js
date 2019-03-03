@@ -21,9 +21,9 @@ export function mostRecentMealApi (meal) {
     })
 }
 
-export function getMealsApi (allMeals) {
+export function getMealsAndMoods (userId) {
   return request
-    .get(`${url}/${allMeals}`)
+    .get(`${url}/${userId}`)
     .then(res => res.body)
     .catch(err => {
       if (err) throw Error('Cannot get all user\'s meals')

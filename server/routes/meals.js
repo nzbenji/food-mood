@@ -4,9 +4,10 @@ const router = express.Router()
 
 router.get('/:userId', (req, res) => {
   const userId = Number(req.params.userId)
-  db.userMeals(userId)
+  db.allUserMealsAndMoods(userId)
     .then(meals => {
-      res.json(meals)
+      res.json(moodToMoodArr(meals))
+      
     })
     .catch(err => {
       res.status(500).send(err)
@@ -47,5 +48,36 @@ router.get('/moods/:mealId', (req, res) => {
       res.status(500).send(err)
     })
 })
+
+function moodToMoodArr (meals) {
+  let newArr = []
+  for (const meal of meals) {
+    const index = newArr.findIndex((elem) => elem.id === meal.mealId)
+    const mood = getMoodDataFromMeal(meal)
+    if (index >= 0) {
+      newArr[index].moods.push(mood)
+    } else {
+      newArr.push({...getMealInfo(meal), moods: [mood]})
+    }
+  }
+  return newArr
+}
+
+function getMoodDataFromMeal (meal) {
+  return {
+    id: meal.moodId,
+    notes: meal.notes,
+    emotionId: meal.emotionId,
+    time: meal.moodTime
+  }
+}
+
+function getMealInfo (meal) {
+  return {
+    id: meal.mealId,
+    time: meal.mealTime,
+    title: meal.title
+  }
+}
 
 module.exports = router
