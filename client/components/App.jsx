@@ -34,24 +34,9 @@ class App extends React.Component {
                 ? <Dashboard />
                 : <Redirect to='/login' push={true} />
             }} />
-            <Route path='/addmood/:mealId' render={() => {
-              if(!this.props.loggedIn) return <Redirect to='/login' push={true} />
-              if(this.props.currentMeal) return <AddReaction />
-              return <Redirect to='/' push={true} />
-            }} /> 
-            <Route path='/calendar' render={() => {
-              return this.props.loggedIn
-                ? <Calendar />
-                : <Redirect to='/login' push={true} />
-            }} />
             <Route path ='/addmeal' render={() => {
               return this.props.loggedIn
                 ? <AddMeal />
-                : <Redirect to='/login' push={true} />
-            }} />
-            <Route path='/mealday' render={() => {
-              return this.props.loggedIn
-                ? <MealDay />
                 : <Redirect to='/login' push={true} />
             }} />
             <Route path='/stats' render={() => {
@@ -64,6 +49,9 @@ class App extends React.Component {
                 ? <Settings />
                 : <Redirect to='/login' push={true} />
             }} />
+            <Route path='/addmood/:mealId' component={AddReaction} />
+            <Route path='/mealday' component={MealDay} />
+            <Route path='/calendar' component={Calendar} />
             <Route path='/register' component={Register} />
             <Route path='/login' component={Login} />
           </Switch>
