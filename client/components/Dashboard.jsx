@@ -21,7 +21,6 @@ class Dashboard extends React.Component {
 
   componentDidMount () {
     this.props.dispatch(getMostRecentMood(this.props.userId))
-    console.log('trying to mount')
     mostRecentMealApi(this.props.userId).then(meal => {
       this.setState({recentMeal: meal})
     })
