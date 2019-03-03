@@ -12,4 +12,14 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/mostRecent/:emotionId', (req, res) => {
+  const emotionId = Number(req.params.emotionId)
+  db.latestEmotion(emotionId)
+  .then(emotion => {
+    res.json(emotion)
+  })
+  .catch(err => {
+    res.status(500).send('DATABASE ERROR: ' + err.message)
+  })
+})
 module.exports = router
