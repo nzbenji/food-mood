@@ -16,6 +16,15 @@ class Register extends React.Component {
     }
   }
 
+  componentDidMount () {
+    console.log(this.props.loggedIn)
+    if (this.props.loggedIn) {
+      return (
+        <Redirect to='/' />
+      )
+    }
+  }
+
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -25,11 +34,6 @@ class Register extends React.Component {
   }
 
   render () {
-    if (this.props.loggedIn) {
-      return (
-        <Redirect to='/' />
-      )
-    }
 
     return (
       <Grid container justify = "center">
@@ -65,7 +69,8 @@ class Register extends React.Component {
             </div>
             <Grid container justify = "center">
             <div>
-        <Button type='submit' value='Submit' onClick={this.handleSubmit} >Submit</Button>
+        {/* <Button type='submit' value='Submit' onClick={this.handleSubmit} >Submit</Button> */}
+        <Link to='/login' onClick={this.handleSubmit} >Submit</Link>
         </div>
         </Grid>
         {this.props.error && <p>That username is already taken</p>}
