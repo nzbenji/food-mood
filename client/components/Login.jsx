@@ -26,7 +26,7 @@ class Login extends React.Component {
   handleSubmit (e) {
     const user = this.state
     this.props.dispatch(signin(user))
-    // e.preventDefault()
+    e.preventDefault()
   }
 
   render () {
