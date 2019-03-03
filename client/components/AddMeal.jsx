@@ -62,6 +62,10 @@ class AddMeal extends React.Component {
       )
     }
 
+    if (!this.props.loggedIn) {
+      return <Redirect to='/login'/>
+    }
+
     const { classes } = this.props;
     const { time } = this.state.meal;
     return (

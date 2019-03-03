@@ -66,6 +66,11 @@ class AddReaction extends React.Component {
     if (this.state.submitted){
       return <Redirect to ='/'/>
     }
+
+    if (!this.props.loggedIn) {
+      return <Redirect to='/login'/>
+    }
+    
     return (
       <div>
         <center>

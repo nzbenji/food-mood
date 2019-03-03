@@ -1,10 +1,14 @@
 import React from 'react'
 import {Button} from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
+import {Link, Redirect, withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
 import '../../server/public/css/dashboard.css'
 
 class Dashboard extends React.Component {
   render () {
+    if (!this.props.loggedIn) {
+      return <Redirect to='/login'/>
+    }
     return (
       <div>
         <h1>Dashboard</h1>
@@ -44,4 +48,11 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard
+function mapStateToProps (state) {
+  return {
+    userId: state.auth.userId,
+    loggedIn: state.auth.loggedIn
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(Dashboard))

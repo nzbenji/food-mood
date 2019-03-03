@@ -29,26 +29,10 @@ class App extends React.Component {
       <div>
         <h1>Food mood</h1>
           <Switch>
-            <Route exact path='/' render={() => {
-              return this.props.loggedIn
-                ? <Dashboard />
-                : <Redirect to='/login' push={true} />
-            }} />
-            <Route path ='/addmeal' render={() => {
-              return this.props.loggedIn
-                ? <AddMeal />
-                : <Redirect to='/login' push={true} />
-            }} />
-            <Route path='/stats' render={() => {
-              return this.props.loggedIn
-                ? <Stats />
-                : <Redirect to='/login' push={true} />
-            }} />
-            <Route path='/settings' render={() => {
-              return this.props.loggedIn
-                ? <Settings />
-                : <Redirect to='/login' push={true} />
-            }} />
+            <Route exact path='/' component={Dashboard} />
+            <Route path ='/addmeal' component={AddMeal} />
+            <Route path='/stats' component={Stats} />
+            <Route path='/settings' component={Settings} />
             <Route path='/addmood/:mealId' component={AddReaction} />
             <Route path='/mealday' component={MealDay} />
             <Route path='/calendar' component={Calendar} />
