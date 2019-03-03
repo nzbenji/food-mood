@@ -1,5 +1,4 @@
 import React from 'react'
-import {Button} from 'semantic-ui-react'
 import Grid from '@material-ui/core/Grid'
 import {getMealsAndMoods} from '../api/meals'
 import {connect} from 'react-redux'
@@ -17,8 +16,8 @@ class MealDay extends React.Component {
     getMealsAndMoods(this.props.userId)
       .then((meals) => {
         meals = meals.filter(meal => {
-          console.log('mealtime', meal.time.slice(0, 10))
-          console.log('props', this.props.location.state.date.slice(0, 10))
+          // console.log('mealtime', meal.time.slice(0, 10))
+          // console.log('props', this.props.location.state.date.slice(0, 10))
           return meal.time.slice(0, 10) === this.props.location.state.date.slice(0, 10)
         })
         this.setState({meals})
@@ -37,11 +36,11 @@ class MealDay extends React.Component {
     return (
       <div>
         <Grid container alignContent="center" justify="center">
-          <h1>Food eaten on..</h1>
+          <h1 style={{fontFamily: 'Laila'}}>Food eaten on { month}  {day}</h1>
         </Grid>
 
         <Grid container alignContent="center" justify="center">
-          <ul>
+          <ul style={{listStyle: 'none'}}>
             {this.state.meals.length > 0 && this.state.meals.map(meal => {
               return (
                 <Link key={meal.id}
@@ -49,15 +48,20 @@ class MealDay extends React.Component {
                     pathname: `/addMood/${meal.id}`,
                     state: {meal}
                   }}>
-                  <div>
-                    <li>
-                      <ul>
-                        <li>{meal.title}</li>
+                  <div style={{fontFamily: 'Laila', display: 'inline-block', textAlign: 'center'}}>
+                    <li style={{listStyle: 'none', display: 'inline-block', margin: '40px'}}>
+                      <ul style={{listStyle: 'none'}}>
+                        <li>
+                          {meal.title.charAt(0).toUpperCase() + meal.title.slice(1)}</li>
                         <li>{meal.time.slice(11, 16)}</li>
+                        <h3 style={{paddingTop: '20px', fontSize: '20px', letterSpacing: '4px'}}>Selected mood</h3>
                         <ul>
                           {meal.moods.map(mood => {
                             return (
-                              <li key={mood.id}>
+                              <li
+                                key={mood.id}
+                                style={{fontSize: '40px', listStyle: 'none', margin: '40px'}}
+                              >
                                 {this.props.emotions.find(emotion => emotion.id === mood.emotionId).emoji}
                                 {mood.time.slice(11, 16)}
                               </li>
@@ -75,10 +79,10 @@ class MealDay extends React.Component {
         </Grid>
 
         <div>
-          <Button
-            positive
-            style={{height: '10%', position: 'relative', bottom: '0px'}}
-          >Add a meal</Button>
+          <Link
+            to='/addmeal'
+            style={{textDecoration: 'none', fontSize: '20px', padding: '50px', fontFamily: 'Laila'}}
+          >Add a meal</Link>
         </div>
 
       </div>
