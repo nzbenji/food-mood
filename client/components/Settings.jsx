@@ -24,6 +24,8 @@ class Settings extends React.Component {
     return (
       <div>
         <button name='logout' onClick={this.handleLogout} >Log out</button>
+        <br></br>
+      <br></br>
       </div>      
     )
   }
