@@ -120,7 +120,7 @@ class AddReaction extends React.Component {
           </div>
         </Grid>
         <Grid container className={classes.grid} alignContent="center" justify="center" >
-        <Button positive style={{height: '53px', width: '8rem', marginLeft: '18px'}} onClick={this.handleSubmit}>Submit</Button>
+        <Button positive style={{height: '53px', width: '8rem', marginTop:'50px', marginBottom:'40px', marginLeft: '18px'}} onClick={this.handleSubmit}>Submit</Button>
         </Grid>
       </MuiPickersUtilsProvider>
       </div>
