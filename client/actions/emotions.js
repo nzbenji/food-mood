@@ -18,13 +18,13 @@ export function getEmotions () {
   }
 }
 
-function requestEmotions () {
+export function requestEmotions () {
   return {
     type: 'REQUESTING_EMOTIONS'
   }
 }
 
-function receiveEmotions (emotions) {
+export function receiveEmotions (emotions) {
   return {
     type: 'RECEIVING_EMOTIONS',
     emotions
