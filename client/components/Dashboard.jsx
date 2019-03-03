@@ -51,7 +51,7 @@ class Dashboard extends React.Component {
           <Link to={{
             pathname: `/addmood/${this.state.recentMeal.id}`,
             state: {meal: this.state.recentMeal}}}>
-            <Button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center'}}>Add Mood</Button>
+            <Button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center'}}>Add Mood to Last Meal</Button>
           </Link>
         </div>
       </div>
