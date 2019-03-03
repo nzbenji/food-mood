@@ -6,6 +6,7 @@ export function getMostRecentMood (userId) {
     getMostRecentMoodApi(userId)
       .then(res => {
         const mood = res
+        console.log(mood)
         dispatch(receiveMood(mood))
       })
   }
