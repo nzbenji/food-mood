@@ -3,6 +3,7 @@ import {getToken} from '../utils/tokens'
 
 const url = 'http://localhost:3000/api/v1/meals'
 
+// Adds a new meal
 export function addMealApi (userId, newMeal) {
   return request
     .post(`${url}/${userId}`)
@@ -14,6 +15,7 @@ export function addMealApi (userId, newMeal) {
     })
 }
 
+// Displays the most recent meal
 export function mostRecentMealApi (userId) {
   return request
     .get(`${url}/mostRecent/${userId}`)
@@ -24,6 +26,7 @@ export function mostRecentMealApi (userId) {
     })
 }
 
+// Gets meals and moods
 export function getMealsAndMoods (userId) {
   return request
     .get(`${url}/${userId}`)
