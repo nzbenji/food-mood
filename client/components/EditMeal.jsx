@@ -4,9 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
-// import {editMealApi} from '../api/meals'
+import {editMealApi} from '../api/meals'
 import {connect} from 'react-redux'
-import {Redirect, withRouter, Route} from 'react-router-dom'
+import {Link, Redirect, withRouter, Route} from 'react-router-dom'
 
 const styles = {
     grid: {
@@ -111,7 +111,11 @@ class EditMeal extends React.Component {
           </div>
         </Grid>
         <Grid container className={classes.grid} alignContent="center" justify="center">
-        <button positive style={{height: '53px', width: '8rem', marginTop: '50px', marginBottom: '30px', marginLeft: '18px', backgroundColor: '#00bba7'}} onClick={this.handleSubmit}>Submit</button>
+        <Link to={{
+          pathname: `/`,
+          state: { }}}>
+          <button positive style={{height: '53px', width: '8rem', marginTop: '50px', marginBottom: '30px', marginLeft: '18px', backgroundColor: '#00bba7'}} onClick={this.handleSubmit}>Submit</button>
+          </Link>
         </Grid>
       </MuiPickersUtilsProvider>
       </div>
