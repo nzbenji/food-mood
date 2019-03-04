@@ -1,6 +1,6 @@
 const initialMood = {}
 
-const currentMood = (state = initialMood, action) => {
+export const currentMood = (state = initialMood, action) => {
   switch (action.type) {
     case 'RECEIVING_MOOD':
     case 'UPDATE_MOOD':
