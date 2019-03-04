@@ -56,7 +56,7 @@ class AddMeal extends React.Component {
       const meal = {...this.state.meal, id: this.state.mealId}
       return (
         <Redirect to={{
-          pathname:`/addMood/${this.state.mealId}`,
+          pathname:`/addMood`,
           state: {meal}
           }} />
       )

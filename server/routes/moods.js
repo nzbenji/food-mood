@@ -26,4 +26,14 @@ router.post('/:mealId', (req, res) => {
     })
 })
 
+router.put('/editMood', (req, res) => {
+  db.editMood(req.body)
+    .then(() => {
+      res.json('ok')
+    })
+    .catch(err => {
+      res.status(500).send(err)
+    })
+})
+
 module.exports = router

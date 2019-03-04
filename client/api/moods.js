@@ -3,7 +3,6 @@ import {getToken} from '../utils/tokens'
 
 const url = 'http://localhost:3000/api/v1/meals/moods'
 const moodUrl = 'http://localhost:3000/api/v1/moods'
-const addMoodUrl = 'http://localhost:3000/api/v1/moods'
 
 export function moodMealApi (meal) {
   return request
@@ -24,7 +23,15 @@ export function getMostRecentMoodApi (userId) {
 
 export function addMoodApi (mood, currentMealId) {
   return request
-    .post(`${addMoodUrl}/${currentMealId}`)
+    .post(`${moodUrl}/${currentMealId}`)
+    .set({Authorization: `Bearer ${getToken()}`})
+    .send(mood)
+    .then(res => res.body)
+}
+
+export function editMoodApi (mood) {
+  return request
+    .put(`${moodUrl}/editMood`)
     .set({Authorization: `Bearer ${getToken()}`})
     .send(mood)
     .then(res => res.body)
