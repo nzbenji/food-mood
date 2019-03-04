@@ -46,7 +46,7 @@ test('latestMeal gets the last meal for a user', () => {
 })
 
 test('allMealMoods gets all the moods for a meal', () => {
-  const expectedLength = 1
+  const expectedLength = 2
   return db.allMealMoods(1, testDb)
     .then((moods) => {
       expect(moods.length).toBe(expectedLength)

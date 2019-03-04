@@ -7,7 +7,6 @@ router.get('/:userId', (req, res) => {
   db.allUserMealsAndMoods(userId)
     .then(meals => {
       res.json(moodToMoodArr(meals))
-      
     })
     .catch(err => {
       res.status(500).send(err)
@@ -79,5 +78,4 @@ function getMealInfo (meal) {
     title: meal.title
   }
 }
-
 module.exports = router
