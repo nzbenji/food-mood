@@ -1,6 +1,6 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
-import {getMealsAndMoods} from '../api/meals'
+import {getMealsApi} from '../api/meals'
 import {connect} from 'react-redux'
 import {Link, Redirect, withRouter} from 'react-router-dom'
 
@@ -13,7 +13,7 @@ class MealDay extends React.Component {
   }
 
   componentDidMount () {
-    getMealsAndMoods(this.props.userId)
+    getMealsApi(this.props.userId)
       .then((meals) => {
         meals = meals.filter(meal => {
           return meal.time.slice(0, 10) === this.props.location.state.date.slice(0, 10)

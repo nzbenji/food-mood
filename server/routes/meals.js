@@ -13,6 +13,17 @@ router.get('/:userId', (req, res) => {
     })
 })
 
+router.get('/userMeals/:userId', (req, res) => {
+  const userId = Number(req.params.userId)
+  db.userMeals(userId)
+    .then(meals => {
+      res.json(meals)
+    })
+    .catch(err => {
+      res.status(500).send(err)
+    })
+})
+
 router.post('/:userId', (req, res) => {
   const userId = Number(req.params.userId)
   const meal = req.body
