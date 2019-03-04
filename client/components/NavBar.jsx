@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 
 const dashboardIcon = '/images/dashboard-icon.png'
 const calendarIcon = '/images/calendar-icon.png'
@@ -23,4 +23,4 @@ class NavBar extends React.Component {
   }
 }
 
-export default NavBar
+export default withRouter(NavBar)

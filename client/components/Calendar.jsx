@@ -1,5 +1,4 @@
 import React from 'react'
-import {Button} from 'semantic-ui-react'
 import 'date-fns'
 import Grid from '@material-ui/core/Grid'
 import {withStyles} from '@material-ui/core/styles'
@@ -44,6 +43,8 @@ class Calendar extends React.Component {
     
     return (
       <div>
+           <br></br>
+        <h1 style={{ fontSize:'4rem',fontFamily:'Laila', margin:'60px', textAlign:'center'}}>Calender</h1><br></br>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container className={classes.grid} alignContent="center" justify="center" >
             <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}

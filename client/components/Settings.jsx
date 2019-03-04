@@ -22,8 +22,8 @@ class Settings extends React.Component {
       return <Redirect to='/login' push={true} />
     }
     return (
-      <div>
-        <button name='logout' onClick={this.handleLogout} >Log out</button>
+      <div>   
+            <Button positive style={{height: '53px', width: '8rem', marginTop:'50px', marginBottom:'40px', marginLeft: '18px'}} name='logout' onClick={this.handleLogout}>Log out</Button>
       </div>      
     )
   }

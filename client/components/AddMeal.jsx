@@ -1,11 +1,9 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react'
 import 'date-fns';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
-import { Form, TextArea } from 'semantic-ui-react'
 import {addMealApi} from '../api/meals'
 import {connect} from 'react-redux'
 import {Redirect, withRouter, Route} from 'react-router-dom'
@@ -73,24 +71,23 @@ class AddMeal extends React.Component {
     return (
       <div>
         <center>
-          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Add Meal </h3>
-          <br></br>
+          <h3 style={{textAlign:'center', fontSize: '4rem',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Add Meal </h3>
         </center>
 
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container className={classes.grid} alignContent="center" justify="center" >
           <div> 
-          <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
+          <h3 style={{textAlign:'center', color:'#FFFFFF', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
               Meal Name:
             </h3>
-            <Form style={{margin:'40px'}}>
-                  <TextArea 
+            <form style={{margin:'40px', backgroundColor:'#00bba7'}}>
+                  <input
                   placeholder='Meal Name' 
                   name='title'
                   value={this.state.meal.title} 
                   onChange={this.handleChange} 
-                  style={{width: '40rem', height: '53px', fontSize: '18px', fontFamily:'Laila', letterSpacing:'4px'}}/>
-            </Form>
+                  style={{width: '40rem', height: '53px', fontSize: '18px', fontFamily:'Laila', letterSpacing:'4px', backgroundColor:'grey', color:'#FFFFFF', opacity:'0.4'}}/>
+            </form>
           </div>
         </Grid>
 
@@ -116,7 +113,7 @@ class AddMeal extends React.Component {
           </div>
         </Grid>
         <Grid container className={classes.grid} alignContent="center" justify="center">
-        <Button positive style={{height: '53px', width: '8rem', marginTop: '50px', marginBottom: '30px', marginLeft: '18px'}} onClick={this.handleSubmit}>Submit</Button>
+        <button positive style={{height: '53px', width: '8rem', marginTop: '50px', marginBottom: '30px', marginLeft: '18px', backgroundColor: '#00bba7'}} onClick={this.handleSubmit}>Submit</button>
         </Grid>
       </MuiPickersUtilsProvider>
       </div>
