@@ -40,10 +40,18 @@ const Arrow = ({cx, cy, midAngle, outerRadius}) => {
   )
 }
 
+const styles = {
+  grid: {
+    width: '100%',
+  },
+}
+
 class Stats extends React.Component {
 
   state = {
-    moods: []
+    moods: [],
+    startDate: new Date(),
+    endDate: new Date()
   }
 
   componentDidMount () {
@@ -55,6 +63,13 @@ class Stats extends React.Component {
       })
       .catch(err => new Error(err))
   }
+  handleDateChange = date => {
+    this.setState({ startDate: date.toISOString().slice(0, 10).replace('T', ' ') });
+  }
+  handleNextChange = date => {
+    this.setState({ endDate: date.toISOString().slice(0, 10).replace('T', ' ') });
+  }
+
 
   calculateRankValue () {
     let total = 0
@@ -71,7 +86,7 @@ class Stats extends React.Component {
   }
 
   render () {
-
+    console.log(this.state)
     // console.log(this.state)
     if (!this.props.loggedIn) {
       console.log('not logged in trying to redirect')
@@ -124,36 +139,59 @@ class Stats extends React.Component {
 
     return (
       <div style={{}}>
-        <div style={{fontSize: '40px', textAlign: 'center'}}>Select a date</div>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <Grid container alignContent="center" justify="center" >
+            <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}
+            >Start date</h3>
+            <DatePicker style={{marginLeft: '30px'}}
+              margin="normal"
+              value={this.state.startDate}
+              onChange={this.handleDateChange}/>
+          </Grid>
+        </MuiPickersUtilsProvider>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <Grid container alignContent="center" justify="center" >
+            <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}
+            >End date</h3>
+            <DatePicker style={{marginLeft: '30px'}}
+              margin="normal"
+              value={this.state.endDate}
+              onChange={this.handleNextChange}/>
+          </Grid>
+        </MuiPickersUtilsProvider>
+         
         <div>
           <p style={{fontSize: '20px', bottom: '5rem'}}>😀</p>
-          <PieChart width={width} height={(width / 2) + 30}>
-            <Pie
-              dataKey="value"
-              activeIndex={currentSectorIndex}
-              activeShape={ActiveSectorMark}
-              data={colorData}
-              fill="#8884d8"
-              { ...pieRadius }
-              { ...pieProps }
-            >
-              {
-                colorData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={colorData[index].color} />
-                ))
-              }
-            </Pie>
-            <Pie
-              dataKey="value"
-              stroke="none"
-              activeIndex={1}
-              activeShape={ Arrow }
-              data={ arrowData }
-              outerRadius={ pieRadius.innerRadius }
-              fill="none"
-              { ...pieProps }
-            />
-          </PieChart>
+          <Grid container alignContent="center" justify="center" >
+            <PieChart width={width} height={(width / 2) + 30}>
+              <Pie
+                dataKey="value"
+                activeIndex={currentSectorIndex}
+                activeShape={ActiveSectorMark}
+                data={colorData}
+                fill="#8884d8"
+                { ...pieRadius }
+                { ...pieProps }
+              >
+                {
+                  colorData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={colorData[index].color} />
+                  ))
+                }
+              </Pie>
+              <Pie
+                dataKey="value"
+                stroke="none"
+                activeIndex={1}
+                activeShape={ Arrow }
+                data={ arrowData }
+                outerRadius={ pieRadius.innerRadius }
+                fill="none"
+                { ...pieProps }
+              />
+            </PieChart>
+          </Grid>
+          
         </div>
       </div>
     )
@@ -168,4 +206,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Stats))
+export default withRouter(connect(mapStateToProps)(withStyles(styles)(Stats)))
