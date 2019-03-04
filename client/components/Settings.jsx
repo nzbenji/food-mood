@@ -24,7 +24,15 @@ class Settings extends React.Component {
     }
     return (
       <div>   
-            <button style={{height: '53px', width: '8rem', marginTop:'50px', marginBottom:'40px', marginLeft: '18px'}} name='logout' onClick={this.handleLogout}>Log out</button>
+        <br/><br/>
+        <br/><br/>
+        <br/><br/>
+        <br/><br/>
+        <br/>
+            <button className='button1' name='logout' onClick={this.handleLogout}>Log out</button>
+        <br/><br/>
+        <br/><br/>
+        <br/><br/>
       </div>      
     )
   }
