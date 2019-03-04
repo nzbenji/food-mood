@@ -11,7 +11,7 @@ const convert = require('convert-units')
        <div>
            <center>
          <h1>Water intake</h1>
-         <h4>convert(68).from('kg').to('lb')</h4>
+         {/* <h4>convert(68).from('kg').to('lb')</h4> */}
          </center>
        </div>
      )
