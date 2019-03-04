@@ -1,5 +1,6 @@
 import React from 'react'
 import React, { Component } from 'react'
+const convert = require('convert-units')
 
  
  // Write a component that calculates how much water you should drink on a daily basis 
@@ -10,6 +11,7 @@ import React, { Component } from 'react'
        <div>
            <center>
          <h1>Water intake</h1>
+         <h4>convert(68).from('kg').to('lb')</h4>
          </center>
        </div>
      )
