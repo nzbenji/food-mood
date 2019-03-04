@@ -78,10 +78,10 @@ class AddMeal extends React.Component {
             </h2>
             <form >
                   <input 
+                  type='text'
                   name='title'
                   value={this.state.meal.title} 
-                  onChange={this.handleChange} 
-                  style={{width: '15rem', height: '23px', fontSize: '10px', fontFamily:'Comfortaa', letterSpacing:'4px', backgroundColor:'white', color:'#FFFFFF', opacity:'0.4'}}/>
+                  onChange={this.handleChange} />
             </form>
           </div>
         </Grid>
