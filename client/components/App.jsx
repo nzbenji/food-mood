@@ -12,6 +12,7 @@ import NavBar from './NavBar'
 import AddMood from './AddMood'
 import Settings from './Settings'
 import Dashboard from './Dashboard'
+import Meal from './Meal'
 import {getEmotions} from '../actions/emotions'
 
 class App extends React.Component {
@@ -34,7 +35,8 @@ class App extends React.Component {
             <Route path='/stats' component={Stats} />
             <Route path='/settings' component={Settings} />
             <Route path='/addmood/:mealId' component={AddMood} />
-            <Route path='/mealday' component={MealDay} />
+            <Route path='/day' component={MealDay} />
+            <Route path='/meal' component={Meal} />
             <Route path='/calendar' component={Calendar} />
             <Route path='/register' component={Register} />
             <Route path='/login' component={Login} />
