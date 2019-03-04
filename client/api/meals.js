@@ -15,6 +15,18 @@ export function addMealApi (userId, newMeal) {
     })
 }
 
+// Updates a selected meal
+export function editMealApi (meal) {
+  return request
+    .put(`${url}/editMeal`)
+    .set({Authorization: `Bearer ${getToken()}`})
+    .send(meal)
+    .then(res => res.body)
+    .catch(err => {
+      if (err) throw Error('Cannot update meal')
+    })
+}
+
 // Displays the most recent meal
 export function mostRecentMealApi (userId) {
   return request
