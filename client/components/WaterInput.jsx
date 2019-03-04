@@ -11,7 +11,8 @@ const convert = require('convert-units')
      return (
        <div>
            <center>
-         <h1>Water intake</h1>
+         <h1>Water intake</h1><br></br><br></br>
+
          </center>
        </div>
      )
