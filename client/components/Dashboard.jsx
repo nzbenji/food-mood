@@ -40,7 +40,7 @@ class Dashboard extends React.Component {
         <br/>
         <h3>Last Mood</h3>
           {currentMood && emotions.length > 0
-            ? <h3 style={{fontSize: '85px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center', marginBottom: '20px', marginTop: '20px'}}> {emoji} </h3>
+            ? <h3 style={{fontSize: '80px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center', marginBottom: '20px', marginTop: '20px'}}> {emoji} </h3>
             : <div></div>}
           <Link style={{ textDecoration: 'none' }} to='/addmeal'>
             <a><button className='button1'>
@@ -55,6 +55,7 @@ class Dashboard extends React.Component {
               <button className='button1'>Add Mood to Last Meal</button>
             </Link>
           }
+
         </div>
     )
   }
