@@ -31,6 +31,12 @@ class Meal extends React.Component {
                   <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>
                   Edit Mood</button>
                 </Link>
+                <Link to={{
+                  pathname: `/deletemood`,
+                  state: {mood: mood, meal: meal}}}>
+                  <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>
+                  Delete Mood</button>
+                </Link>
               </li>
             )
           })}

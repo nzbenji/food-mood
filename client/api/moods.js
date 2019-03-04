@@ -36,3 +36,10 @@ export function editMoodApi (mood) {
     .send(mood)
     .then(res => res.body)
 }
+
+export function deleteMoodApi (mood) {
+  return request
+    .delete(`${moodUrl}/deleteMood/${mood.id}`)
+    .set({Authorization: `Bearer ${getToken()}`})
+    .then(res => res.body)
+}

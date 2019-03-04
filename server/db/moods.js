@@ -3,7 +3,8 @@ const connection = require('./index')
 module.exports = {
   latestMood,
   addMood,
-  editMood
+  editMood,
+  deleteMood
 }
 
 function latestMood (userId, db = connection) {
@@ -22,4 +23,10 @@ function editMood (mood, db = connection) {
   return db('moods')
     .where('id', mood.id)
     .update(mood)
+}
+
+function deleteMood (moodId, db = connection) {
+  return db('moods')
+    .where('id', moodId)
+    .delete()
 }
