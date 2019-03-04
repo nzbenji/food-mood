@@ -50,7 +50,7 @@ class Calendar extends React.Component {
           </Grid>
           <br/>
           <Grid container className={classes.grid} alignContent="center" justify="center" >
-            <Link 
+            <Link style={{ textDecoration: 'none' }} 
               to={{
               pathname: '/day',
               state: {date: choosenDate}

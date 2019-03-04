@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
-import {addMealApi} from '../api/meals'
+// import {editMealApi} from '../api/meals'
 import {connect} from 'react-redux'
 import {Redirect, withRouter, Route} from 'react-router-dom'
 
@@ -14,7 +14,7 @@ const styles = {
     },
   };
 
-class AddMeal extends React.Component {
+class EditMeal extends React.Component {
 
   constructor (props) {
     super(props)
@@ -35,13 +35,13 @@ class AddMeal extends React.Component {
   }
 
   handleSubmit = (event) => {
-    return addMealApi(this.props.userId, this.state.meal)
+    return editMealApi (this.props.userId, this.state.meal)
       .then((mealId) => {
         this.setState({
           mealId
         })
       })
-      .catch(({message}) => console.log("whoops"))
+      .catch(({message}) => console.log("sup homie"))
   }
 
   handleDateChange = date => {
@@ -56,7 +56,7 @@ class AddMeal extends React.Component {
       const meal = {...this.state.meal, id: this.state.mealId}
       return (
         <Redirect to={{
-          pathname:`/addMood`,
+          pathname:`/addMood/${this.state.mealId}`,
           state: {meal}
           }} />
       )
@@ -70,27 +70,32 @@ class AddMeal extends React.Component {
     const { time } = this.state.meal;
     return (
       <div>
+        <center>
+          <h3 style={{textAlign:'center', fontSize: '4rem',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Edit Meal </h3>
+        </center>
+
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container className={classes.grid} alignContent="center" justify="center" >
           <div> 
-          <h2>
+          <h3 style={{textAlign:'center', color:'#FFFFFF', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
               Meal Name:
-            </h2>
-            <form >
-                  <input 
+            </h3>
+            <form style={{margin:'40px', backgroundColor:'#00bba7'}}>
+                  <input
+                  placeholder='Meal Name' 
                   name='title'
                   value={this.state.meal.title} 
                   onChange={this.handleChange} 
-                  style={{width: '15rem', height: '23px', fontSize: '10px', fontFamily:'Comfortaa', letterSpacing:'4px', backgroundColor:'white', color:'#FFFFFF', opacity:'0.4'}}/>
+                  style={{width: '40rem', height: '53px', fontSize: '18px', fontFamily:'Laila', letterSpacing:'4px', backgroundColor:'grey', color:'#FFFFFF', opacity:'0.4'}}/>
             </form>
           </div>
         </Grid>
 
         <Grid container className={classes.grid} alignContent="center" justify="center" >
           <div>
-            <h1>
+            <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
               Enter a date:
-            </h1>
+            </h3>
             <DatePicker style={{marginLeft: '30px'}}
                 margin="normal"
                 label="Date picker"
@@ -99,7 +104,7 @@ class AddMeal extends React.Component {
             />        
           </div>
           <div>
-              <h1>Enter a time: </h1>
+              <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Enter a time: </h3>
               <TimePicker style={{marginLeft: '30px'}}
                   margin="normal"
                   label="Time picker"
@@ -108,7 +113,7 @@ class AddMeal extends React.Component {
           </div>
         </Grid>
         <Grid container className={classes.grid} alignContent="center" justify="center">
-        <button className='button1'>Submit</button>
+        <button positive style={{height: '53px', width: '8rem', marginTop: '50px', marginBottom: '30px', marginLeft: '18px', backgroundColor: '#00bba7'}} onClick={this.handleSubmit}>Submit</button>
         </Grid>
       </MuiPickersUtilsProvider>
       </div>
@@ -123,4 +128,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(withStyles(styles)(AddMeal)))
+export default withRouter(connect(mapStateToProps)(withStyles(styles)(EditMeal)))

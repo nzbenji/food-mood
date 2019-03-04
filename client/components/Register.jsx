@@ -16,15 +16,6 @@ class Register extends React.Component {
     }
   }
 
-  componentDidMount () {
-    console.log(this.props.loggedIn)
-    if (this.props.loggedIn) {
-      return (
-        <Redirect to='/' />
-      )
-    }
-  }
-
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -35,6 +26,11 @@ class Register extends React.Component {
   }
 
   render () {
+    if(this.props.loggedIn){
+      return (
+        <Redirect to='/' />
+      )
+    }
 
     return (
       <Grid container justify = "center">

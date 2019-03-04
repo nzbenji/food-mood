@@ -4,8 +4,8 @@ const db = require('../../server/db/users')
 let testDb = null
 
 const user = {
-  username: 'billy',
-  email: 'billy@hotmail.com',
+  username: 'sandra',
+  email: 'sandra@hotmail.com',
   password: '1234'
 }
 
@@ -17,8 +17,8 @@ beforeEach(() => {
 afterEach(() => testEnv.cleanup(testDb))
 
 test('registerUser registers a new user', () => {
-  const expectedId = 1
-  
+  const expectedId = 3
+
   return db
     .registerUser(user, testDb)
     .then(user => {
@@ -44,8 +44,8 @@ test('registerUser does not re-register same user', () => {
 
 test('registerUser has unique id', () => {
   const user2 = {
-    username: 'sammy',
-    email: 'sammy@hotmail.com',
+    username: 'Ngapeita',
+    email: 'ngapeita@hotmail.com',
     password: '1234'
   }
   return db
