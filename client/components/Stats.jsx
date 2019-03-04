@@ -50,8 +50,8 @@ class Stats extends React.Component {
 
   state = {
     moods: [],
-    startDate: new Date(),
-    endDate: new Date()
+    startDate: new Date().toISOString().slice(0, 10).replace('T', ' '),
+    endDate: new Date().toISOString().slice(0, 10).replace('T', ' ')
   }
 
   componentDidMount () {
