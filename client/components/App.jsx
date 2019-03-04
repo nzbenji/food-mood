@@ -37,8 +37,8 @@ class App extends React.Component {
             <Route path ='/editmeal' component={EditMeal} />
             <Route path='/stats' component={Stats} />
             <Route path='/settings' component={Settings} />
-            <Route path='/addmood/:mealId' component={AddMood} />
             <Route path='/editmood' component={EditMood} />
+            <Route path='/addmood' component={AddMood} />
             <Route path='/day' component={MealDay} />
             <Route path='/meal' component={Meal} />
             <Route path='/calendar' component={Calendar} />
