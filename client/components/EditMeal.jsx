@@ -93,21 +93,17 @@ class EditMeal extends React.Component {
 
         <Grid container className={classes.grid} alignContent="center" justify="center" >
           <div>
-            <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
-              Enter a date:
-            </h3>
             <DatePicker style={{marginLeft: '30px'}}
                 margin="normal"
-                label="Date picker"
+                label="Meal Date"
                 value={time}
                 onChange={this.handleDateChange}
             />        
           </div>
           <div>
-              <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Enter a time: </h3>
               <TimePicker style={{marginLeft: '30px'}}
                   margin="normal"
-                  label="Time picker"
+                  label="Meal Time"
                   value={time}
                   onChange={this.handleDateChange}/>
           </div>
