@@ -18,15 +18,17 @@ class EditMeal extends React.Component {
 
   constructor (props) {
     super(props)
+    const meal = props.location.state.meal
     this.state = {
-        // The first commit of Material-UI
-        meal: {
-          time: new Date().toISOString().slice(0, 19).replace('T', ' '),
-          title: ''
-        },
-        mealId: -1
-      };
-  }
+      // The first commit of Material-UI
+      meal: {
+        time: meal.time,
+        notes: meal.notes,
+        title: meal.title
+      },
+      submitted: false
+    };
+}
     
   handleChange = (event) => {
     const updatemeal = {...this.state.meal}
@@ -78,7 +80,7 @@ class EditMeal extends React.Component {
         <Grid container className={classes.grid} alignContent="center" justify="center" >
           <div> 
           <h3 style={{textAlign:'center', color:'#FFFFFF', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
-              Meal Name:
+              Edit Meal Name:
             </h3>
             <form style={{margin:'40px', backgroundColor:'#00bba7'}}>
                   <input
@@ -96,7 +98,7 @@ class EditMeal extends React.Component {
             <DatePicker style={{marginLeft: '30px'}}
                 margin="normal"
                 label="Meal Date"
-                value={time}
+                value={this.state.meal.time}
                 onChange={this.handleDateChange}
             />        
           </div>
@@ -104,7 +106,7 @@ class EditMeal extends React.Component {
               <TimePicker style={{marginLeft: '30px'}}
                   margin="normal"
                   label="Meal Time"
-                  value={time}
+                  value={this.state.meal.time}
                   onChange={this.handleDateChange}/>
           </div>
         </Grid>
