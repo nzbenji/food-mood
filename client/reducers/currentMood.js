@@ -5,6 +5,8 @@ const currentMood = (state = initialMood, action) => {
     case 'RECEIVING_MOOD':
     case 'UPDATE_MOOD':
       return action.mood
+    case 'CLEAR_MOOD':
+      return {}
     default:
       return state
   }

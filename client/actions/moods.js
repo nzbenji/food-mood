@@ -11,13 +11,13 @@ export function getMostRecentMood (userId) {
   }
 }
 
-function requestMood () {
+export function requestMood () {
   return {
     type: 'REQUESTING_MOOD'
   }
 }
 
-function receiveMood (mood) {
+export function receiveMood (mood) {
   return {
     type: 'RECEIVING_MOOD',
     mood
@@ -41,13 +41,13 @@ export function saveNewMood (mood, currentMealId) {
   }
 }
 
-function requestAddMood () {
+export function requestAddMood () {
   return {
     type: 'REQUESTING_ADD_MOOD'
   }
 }
 
-function receiveAddMood () {
+export function receiveAddMood () {
   return {
     type: 'RECEIVING_ADD_MOOD'
   }
@@ -57,5 +57,11 @@ export const updateMood = (mood) => {
   return {
     type: 'UPDATE_MOOD',
     mood
+  }
+}
+
+export function clearMood () {
+  return {
+    type: 'CLEAR_MOOD'
   }
 }

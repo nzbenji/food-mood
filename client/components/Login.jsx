@@ -26,7 +26,7 @@ class Login extends React.Component {
   handleSubmit (e) {
     const user = this.state
     this.props.dispatch(signin(user))
-    // e.preventDefault()
+    e.preventDefault()
   }
 
   render () {
@@ -57,7 +57,7 @@ class Login extends React.Component {
             </div>
 
             <div>
-            Password: <TextField id='password' variant="outlined" name='password' placeholder='password' onChange={this.handleChange} value={password} type='password' />
+            Password: <TextField id='password' variant="outlined" name='password' type='password' placeholder='password' onChange={this.handleChange} value={password} />
             </div>
 
             <div>
