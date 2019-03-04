@@ -47,28 +47,15 @@ class Dashboard extends React.Component {
             Add Meal
             </button></a>
           </Link>
-<<<<<<< HEAD
           <br/>
-          <Link style={{ textDecoration: 'none' }} to={{
-            pathname: `/addmood/${this.state.recentMeal.id}`,
-            state: {meal: this.state.recentMeal}}}>
-            <a><button className='button1'>
-            Add Mood to Last Meal
-            </button></a>
-          </Link>
-       </div>
-=======
-          <br/><br/>
           {this.state.recentMeal &&
-            <Link to={{
+            <Link style={{ textDecoration: 'none' }} to={{
               pathname: `/addmood`,
               state: {meal: this.state.recentMeal}}}>
-              <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>Add Mood to Last Meal</button>
+              <button className='button1'>Add Mood to Last Meal</button>
             </Link>
           }
         </div>
-      </div>
->>>>>>> 242cb6e935c7fc593bea3d4b2819da2af0e96ee7
     )
   }
 }

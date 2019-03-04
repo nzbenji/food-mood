@@ -19,7 +19,7 @@ header {
 }
 
 h1 {
-  color: rgb(73, 73, 73);
+  color: rgb(247, 164, 88);
   font-family: 'Comfortaa', cursive;
   text-align: center;
   font-size: 13px;
@@ -27,7 +27,7 @@ h1 {
 }
 
 h2 {
-  color: rgb(73, 73, 73);
+  color: rgb(247, 164, 88);
   font-family: 'Comfortaa', cursive;
   text-align: center;
   font-size: 18px;
@@ -35,7 +35,7 @@ h2 {
 }
 
 h3{
-  color: rgb(73, 73, 73);
+  color: rgb(247, 164, 88);
   font-family: 'Comfortaa', cursive;
   text-align: center;
   font-size: 22px;
@@ -88,7 +88,7 @@ h3{
 .button1 {
   background: url(./images/ui-bg3.jpg);
   position: relative;
-  color: rgb(73, 73, 73);
+  color: rgb(255, 255, 255);
   height: 35px;
   text-align: center;
   display: block;
