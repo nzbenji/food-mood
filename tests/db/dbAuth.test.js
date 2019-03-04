@@ -18,7 +18,7 @@ afterEach(() => testEnv.cleanup(testDb))
 
 test('registerUser registers a new user', () => {
   const expectedId = 3
-  
+
   return db
     .registerUser(user, testDb)
     .then(user => {
