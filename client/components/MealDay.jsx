@@ -16,8 +16,6 @@ class MealDay extends React.Component {
     getMealsAndMoods(this.props.userId)
       .then((meals) => {
         meals = meals.filter(meal => {
-          // console.log('mealtime', meal.time.slice(0, 10))
-          // console.log('props', this.props.location.state.date.slice(0, 10))
           return meal.time.slice(0, 10) === this.props.location.state.date.slice(0, 10)
         })
         this.setState({meals})
@@ -45,7 +43,7 @@ class MealDay extends React.Component {
               return (
                 <Link key={meal.id}
                   to={{
-                    pathname: `/addMood/${meal.id}`,
+                    pathname: `/meal`,
                     state: {meal}
                   }}>
                   <div style={{fontFamily: 'Laila', display: 'inline-block', textAlign: 'center'}}>
@@ -54,20 +52,6 @@ class MealDay extends React.Component {
                         <li>
                           {meal.title.charAt(0).toUpperCase() + meal.title.slice(1)}</li>
                         <li>{meal.time.slice(11, 16)}</li>
-                        <h3 style={{paddingTop: '20px', fontSize: '20px', letterSpacing: '4px'}}>Selected mood</h3>
-                        <ul>
-                          {meal.moods.map(mood => {
-                            return (
-                              <li
-                                key={mood.id}
-                                style={{fontSize: '40px', listStyle: 'none', margin: '40px'}}
-                              >
-                                {this.props.emotions.find(emotion => emotion.id === mood.emotionId).emoji}
-                                {mood.time.slice(11, 16)}
-                              </li>
-                            )
-                          })}
-                        </ul>
                       </ul>
                     </li>
                   </div>

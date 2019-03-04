@@ -26,17 +26,10 @@ class Calendar extends React.Component {
     this.setState({ selectedDate: date.toISOString().slice(0, 10).replace('T', ' ') });
   }
 
-  renderRedirect = () => {
-    return <Route exact path='/day'
-            render={(props) => <MealDay {...props} handleDateChange={this.handleDateChange}/> } 
-           />
-  }
-
   render () {
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
     }
-    console.log(this.state)
     const choosenDate = this.state.selectedDate
     const { classes } = this.props
     const {selectedDate} = this.state
@@ -60,7 +53,7 @@ class Calendar extends React.Component {
             <Link 
             
               to={{
-              pathname: '/mealday',
+              pathname: '/day',
               state: {date: choosenDate}
             }}>Select</Link>
           </Grid> 
