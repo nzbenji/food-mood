@@ -37,7 +37,6 @@ class App extends React.Component {
             <Route path ='/addmeal' component={AddMeal} />
             <Route path ='/editmeal' component={EditMeal} />
             <Route path='/stats' component={Stats} />
-            <Route path='/water' component={WaterInput} />
             <Route path='/settings' component={Settings} />
             <Route path='/editmood' component={EditMood} />
             <Route path='/addmood' component={AddMood} />
