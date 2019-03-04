@@ -85,3 +85,16 @@ test('auth reducer returns register error when error occurs', () => {
   expect(actualRegisterErr.loggedIn).toBe(expectedRegisterErr.loggedIn)
   expect(actualRegisterErr.pending).toBe(expectedRegisterErr.pending)
 })
+
+test('auth reducer successfully logs out', () => {
+  const action = {
+    type: 'LOGOUT'
+  }
+
+  const expectedReducedLogout = {
+    loggedIn: false,
+  }
+
+  const actualReducedLogout = reducer.default('', action)
+  expect(actualReducedLogout.loggedIn).toBe(expectedReducedLogout.loggedIn)
+})
