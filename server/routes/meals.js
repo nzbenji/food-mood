@@ -26,6 +26,16 @@ router.post('/:userId', (req, res) => {
     })
 })
 
+router.put('/editMeal', (req, res) => {
+  db.editMeal(req.body)
+    .then(() => {
+      res.json('hello')
+    })
+    .catch(err => {
+      res.status(500).send(err)
+    })
+})
+
 router.get('/mostRecent/:userId', (req, res) => {
   const userId = Number(req.params.userId)
   db.latestMeal(userId)
