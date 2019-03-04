@@ -45,6 +45,16 @@ export function getMealsAndMoods (userId) {
     .set({Authorization: `Bearer ${getToken()}`})
     .then(res => res.body)
     .catch(err => {
+      if (err) throw Error('Cannot get all user\'s meals and moods')
+    })
+}
+
+export function getMealsApi (userId) {
+  return request
+    .get(`${url}/userMeals/${userId}`)
+    .set({Authorization: `Bearer ${getToken()}`})
+    .then(res => res.body)
+    .catch(err => {
       if (err) throw Error('Cannot get all user\'s meals')
     })
 }

@@ -2,11 +2,10 @@ const express = require('express')
 const db = require('../db/moods')
 const router = express.Router()
 
-router.get('/mostRecent/:userId', (req, res) => {
-  const userId = Number(req.params.userId)
-  db.latestMood(userId)
-    .then(mood => {
-      res.json(mood)
+router.get('/:mealId', (req, res) => {
+  db.getMoods(req.params.mealId)
+    .then(moods => {
+      res.json(moods)
     })
     .catch(err => {
       res.status(500).send(err)
@@ -20,6 +19,17 @@ router.post('/:mealId', (req, res) => {
   db.addMood(mood)
     .then(([id]) => {
       res.json(id)
+    })
+    .catch(err => {
+      res.status(500).send(err)
+    })
+})
+
+router.get('/mostRecent/:userId', (req, res) => {
+  const userId = Number(req.params.userId)
+  db.latestMood(userId)
+    .then(mood => {
+      res.json(mood)
     })
     .catch(err => {
       res.status(500).send(err)
