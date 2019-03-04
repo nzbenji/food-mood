@@ -16,20 +16,25 @@ class Register extends React.Component {
     }
   }
 
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
-  handleSubmit = () => {
-    this.props.dispatch(register(this.state))
-  }
-
-  render () {
+  componentDidMount () {
+    console.log(this.props.loggedIn)
     if (this.props.loggedIn) {
       return (
         <Redirect to='/' />
       )
     }
+  }
+
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  handleSubmit = (e) => {
+    this.props.dispatch(register(this.state))
+    e.preventDefault()
+  }
+
+  render () {
 
     return (
       <Grid container justify = "center">
@@ -60,12 +65,13 @@ class Register extends React.Component {
             <label> 
             Password:
             <br/>
-            <TextField id='password' name='password' variant="outlined" placeholder='password' value={this.state.password} onChange={this.handleChange} /> 
+            <TextField id='password' name='password' type='password' variant="outlined" placeholder='password' value={this.state.password} onChange={this.handleChange} /> 
             </label>
             </div>
             <Grid container justify = "center">
             <div>
-        <Button type='submit' value='Submit' onClick={this.handleSubmit} >Submit</Button>
+        {/* <Button type='submit' value='Submit' onClick={this.handleSubmit} >Submit</Button> */}
+        <Link to='/login' onClick={this.handleSubmit} >Submit</Link>
         </div>
         </Grid>
         {this.props.error && <p>That username is already taken</p>}

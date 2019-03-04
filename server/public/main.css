@@ -20,11 +20,15 @@ header {
 h1 {
   font-family: 'Comfortaa', cursive;
   text-align: center;
+  font-size: 13px;
+  font-weight: 300;
 }
 
 h2 {
   font-family: 'Comfortaa', cursive;
   text-align: center;
+  font-size: 18px;
+  font-weight: 300;
 }
 
 h3{
@@ -33,6 +37,14 @@ h3{
   font-size: 22px;
   font-weight: 300;
 } 
+
+/* .datepicker {
+  font-family: 'Comfortaa', cursive;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 300;
+  margin-left: 30px;
+} */
 
 .nav-ul {
     background: url(./images/ui-bg3.jpg);
@@ -80,13 +92,11 @@ h3{
 .button1 {
   background: url(./images/ui-bg3.jpg);
   position: relative;
-  /* background: none; */
-  /* border: 1.5px solid #000000; */
   color: black;
   height: 35px;
   text-align: center;
   display: block;
   margin-left: auto;
   margin-right: auto;
- text-decoration: none;
+  text-decoration: none;
 }

@@ -26,47 +26,39 @@ class Calendar extends React.Component {
     this.setState({ selectedDate: date.toISOString().slice(0, 10).replace('T', ' ') });
   }
 
-  renderRedirect = () => {
-    return <Route exact path='/day'
-            render={(props) => <MealDay {...props} handleDateChange={this.handleDateChange}/> } 
-           />
-  }
-
   render () {
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
     }
-    console.log(this.state)
     const choosenDate = this.state.selectedDate
     const { classes } = this.props
     const {selectedDate} = this.state
     
     return (
       <div>
-           <br></br>
-        <h1 style={{ fontSize:'4rem',fontFamily:'Laila', margin:'60px', textAlign:'center'}}>Calender</h1><br></br>
+        <br/>
+        <h3>Calender</h3>
+        <br></br><br/>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container className={classes.grid} alignContent="center" justify="center" >
-            <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}
-            >Enter a date:</h3>
+            <h2>Enter a date:</h2>
             <DatePicker style={{marginLeft: '30px'}}
               margin="normal"
               label="Date picker"
               value={selectedDate}
               onChange={this.handleDateChange}/>
           </Grid>
+          <br/>
           <Grid container className={classes.grid} alignContent="center" justify="center" >
-    
             <Link 
-            
               to={{
-              pathname: '/mealday',
+              pathname: '/day',
               state: {date: choosenDate}
-            }}>Select</Link>
+            }}><button className="button1">Select</button>
+            </Link>
           </Grid> 
-          
-          
         </MuiPickersUtilsProvider>
+        <br/>
       </div>
     )
   }

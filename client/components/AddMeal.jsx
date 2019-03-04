@@ -70,32 +70,27 @@ class AddMeal extends React.Component {
     const { time } = this.state.meal;
     return (
       <div>
-        <center>
-          <h3 style={{textAlign:'center', fontSize: '4rem',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Add Meal </h3>
-        </center>
-
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container className={classes.grid} alignContent="center" justify="center" >
           <div> 
-          <h3 style={{textAlign:'center', color:'#FFFFFF', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
+          <h2>
               Meal Name:
-            </h3>
-            <form style={{margin:'40px', backgroundColor:'#00bba7'}}>
-                  <input
-                  placeholder='Meal Name' 
+            </h2>
+            <form >
+                  <input 
                   name='title'
                   value={this.state.meal.title} 
                   onChange={this.handleChange} 
-                  style={{width: '40rem', height: '53px', fontSize: '18px', fontFamily:'Laila', letterSpacing:'4px', backgroundColor:'grey', color:'#FFFFFF', opacity:'0.4'}}/>
+                  style={{width: '15rem', height: '23px', fontSize: '10px', fontFamily:'Comfortaa', letterSpacing:'4px', backgroundColor:'white', color:'#FFFFFF', opacity:'0.4'}}/>
             </form>
           </div>
         </Grid>
 
         <Grid container className={classes.grid} alignContent="center" justify="center" >
           <div>
-            <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
+            <h1>
               Enter a date:
-            </h3>
+            </h1>
             <DatePicker style={{marginLeft: '30px'}}
                 margin="normal"
                 label="Date picker"
@@ -104,7 +99,7 @@ class AddMeal extends React.Component {
             />        
           </div>
           <div>
-              <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Enter a time: </h3>
+              <h1>Enter a time: </h1>
               <TimePicker style={{marginLeft: '30px'}}
                   margin="normal"
                   label="Time picker"
@@ -113,7 +108,7 @@ class AddMeal extends React.Component {
           </div>
         </Grid>
         <Grid container className={classes.grid} alignContent="center" justify="center">
-        <button positive style={{height: '53px', width: '8rem', marginTop: '50px', marginBottom: '30px', marginLeft: '18px', backgroundColor: '#00bba7'}} onClick={this.handleSubmit}>Submit</button>
+        <button className='button1'>Submit</button>
         </Grid>
       </MuiPickersUtilsProvider>
       </div>

@@ -14,7 +14,6 @@ class Dashboard extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      mood: {},
       recentMeal: {}
     }
   }
@@ -29,8 +28,9 @@ class Dashboard extends React.Component {
   render () {
     const {emotions, currentMood} = this.props
     let emoji = ''
-    if (emotions.length > 0) {
-      emoji = emotions.find(emotion => emotion.id === currentMood.emotion_id).emoji
+    if (emotions.length > 0 && currentMood) {
+      const seletedEmotion = emotions.find(emotion => emotion.id === currentMood.emotion_id)
+      if (seletedEmotion && Object.keys(seletedEmotion).length !== 0 && seletedEmotion.constructor === Object) emoji = seletedEmotion.emoji
     }
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
