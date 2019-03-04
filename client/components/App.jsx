@@ -37,6 +37,7 @@ class App extends React.Component {
             <Route path ='/addmeal' component={AddMeal} />
             <Route path ='/editmeal' component={EditMeal} />
             <Route path='/stats' component={Stats} />
+            <Route path='/water' component={WaterInput} />
             <Route path='/settings' component={Settings} />
             <Route path='/editmood' component={EditMood} />
             <Route path='/addmood' component={AddMood} />
@@ -46,7 +47,6 @@ class App extends React.Component {
             <Route path='/calendar' component={Calendar} />
             <Route path='/register' component={Register} />
             <Route path='/login' component={Login} />
-            <Route path='/water' component={WaterInput} />
           </Switch><br></br>
           {this.props.loggedIn && <NavBar />}
       </div>      
