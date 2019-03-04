@@ -36,4 +36,14 @@ router.put('/editMood', (req, res) => {
     })
 })
 
+router.delete('/deleteMood/:moodId', (req, res) => {
+  db.deleteMood(req.params.moodId)
+    .then(() => {
+      res.json('ok')
+    })
+    .catch(err => {
+      res.status(500).send(err)
+    })
+})
+
 module.exports = router
