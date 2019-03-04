@@ -1,4 +1,9 @@
 import React from 'react'
+import 'date-fns'
+import Grid from '@material-ui/core/Grid'
+import {withStyles} from '@material-ui/core/styles'
+import DateFnsUtils from '@date-io/date-fns'
+import {MuiPickersUtilsProvider, DatePicker} from 'material-ui-pickers'
 import {Sector, Cell, PieChart, Pie} from 'recharts'
 import {Redirect, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
@@ -61,6 +66,7 @@ class Stats extends React.Component {
           }
         })
     const avg = total / moods.length
+    console.log(avg)
     return avg * 20
   }
 
