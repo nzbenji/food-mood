@@ -14,7 +14,7 @@ import Settings from './Settings'
 import Dashboard from './Dashboard'
 import EditMeal from './EditMeal'
 import Meal from './Meal'
-import EditMood from './EditMeal'
+import EditMood from './EditMood'
 import {getEmotions} from '../actions/emotions'
 
 class App extends React.Component {

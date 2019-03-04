@@ -8,7 +8,7 @@ import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pic
 import {addMealApi} from '../api/meals'
 import {connect} from 'react-redux'
 import {Redirect, withRouter} from 'react-router-dom'
-import {editMood} from '../actions/moods'
+import {editMoodApi} from '../api/moods'
 
 const styles = {
     grid: {
@@ -20,13 +20,15 @@ class EditMood extends React.Component {
 
   constructor (props) {
     super(props)
+    const mood = props.location.state.mood
     this.state = {
         // The first commit of Material-UI
         mood: {
-          time: props.mood.time,
-          notes: props.mood.notes,
-          emotion_id: props.mood.emotionId,
-          meal_id: props.mood.mealId
+          time: mood.time,
+          notes: mood.notes,
+          emotion_id: mood.emotionId,
+          meal_id: mood.mealId,
+          id: mood.id
         },
         submitted: false
       };
@@ -39,8 +41,11 @@ class EditMood extends React.Component {
   }
 
   handleSubmit = (event) => {
-    this.props.dispatch(editMood(this.state.mood))
-    this.setState({submitted:true})
+    editMoodApi(this.state.mood)
+      .then(() => {
+        this.setState({submitted:true})
+      })
+      .catch(err => console.log('whoops'))
     event.preventDefault()
   }
 
@@ -78,11 +83,12 @@ class EditMood extends React.Component {
     return (
       <div>
         <center>
-          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Add Mood </h3>
+          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Edit Mood </h3>
           <br></br>
         </center>
           <center>
-          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>{this.props.location.state.meal.title}</h3>
+          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
+          {this.props.location.state.meal.title}</h3>
           <br></br>
         </center>
         <center>
@@ -116,8 +122,7 @@ class EditMood extends React.Component {
                 margin="normal"
                 label="Date picker"
                 value={time}
-                onChange={this.handleDateChange}
-                defaultValue={this.props.mood.time}/>        
+                onChange={this.handleDateChange}/>        
           </div>
           <div>
               <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Enter a time: </h3>
@@ -125,8 +130,7 @@ class EditMood extends React.Component {
                   margin="normal"
                   label="Time picker"
                   value={time}
-                  onChange={this.handleDateChange}
-                  defaultValue={this.props.mood.time}/>
+                  onChange={this.handleDateChange}/>
           </div>
         </Grid>
         <Grid container className={classes.grid} alignContent="center" justify="center" >

@@ -67,7 +67,3 @@ export function clearMood () {
     type: 'CLEAR_MOOD'
   }
 }
-
-export function editMood (mood) {
-
-}

@@ -25,13 +25,19 @@ class Meal extends React.Component {
             return (
               <li key={mood.id} style={{fontSize: '40px', listStyle: 'none', margin: '40px'}}>
                 {`${this.props.emotions.find(emotion => emotion.id === mood.emotionId).emoji} ${mood.time.slice(11, 16)} ${mood.notes}`}
+                <Link to={{
+                  pathname: `/editmood`,
+                  state: {mood: mood, meal: meal}}}>
+                  <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>
+                  Edit Mood</button>
+                </Link>
               </li>
             )
           })}
         </ul>
         <div>
           <Link to={{
-            pathname: `/addmood/${meal.id}`,
+            pathname: `/addmood`,
             state: {meal: meal}}}>
             <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>Add Mood to Last Meal</button>
           </Link>

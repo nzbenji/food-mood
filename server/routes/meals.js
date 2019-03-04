@@ -65,6 +65,7 @@ function moodToMoodArr (meals) {
 function getMoodDataFromMeal (meal) {
   return {
     id: meal.moodId,
+    mealId: meal.mealId,
     notes: meal.notes,
     emotionId: meal.emotionId,
     time: meal.moodTime
