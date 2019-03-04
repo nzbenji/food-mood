@@ -6,7 +6,9 @@ import React from 'react'
    render() {
      return (
        <div>
+           <center>
          <h1>Water intake</h1>
+         </center>
        </div>
      )
    }
