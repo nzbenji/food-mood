@@ -4,9 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
-// import {editMealApi} from '../api/meals'
+import {editMealApi} from '../api/meals'
 import {connect} from 'react-redux'
-import {Redirect, withRouter, Route} from 'react-router-dom'
+import {Link, Redirect, withRouter, Route} from 'react-router-dom'
 
 const styles = {
     grid: {
@@ -18,15 +18,17 @@ class EditMeal extends React.Component {
 
   constructor (props) {
     super(props)
+    const meal = props.location.state.meal
     this.state = {
-        // The first commit of Material-UI
-        meal: {
-          time: new Date().toISOString().slice(0, 19).replace('T', ' '),
-          title: ''
-        },
-        mealId: -1
-      };
-  }
+      // The first commit of Material-UI
+      meal: {
+        time: meal.time,
+        notes: meal.notes,
+        title: meal.title
+      },
+      submitted: false
+    };
+}
     
   handleChange = (event) => {
     const updatemeal = {...this.state.meal}
@@ -78,7 +80,7 @@ class EditMeal extends React.Component {
         <Grid container className={classes.grid} alignContent="center" justify="center" >
           <div> 
           <h3 style={{textAlign:'center', color:'#FFFFFF', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
-              Meal Name:
+              Edit Meal Name:
             </h3>
             <form style={{margin:'40px', backgroundColor:'#00bba7'}}>
                   <input
@@ -93,27 +95,27 @@ class EditMeal extends React.Component {
 
         <Grid container className={classes.grid} alignContent="center" justify="center" >
           <div>
-            <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
-              Enter a date:
-            </h3>
             <DatePicker style={{marginLeft: '30px'}}
                 margin="normal"
-                label="Date picker"
-                value={time}
+                label="Meal Date"
+                value={this.state.meal.time}
                 onChange={this.handleDateChange}
             />        
           </div>
           <div>
-              <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Enter a time: </h3>
               <TimePicker style={{marginLeft: '30px'}}
                   margin="normal"
-                  label="Time picker"
-                  value={time}
+                  label="Meal Time"
+                  value={this.state.meal.time}
                   onChange={this.handleDateChange}/>
           </div>
         </Grid>
         <Grid container className={classes.grid} alignContent="center" justify="center">
-        <button positive style={{height: '53px', width: '8rem', marginTop: '50px', marginBottom: '30px', marginLeft: '18px', backgroundColor: '#00bba7'}} onClick={this.handleSubmit}>Submit</button>
+        <Link to={{
+          pathname: `/`,
+          state: { }}}>
+          <button positive style={{height: '53px', width: '8rem', marginTop: '50px', marginBottom: '30px', marginLeft: '18px', backgroundColor: '#00bba7'}} onClick={this.handleSubmit}>Submit</button>
+          </Link>
         </Grid>
       </MuiPickersUtilsProvider>
       </div>

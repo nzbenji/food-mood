@@ -13,6 +13,17 @@ router.get('/:userId', (req, res) => {
     })
 })
 
+router.get('/userMeals/:userId', (req, res) => {
+  const userId = Number(req.params.userId)
+  db.userMeals(userId)
+    .then(meals => {
+      res.json(meals)
+    })
+    .catch(err => {
+      res.status(500).send(err)
+    })
+})
+
 router.post('/:userId', (req, res) => {
   const userId = Number(req.params.userId)
   const meal = req.body
@@ -20,6 +31,16 @@ router.post('/:userId', (req, res) => {
   db.newMeal(meal)
     .then((data) => {
       res.json(data[0])
+    })
+    .catch(err => {
+      res.status(500).send(err)
+    })
+})
+
+router.put('/editMeal', (req, res) => {
+  db.editMeal(req.body)
+    .then(() => {
+      res.json('hello')
     })
     .catch(err => {
       res.status(500).send(err)

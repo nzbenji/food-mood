@@ -15,6 +15,18 @@ export function addMealApi (userId, newMeal) {
     })
 }
 
+// Updates a selected meal
+export function editMealApi (meal) {
+  return request
+    .put(`${url}/editMeal`)
+    .set({Authorization: `Bearer ${getToken()}`})
+    .send(meal)
+    .then(res => res.body)
+    .catch(err => {
+      if (err) throw Error('Cannot update meal')
+    })
+}
+
 // Displays the most recent meal
 export function mostRecentMealApi (userId) {
   return request
@@ -30,6 +42,16 @@ export function mostRecentMealApi (userId) {
 export function getMealsAndMoods (userId) {
   return request
     .get(`${url}/${userId}`)
+    .set({Authorization: `Bearer ${getToken()}`})
+    .then(res => res.body)
+    .catch(err => {
+      if (err) throw Error('Cannot get all user\'s meals and moods')
+    })
+}
+
+export function getMealsApi (userId) {
+  return request
+    .get(`${url}/userMeals/${userId}`)
     .set({Authorization: `Bearer ${getToken()}`})
     .then(res => res.body)
     .catch(err => {
