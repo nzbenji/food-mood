@@ -29,12 +29,11 @@ export function editMealApi (meal) {
 
 export function deleteMealApi (meal) {
   return request
-    .delete(`${url}/deleteMeal`)
+    .delete(`${url}/deleteMeal/${meal.id}`)
     .set({Authorization: `Bearer ${getToken()}`})
-    .send(meal)
     .then(res => res.body)
     .catch(err => {
-      if (err) throw Error('Cannot update meal')
+      if (err) throw Error('Cannot delete meal')
     })
 }
 
