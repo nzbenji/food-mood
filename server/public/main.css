@@ -46,6 +46,15 @@ h3{
   text-decoration: none;
 } 
 
+h4{
+  color: rgb(247, 164, 88);
+  font-family: 'Comfortaa', cursive;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 300;
+  text-decoration: none;
+}
+
 .nav-ul {
     background: url(./images/ui-bg3.jpg);
     list-style-type: none;
@@ -126,6 +135,11 @@ h3{
     position: relative;
     display: block;
     margin-left: 145px;
+}
+
+.meal {
+  display: block;
+  margin-right: 45px;
 }
 
 li{
