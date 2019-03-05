@@ -2,6 +2,8 @@ const connection = require('./index')
 
 module.exports = {
   userMeals,
+  getMeal,
+  getMoodsUserId,
   newMeal,
   latestMeal,
   editMeal,
@@ -13,6 +15,20 @@ module.exports = {
 function userMeals (id, db = connection) {
   return db('meals')
     .where('user_id', id)
+}
+
+function getMeal (mealId, db = connection) {
+  return db('meals')
+    .where('id', mealId)
+    .first()
+}
+
+function getMoodsUserId (moodId, db = connection) {
+  return db('moods')
+    .join('meals', 'moods.meal_id', '=', 'meals.id')
+    .where('moods.id', moodId)
+    .select('meals.user_id')
+    .first()
 }
 
 function newMeal (meal, db = connection) {
