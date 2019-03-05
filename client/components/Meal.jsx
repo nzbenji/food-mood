@@ -64,6 +64,12 @@ class Meal extends React.Component {
             <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>
                   Edit Meal</button>
           </Link>
+          <Link to={{
+            pathname: `/deletemeal`,
+            state: {meal: meal}}}>
+            <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>
+                  Delete Meal</button>
+          </Link>
         </div>
 
       </div>

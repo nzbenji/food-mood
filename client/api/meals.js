@@ -27,6 +27,17 @@ export function editMealApi (meal) {
     })
 }
 
+export function deleteMealApi (meal) {
+  return request
+    .delete(`${url}/deleteMeal`)
+    .set({Authorization: `Bearer ${getToken()}`})
+    .send(meal)
+    .then(res => res.body)
+    .catch(err => {
+      if (err) throw Error('Cannot update meal')
+    })
+}
+
 // Displays the most recent meal
 export function mostRecentMealApi (userId) {
   return request
