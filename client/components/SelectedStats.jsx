@@ -9,7 +9,6 @@ import {Redirect, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getMealsAndMoods} from '../api/meals'
 import { da } from 'date-fns/esm/locale';
-import moment from 'moment'
 
 const ActiveSectorMark = ({cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill}) => {
   return (
@@ -62,6 +61,7 @@ class SelectedStats extends React.Component {
         data.map(meal => {
           moods = moods.concat(meal.moods)
         })
+        console.log(moods)
         this.setState({ moods})
       })
       .catch(err => new Error(err))
@@ -86,7 +86,8 @@ class SelectedStats extends React.Component {
 
   calculateRankValue () {
     let total = 0
-    const moods = this.state.moods
+    const moods = this.state.moods.filter(item => this.compareDates(this.state.startDate, this.state.endDate, item.time))
+    console.log(moods)
         moods.forEach(mood => {
           const emotion = this.props.emotions.find(emotion =>emotion.id === mood.emotionId)
           if(emotion) {
@@ -100,9 +101,7 @@ class SelectedStats extends React.Component {
 
   render () {
     console.log(this.compareDates(this.state.startDate, this.state.endDate, "2019-03-01 14:00:45"))
-    console.log(this.state)
-    
-    
+
     if (!this.props.loggedIn) {
       console.log('not logged in trying to redirect')
       return <Redirect to='/login' push={true} />
