@@ -5,8 +5,8 @@ import Grid from '@material-ui/core/Grid'
 
 class Stats extends React.Component {
   state = {
-    overall: null,
-    selectedDates: null
+    overall: false,
+    selectedDates: false
   }
   render () {
     return (
@@ -15,13 +15,28 @@ class Stats extends React.Component {
         <Grid container alignContent="center" justify="center" >
         
         <div>
-          <button 
-              style={{display: 'inline-block', width:'200px', height: '30px',padding: '5px', margin:'20px'}}
-              onClick={() => this.setState({overall:true})}>Select overall mood</button>
+          <div>
             <button 
-              style={{display: 'inline-block', width:'200px', height: '30px',padding: '5px', margin:'20px'}}
-              onClick={() => this.setState({selectedDates:true})}>Select mood based on dates</button>
-            {this.state.overall && <OverallStats /> || <SelectedStats />}
+                style={{width:'200px', height: '30px',padding: '5px', margin:'20px'}}
+                onClick={() => this.setState(prevState => ({
+                  overall: !prevState.overall,
+                  selectedDates: false
+                }))}
+                
+                >Select overall mood</button>
+          </div>
+          <div>
+            <button 
+                style={{width:'200px', height: '30px',padding: '5px', margin:'20px'}}
+                onClick={() => this.setState(prevState => ({
+                  selectedDates: !prevState.selectedDates,
+                  overall: false
+                }))}
+                
+                >Select mood based on dates</button>
+          </div>
+            {this.state.overall && <OverallStats /> }
+            {this.state.selectedDates && <SelectedStats />}
         </div>
           
         </Grid>
