@@ -34,13 +34,14 @@ class AddMeal extends React.Component {
   }
 
   handleSubmit = (event) => {
-    return addMealApi(this.props.userId, this.state.meal)
+    addMealApi(this.props.userId, this.state.meal)
       .then((mealId) => {
         this.setState({
           mealId
         })
       })
       .catch(({message}) => console.log("whoops"))
+    event.preventDefault()
   }
 
   handleDateChange = date => {
