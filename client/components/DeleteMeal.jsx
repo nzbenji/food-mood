@@ -55,15 +55,20 @@ class DeleteMeal extends React.Component {
     
     return (
       <div>
+        <br/><br/>
+        <br/><br/>
+        <br/><br/>
+        <br/><br/>
         <center>
-          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
+          <h3 style={{fontSize: '20px'}}>
             Are you sure you want to delete {` ${this.state.meal.title}`}?
           </h3>
-          <h4>{this.state.meal.time}</h4>
+          <br/>
+          <h3>{this.state.meal.time}</h3>
           <br></br>
         </center>
         <Grid container className={classes.grid} alignContent="center" justify="center" >
-          <button positive style={{height: '53px', width: '8rem', marginTop:'50px', marginBottom:'40px', marginLeft: '18px'}} onClick={this.handleSubmit}>
+          <button className='button1' onClick={this.handleSubmit}>
             Delete
           </button>
         </Grid>
