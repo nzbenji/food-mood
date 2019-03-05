@@ -1,33 +1,32 @@
 import React from 'react'
-import 'date-fns';
-import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core/styles';
-import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
+import 'date-fns'
+import Grid from '@material-ui/core/Grid'
+import {withStyles} from '@material-ui/core/styles'
+import DateFnsUtils from '@date-io/date-fns'
+import {MuiPickersUtilsProvider, TimePicker, DatePicker} from 'material-ui-pickers'
 import {addMealApi} from '../api/meals'
 import {connect} from 'react-redux'
 import {Redirect, withRouter, Route} from 'react-router-dom'
 
 const styles = {
-    grid: {
-      width: '100%',
-    },
-  };
+  grid: {
+    width: '100%'
+  }
+}
 
 class AddMeal extends React.Component {
-
   constructor (props) {
     super(props)
     this.state = {
-        // The first commit of Material-UI
-        meal: {
-          time: new Date().toISOString().slice(0, 19).replace('T', ' '),
-          title: ''
-        },
-        mealId: -1
-      };
+      // The first commit of Material-UI
+      meal: {
+        time: new Date().toISOString().slice(0, 19).replace('T', ' '),
+        title: ''
+      },
+      mealId: -1
+    }
   }
-    
+
   handleChange = (event) => {
     const updatemeal = {...this.state.meal}
     updatemeal[event.target.name] = event.target.value
@@ -51,14 +50,14 @@ class AddMeal extends React.Component {
     this.setState({meal: updatemeal})
   }
 
-  render() {
-    if(this.state.mealId > 0){
+  render () {
+    if (this.state.mealId > 0) {
       const meal = {...this.state.meal, id: this.state.mealId}
       return (
         <Redirect to={{
-          pathname:`/addMood`,
+          pathname: `/addMood`,
           state: {meal}
-          }} />
+        }} />
       )
     }
 
@@ -66,8 +65,8 @@ class AddMeal extends React.Component {
       return <Redirect to='/login'/>
     }
 
-    const { classes } = this.props;
-    const { time } = this.state.meal;
+    const {classes} = this.props
+    const {time} = this.state.meal
     return (
       <div>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -108,7 +107,7 @@ class AddMeal extends React.Component {
           </div>
         </Grid>
         <Grid container className={classes.grid} alignContent="center" justify="center">
-        <button className='button1'>Submit</button>
+        <button className='button1' onClick={this.handleSubmit}>Submit</button>
         </Grid>
       </MuiPickersUtilsProvider>
       </div>

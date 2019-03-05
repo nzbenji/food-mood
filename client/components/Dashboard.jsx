@@ -4,6 +4,7 @@ import {mostRecentMealApi} from '../api/meals'
 import {withStyles} from '@material-ui/core/styles'
 import {connect} from 'react-redux'
 import {Link, Redirect, withRouter} from 'react-router-dom'
+import {getEmoji} from '../utils/emojis'
 
 const styles = {
   grid: {
@@ -27,11 +28,7 @@ class Dashboard extends React.Component {
 
   render () {
     const {emotions, currentMood} = this.props
-    let emoji = ''
-    if (emotions.length > 0 && currentMood) {
-      const seletedEmotion = emotions.find(emotion => emotion.id === currentMood.emotion_id)
-      if (seletedEmotion && Object.keys(seletedEmotion).length !== 0 && seletedEmotion.constructor === Object) emoji = seletedEmotion.emoji
-    }
+
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
     }
@@ -39,24 +36,24 @@ class Dashboard extends React.Component {
       <div>
         <br/>
         <h3>Last Mood</h3>
-          {currentMood && emotions.length > 0
-            ? <h3 style={{fontSize: '80px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center', marginBottom: '20px', marginTop: '20px'}}> {emoji} </h3>
-            : <div></div>}
-          <Link style={{ textDecoration: 'none' }} to='/addmeal'>
-            <a><button className='button1'>
+        {currentMood
+          ? <h3 style={{fontSize: '80px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center', marginBottom: '20px', marginTop: '20px'}}> {getEmoji(emotions, currentMood.emotion_id)} </h3>
+          : <div></div>}
+        <Link style={{textDecoration: 'none'}} to='/addmeal'>
+          <a><button className='button1'>
             Add Meal
-            </button></a>
-          </Link>
-          <br/>
-          {this.state.recentMeal &&
-            <Link style={{ textDecoration: 'none' }} to={{
+          </button></a>
+        </Link>
+        <br/>
+        {this.state.recentMeal &&
+            <Link style={{textDecoration: 'none'}} to={{
               pathname: `/addmood`,
               state: {meal: this.state.recentMeal}}}>
               <button className='button1'>Add Mood to Last Meal</button>
             </Link>
-          }
+        }
 
-        </div>
+      </div>
     )
   }
 }

@@ -1,36 +1,35 @@
 import React from 'react'
 
-import 'date-fns';
-import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core/styles';
-import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
+import 'date-fns'
+import Grid from '@material-ui/core/Grid'
+import {withStyles} from '@material-ui/core/styles'
+import DateFnsUtils from '@date-io/date-fns'
+import {MuiPickersUtilsProvider, TimePicker, DatePicker} from 'material-ui-pickers'
 import {addMealApi} from '../api/meals'
 import {connect} from 'react-redux'
 import {Redirect, withRouter} from 'react-router-dom'
 import {saveNewMood} from '../actions/moods'
 
 const styles = {
-    grid: {
-      width: '100%',
-    },
-  };
+  grid: {
+    width: '100%'
+  }
+}
 
 class AddMood extends React.Component {
-
   constructor (props) {
     super(props)
     this.state = {
-        // The first commit of Material-UI
-        mood: {
-          time: new Date().toISOString().slice(0, 19).replace('T', ' '),
-          notes: '',
-          emotion_id: ''
-        },
-        submitted: false
-      };
+      // The first commit of Material-UI
+      mood: {
+        time: new Date().toISOString().slice(0, 19).replace('T', ' '),
+        notes: '',
+        emotion_id: ''
+      },
+      submitted: false
+    }
   }
-    
+
   handleChange = (event) => {
     const updatemood = {...this.state.mood}
     updatemood[event.target.name] = event.target.value
@@ -58,79 +57,81 @@ class AddMood extends React.Component {
     }
   }
 
-  render() {
-  
-    const { classes } = this.props;
-    const { time } = this.state.mood;
-    if (this.state.submitted){
-      return <Redirect to ='/'/>
+  render () {
+    const {classes} = this.props
+    const {time} = this.state.mood
+    if (this.state.submitted) {
+      return <Redirect to ={{
+        pathname: '/meal',
+        state: {meal: this.props.location.state.meal}
+      }}/>
     }
 
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
     }
 
-    if(!this.props.location.state) {
+    if (!this.props.location.state) {
       return <Redirect to='/'/>
     }
-    
+
     return (
       <div>
         <center>
-          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Add Mood </h3>
-          <br></br>
-        </center>
-          <center>
-          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>{this.props.location.state.meal.title}</h3>
+          <h3 style={{textAlign: 'center', fontSize: '40px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>Add Mood </h3>
           <br></br>
         </center>
         <center>
-          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
-          {this.props.emotions.map(emotion => { return <p key={emotion.emoji} onClick={this.handleClick(emotion.id)}>{emotion.emoji}</p>})}</h3>
+          <h3 style={{textAlign: 'center', fontSize: '40px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>{this.props.location.state.meal.title}</h3>
+          <br></br>
+        </center>
+        <center>
+          <h3 style={{textAlign: 'center', fontSize: '40px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>
+            {this.props.emotions.map(emotion => { return <p key={emotion.emoji} onClick={this.handleClick(emotion.id)}>{emotion.emoji}</p> })}</h3>
           <br></br>
         </center>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <Grid container className={classes.grid} alignContent="center" justify="center" >
-          <div> 
-          <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
+          <Grid container className={classes.grid} alignContent="center" justify="center" >
+            <div>
+              <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>
               Notes:
-            </h3>
-            <form style={{margin:'40px'}}>
-                  <input 
-                  placeholder='Notes' 
+              </h3>
+              <form style={{margin: '40px'}}>
+                <input
+                  placeholder='Notes'
                   name='notes'
-                  value={this.state.mood.notes} 
-                  onChange={this.handleChange} 
-                  style={{width: '40rem', height: '53px', fontSize: '18px', fontFamily:'Laila', letterSpacing:'4px'}}/>
-            </form>
-          </div>
-        </Grid>
+                  value={this.state.mood.notes}
+                  onChange={this.handleChange}
+                  style={{width: '40rem', height: '53px', fontSize: '18px', fontFamily: 'Laila', letterSpacing: '4px'}}/>
+              </form>
+            </div>
+          </Grid>
 
-        <Grid container className={classes.grid} alignContent="center" justify="center" >
-          <div>
-            <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
+          <Grid container className={classes.grid} alignContent="center" justify="center" >
+            <div>
+              <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>
               Enter a date:
-            </h3>
-            <DatePicker style={{marginLeft: '30px'}}
+              </h3>
+              <DatePicker style={{marginLeft: '30px'}}
                 margin="normal"
                 label="Date picker"
                 value={time}
                 onChange={this.handleDateChange}
-            />        
-          </div>
-          <div>
-              <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Enter a time: </h3>
+              />
+            </div>
+            <div>
+              <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>Enter a time: </h3>
               <TimePicker style={{marginLeft: '30px'}}
-                  margin="normal"
-                  label="Time picker"
-                  value={time}
-                  onChange={this.handleDateChange}/>
-          </div>
-        </Grid>
-        <Grid container className={classes.grid} alignContent="center" justify="center" >
-        <button positive style={{height: '53px', width: '8rem', marginTop:'50px', marginBottom:'40px', marginLeft: '18px'}} onClick={this.handleSubmit}>Submit</button>
-        </Grid>
-      </MuiPickersUtilsProvider>
+                margin="normal"
+                label="Time picker"
+                value={time}
+                onChange={this.handleDateChange}/>
+            </div>
+          </Grid>
+          <Grid container className={classes.grid} alignContent="center" justify="center" >
+            <button positive style={{height: '53px', width: '8rem', marginTop: '50px', marginBottom: '40px', marginLeft: '18px'}} onClick={this.handleSubmit}>Submit</button>
+          </Grid>
+        </MuiPickersUtilsProvider>
       </div>
     )
   }
