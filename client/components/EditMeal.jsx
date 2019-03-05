@@ -21,12 +21,7 @@ class EditMeal extends React.Component {
     const meal = props.location.state.meal
     this.state = {
       // The first commit of Material-UI
-      meal: {
-        time: meal.time,
-        notes: meal.notes,
-        title: meal.title
-      },
-      submitted: false
+      meal:meal
     };
 }
     
@@ -37,13 +32,8 @@ class EditMeal extends React.Component {
   }
 
   handleSubmit = (event) => {
-    return editMealApi (this.props.userId, this.state.meal)
-      .then((mealId) => {
-        this.setState({
-          mealId
-        })
-      })
-      .catch(({message}) => console.log("sup homie"))
+    return editMealApi (this.state.meal)
+      .catch(({message}) => console.log("whoopsie daisy!"))
   }
 
   handleDateChange = date => {
@@ -54,14 +44,11 @@ class EditMeal extends React.Component {
   }
 
   render() {
-    if(this.state.mealId > 0){
-      const meal = {...this.state.meal, id: this.state.mealId}
-      return (
-        <Redirect to={{
-          pathname:`/addMood/${this.state.mealId}`,
-          state: {meal}
-          }} />
-      )
+    if (this.state.submitted){
+      return <Redirect to ={{
+        pathname: '/meal',
+        state: {meal: this.state.meal}
+      }}/>
     }
 
     if (!this.props.loggedIn) {
@@ -112,8 +99,9 @@ class EditMeal extends React.Component {
         </Grid>
         <Grid container className={classes.grid} alignContent="center" justify="center">
         <Link to={{
-          pathname: `/`,
-          state: { }}}>
+            pathname: '/meal',
+            state: {meal: this.state.meal}
+          }}>
           <button positive style={{height: '53px', width: '8rem', marginTop: '50px', marginBottom: '30px', marginLeft: '18px', backgroundColor: '#00bba7'}} onClick={this.handleSubmit}>Submit</button>
           </Link>
         </Grid>

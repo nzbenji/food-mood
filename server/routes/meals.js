@@ -40,7 +40,7 @@ router.post('/:userId', (req, res) => {
 router.put('/editMeal', (req, res) => {
   db.editMeal(req.body)
     .then(() => {
-      res.json('hello')
+      res.json('ok')
     })
     .catch(err => {
       res.status(500).send(err)
