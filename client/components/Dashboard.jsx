@@ -41,7 +41,7 @@ class Dashboard extends React.Component {
           : <div></div>}
         <Link style={{textDecoration: 'none'}} to='/addmeal'>
           <a><button className='button1'>
-            Add Meal
+            Add a meal
           </button></a>
         </Link>
         <br/>
