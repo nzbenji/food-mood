@@ -39,23 +39,24 @@ class Meal extends React.Component {
     return (
       <div>
         <h4>Moods</h4>
-       
+
         <div>
           <Grid container alignContent="center" justify="center">
             <h4> {`${meal.title} ${month}${day}`} </h4>
           </Grid>
         </div>
         <br/>
-
-        <ul>
-          {this.state.meal.moods && this.state.meal.moods.map(mood => {
-            return (
-              <li key={mood.id}>
-                <h4><Mood mood={mood} meal={meal}/></h4>
-              </li>
-            )
-          })}
-        </ul>
+        <div>
+          <ul>
+            {this.state.meal.moods && this.state.meal.moods.map(mood => {
+              return (
+                <li key={mood.id}>
+                  <h4><Mood mood={mood} meal={meal}/></h4>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
         <div>
           <Link style={{textDecoration: 'none'}} to={{
             pathname: `/addmood`,
@@ -64,12 +65,18 @@ class Meal extends React.Component {
             Add Mood to Last Meal
             </button>
           </Link>
-          
+
           <Link style={{textDecoration: 'none'}} to={{
             pathname: `/editmeal`,
             state: {meal: meal}}}>
             <button className='button1'>
                   Edit Meal</button>
+          </Link>
+          <Link style={{textDecoration: 'none'}} to={{
+            pathname: `/deletemeal`,
+            state: {meal: meal}}}>
+            <button className='button1'>
+                  Delete Meal</button>
           </Link>
         </div>
 

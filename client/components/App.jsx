@@ -16,6 +16,7 @@ import EditMeal from './EditMeal'
 import Meal from './Meal'
 import EditMood from './EditMood'
 import DeleteMood from './DeleteMood'
+import DeleteMeal from './DeleteMeal'
 import {getEmotions} from '../actions/emotions'
 
 class App extends React.Component {
@@ -35,6 +36,7 @@ class App extends React.Component {
             <Route exact path='/' component={Dashboard} />
             <Route path ='/addmeal' component={AddMeal} />
             <Route path ='/editmeal' component={EditMeal} />
+            <Route path = '/deletemeal' component={DeleteMeal} />
             <Route path='/stats' component={Stats} />
             <Route path='/settings' component={Settings} />
             <Route path='/editmood' component={EditMood} />
