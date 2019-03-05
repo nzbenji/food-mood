@@ -14,7 +14,15 @@ const convert = require('convert-units')
          this.handleChange = this.handleChange.bind(this);
          this.handleSubmit = handleSubmit.bind(this);
      }
-     
+
+     handleChange(event) {
+        this.setState({value: event.target.value});
+      }
+      handleSubmit(event) {
+        alert('A name was submitted: ' + this.state.value);
+        event.preventDefault();
+      }
+      
    render() {
      return (
        <div>
