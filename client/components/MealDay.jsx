@@ -4,6 +4,9 @@ import {getMealsApi} from '../api/meals'
 import {connect} from 'react-redux'
 import {Link, Redirect, withRouter} from 'react-router-dom'
 
+const addIcon = '/images/whiteplus.png'
+const blackAdd = '/images/add-icon.svg'
+
 class MealDay extends React.Component {
   constructor (props) {
     super(props)
@@ -37,28 +40,30 @@ class MealDay extends React.Component {
     const day = format.slice(8, 10)
     return (
       <div>
+        <br/><br/>
         <Grid container alignContent="center" justify="center">
-          <h1 style={{fontFamily: 'Laila'}}>Food eaten on { month}  {day}</h1>
+          <h3>Food eaten on { month}  {day}</h3>
         </Grid>
-
+        <br/>
         <Grid container alignContent="center" justify="center">
-          <ul style={{listStyle: 'none'}}>
+          <ul>
             {this.state.meals.length > 0 && this.state.meals.map(meal => {
               return (
-                <Link key={meal.id}
+                <Link style={{textDecoration: 'none'}} key={meal.id}
                   to={{
                     pathname: '/meal',
                     state: {meal}
                   }}>
-                  <div style={{fontFamily: 'Laila', display: 'inline-block', textAlign: 'center'}}>
-                    <li style={{listStyle: 'none', display: 'inline-block', margin: '40px'}}>
-                      <ul style={{listStyle: 'none'}}>
+                  <div>
+                    <li>
+                      <ul className='mealDay'>
                         <li>
-                          {meal.title.charAt(0).toUpperCase() + meal.title.slice(1)}</li>
-                        <li>{meal.time.slice(11, 16)}</li>
+                          <h3> {meal.title.charAt(0).toUpperCase() + meal.title.slice(1)}</h3></li>
+                        <li><h1>{meal.time.slice(11, 16)}</h1></li>
                       </ul>
                     </li>
                   </div>
+                  <br/>
                 </Link>
               )
             })}
@@ -67,12 +72,10 @@ class MealDay extends React.Component {
         </Grid>
 
         <div>
-          <Link
-            to='/addmeal'
-            style={{textDecoration: 'none', fontSize: '20px', padding: '50px', fontFamily: 'Laila'}}
-          >Add a meal</Link>
+          <Link to='/addmeal'><img className="mealdayButton" src={blackAdd}/></Link>
         </div>
-
+        <br/><br/>
+        <br/>
       </div>
     )
   }
