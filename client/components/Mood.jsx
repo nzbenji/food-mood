@@ -8,18 +8,22 @@ class Mood extends React.Component {
     const {meal, mood} = this.props
     const emoji = getEmoji(this.props.emotions, mood.emotion_id)
     return (
-      <div>
-        {`${emoji} ${mood.time.slice(11, 16)} ${mood.notes}`}
-        <Link to={{
+      <div className='meal'>
+        <div style={{fontSize: '38px'}}>
+          {`${emoji} ${mood.time.slice(11, 16)} ${mood.notes}`}
+        </div>
+        <br/><br/>
+        <Link style={{textDecoration: 'none'}} to={{
           pathname: `/editmood`,
           state: {mood: mood, meal: meal}}}>
-          <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>
+          <button className='button1'>
                   Edit Mood</button>
         </Link>
-        <Link to={{
+       
+        <Link style={{textDecoration: 'none'}} to={{
           pathname: `/deletemood`,
           state: {mood: mood, meal: meal}}}>
-          <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>
+          <button className='button1'>
                   Delete Mood</button>
         </Link>
       </div>

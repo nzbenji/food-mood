@@ -32,36 +32,43 @@ class Meal extends React.Component {
       return <Redirect to='/'/>
     }
     const meal = this.props.location.state.meal
-
     const date = meal.time
     const format = new Date(date).toDateString()
     const month = format.slice(3, 7)
     const day = format.slice(8, 10)
     return (
       <div>
-        <Grid container alignContent="center" justify="center">
-          <h1 style={{fontFamily: 'Laila'}}>{`${meal.title} ${month}${day}`}</h1>
-        </Grid>
-        <h3 style={{paddingTop: '20px', fontSize: '20px', letterSpacing: '4px'}}>Moods</h3>
+        <h4>Moods</h4>
+       
+        <div>
+          <Grid container alignContent="center" justify="center">
+            <h4> {`${meal.title} ${month}${day}`} </h4>
+          </Grid>
+        </div>
+        <br/>
+
         <ul>
           {this.state.meal.moods && this.state.meal.moods.map(mood => {
             return (
-              <li key={mood.id} style={{fontSize: '40px', listStyle: 'none', margin: '40px'}}>
-                <Mood mood={mood} meal={meal}/>
+              <li key={mood.id}>
+                <h4><Mood mood={mood} meal={meal}/></h4>
               </li>
             )
           })}
         </ul>
         <div>
-          <Link to={{
+          <Link style={{textDecoration: 'none'}} to={{
             pathname: `/addmood`,
             state: {meal: meal}}}>
-            <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>Add Mood to Last Meal</button>
+            <button className='button1'>
+            Add Mood to Last Meal
+            </button>
           </Link>
-          <Link to={{
+          
+          <Link style={{textDecoration: 'none'}} to={{
             pathname: `/editmeal`,
             state: {meal: meal}}}>
-            <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>
+            <button className='button1'>
                   Edit Meal</button>
           </Link>
         </div>
