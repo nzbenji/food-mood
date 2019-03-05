@@ -59,27 +59,29 @@ class EditMeal extends React.Component {
     const { time } = this.state.meal;
     return (
       <div>
+        <br/><br/>
+        <br/><br/>
         <center>
-          <h3 style={{textAlign:'center', fontSize: '4rem',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Edit Meal </h3>
+          <h3>Edit Meal </h3>
         </center>
 
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container className={classes.grid} alignContent="center" justify="center" >
           <div> 
-          <h3 style={{textAlign:'center', color:'#FFFFFF', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
+          <h3>
               Edit Meal Name:
             </h3>
-            <form style={{margin:'40px', backgroundColor:'#00bba7'}}>
+            <form>
                   <input
                   placeholder='Meal Name' 
                   name='title'
                   value={this.state.meal.title} 
                   onChange={this.handleChange} 
-                  style={{width: '40rem', height: '53px', fontSize: '18px', fontFamily:'Laila', letterSpacing:'4px', backgroundColor:'grey', color:'#FFFFFF', opacity:'0.4'}}/>
+                  />
             </form>
           </div>
         </Grid>
-
+        <br/><br/>
         <Grid container className={classes.grid} alignContent="center" justify="center" >
           <div>
             <DatePicker style={{marginLeft: '30px'}}
@@ -98,11 +100,11 @@ class EditMeal extends React.Component {
           </div>
         </Grid>
         <Grid container className={classes.grid} alignContent="center" justify="center">
-        <Link to={{
+        <Link style={{textDecoration: 'none'}} to={{
             pathname: '/meal',
             state: {meal: this.state.meal}
           }}>
-          <button positive style={{height: '53px', width: '8rem', marginTop: '50px', marginBottom: '30px', marginLeft: '18px', backgroundColor: '#00bba7'}} onClick={this.handleSubmit}>Submit</button>
+          <button className='button1' onClick={this.handleSubmit}>Submit</button>
           </Link>
         </Grid>
       </MuiPickersUtilsProvider>
