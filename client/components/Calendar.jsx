@@ -36,30 +36,29 @@ class Calendar extends React.Component {
     
     return (
       <div>
-           <br></br>
-        <h1 style={{ fontSize:'4rem',fontFamily:'Laila', margin:'60px', textAlign:'center'}}>Calender</h1><br></br>
+        <br/>
+        <h3>Calender</h3>
+        <br></br><br/>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container className={classes.grid} alignContent="center" justify="center" >
-            <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}
-            >Enter a date:</h3>
+            <h2>Enter a date:</h2>
             <DatePicker style={{marginLeft: '30px'}}
               margin="normal"
               label="Date picker"
               value={selectedDate}
               onChange={this.handleDateChange}/>
           </Grid>
+          <br/>
           <Grid container className={classes.grid} alignContent="center" justify="center" >
-    
-            <Link 
-            
+            <Link style={{ textDecoration: 'none' }} 
               to={{
               pathname: '/day',
               state: {date: choosenDate}
-            }}>Select</Link>
+            }}><button className="button1">Select</button>
+            </Link>
           </Grid> 
-          
-          
         </MuiPickersUtilsProvider>
+        <br/>
       </div>
     )
   }

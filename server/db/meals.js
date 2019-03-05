@@ -5,6 +5,7 @@ module.exports = {
   newMeal,
   latestMeal,
   editMeal,
+  deleteMeal,
   allMealMoods,
   allUserMealsAndMoods
 }
@@ -28,9 +29,16 @@ function latestMeal (id, db = connection) {
 
 function editMeal (meal, db = connection) {
   return db('meals')
-    .update(meal)
     .where('id', meal.id)
+    .update(meal)
 }
+
+function deleteMeal (mealId, db = connection) {
+  return db('meals')
+    .where('id', mealId)
+    .delete()
+}
+
 function allMealMoods (id, db = connection) {
   return db('moods')
     .join('meals', 'meals.id', 'meal_id')

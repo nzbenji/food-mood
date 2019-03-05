@@ -3,12 +3,15 @@ import Grid from '@material-ui/core/Grid'
 import {connect} from 'react-redux'
 import {Link, Redirect, withRouter} from 'react-router-dom'
 import {getMealMoodsApi} from '../api/moods'
+import Mood from './Mood'
 
 class Meal extends React.Component {
   constructor (props) {
     super(props)
+    let meal = {}
+    if (props.location.state) meal = props.location.state.meal
     this.state = {
-      meal: this.props.location.state.meal
+      meal: meal
     }
   }
 
@@ -21,60 +24,59 @@ class Meal extends React.Component {
       .catch(err => new Error(err))
   }
 
-  getEmoji = (emotionId) => {
-    const emotion = this.props.emotions.find(emotion => emotion.id === emotionId)
-    if (emotion) return emotion.emoji
-    return ''
-  }
-
   render () {
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
     }
+    if (!this.props.location.state) {
+      return <Redirect to='/'/>
+    }
     const meal = this.props.location.state.meal
-
     const date = meal.time
     const format = new Date(date).toDateString()
     const month = format.slice(3, 7)
     const day = format.slice(8, 10)
     return (
       <div>
-        <Grid container alignContent="center" justify="center">
-          <h1 style={{fontFamily: 'Laila'}}>{`${meal.title} ${month}${day}`}</h1>
-        </Grid>
-        <h3 style={{paddingTop: '20px', fontSize: '20px', letterSpacing: '4px'}}>Moods</h3>
-        <ul>
-          {this.state.meal.moods && this.state.meal.moods.map(mood => {
-            return (
-              <li key={mood.id} style={{fontSize: '40px', listStyle: 'none', margin: '40px'}}>
-                {`${this.getEmoji(mood.emotionId)} ${mood.time.slice(11, 16)} ${mood.notes}`}
-                <Link to={{
-                  pathname: `/editmood`,
-                  state: {mood: mood, meal: meal}}}>
-                  <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>
-                  Edit Mood</button>
-                </Link>
-                <Link to={{
-                  pathname: `/deletemood`,
-                  state: {mood: mood, meal: meal}}}>
-                  <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>
-                  Delete Mood</button>
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
+        <h4>Moods</h4>
+
         <div>
-          <Link to={{
+          <Grid container alignContent="center" justify="center">
+            <h4> {`${meal.title} ${month}${day}`} </h4>
+          </Grid>
+        </div>
+        <br/>
+        <div>
+          <ul>
+            {this.state.meal.moods && this.state.meal.moods.map(mood => {
+              return (
+                <li key={mood.id}>
+                  <h4><Mood mood={mood} meal={meal}/></h4>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+        <div>
+          <Link style={{textDecoration: 'none'}} to={{
             pathname: `/addmood`,
             state: {meal: meal}}}>
-            <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>Add Mood to Last Meal</button>
+            <button className='button1'>
+            Add Mood to Last Meal
+            </button>
           </Link>
-          <Link to={{
+
+          <Link style={{textDecoration: 'none'}} to={{
             pathname: `/editmeal`,
             state: {meal: meal}}}>
-            <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>
+            <button className='button1'>
                   Edit Meal</button>
+          </Link>
+          <Link style={{textDecoration: 'none'}} to={{
+            pathname: `/deletemeal`,
+            state: {meal: meal}}}>
+            <button className='button1'>
+                  Delete Meal</button>
           </Link>
         </div>
 
