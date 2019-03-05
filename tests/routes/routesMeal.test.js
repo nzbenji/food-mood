@@ -63,10 +63,13 @@ jest.mock('../../server/db/meals', () => ({
 }))
 
 const server = require('../../server/server')
+// this token is created for billy with the jwt test secret
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTUxODI3NDEwLCJleHAiOjE1NTE5MTM4MTB9.Nz4TaQv6oLAmv7GqK9u5Wbw0Nk5TmhARYc1XFoLIsHQ'
 
-test('GET /', () => {
+test('GET /:userId gets all allUserMealsAndMoods', () => {
   return request(server)
     .get('/api/v1/meals/1')
+    .set({Authorization: `Bearer ${token}`})
     .expect(200)
     .then((res) => {
       const actual = res.body[0].id
@@ -75,24 +78,14 @@ test('GET /', () => {
     .catch(err => expect(err).toBeNull())
 })
 
-test('GET /', () => {
+test('GET /mostRecent/:userId gets the last meal', () => {
   return request(server)
     .get('/api/v1/meals/mostRecent/1')
+    .set({Authorization: `Bearer ${token}`})
     .expect(200)
     .then((res) => {
       const actual = res.body.id
       expect(actual).toBe(3)
-    })
-    .catch(err => expect(err).toBeNull())
-})
-
-test('GET /', () => {
-  return request(server)
-    .get('/api/v1/meals/moods/2')
-    .expect(200)
-    .then((res) => {
-      const actual = res.body[0].note
-      expect(actual).toBe('This bread was gross')
     })
     .catch(err => expect(err).toBeNull())
 })

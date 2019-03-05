@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const jwtTestSecret = require('../../tests/routes/jwt-test-secret')
 
 module.exports = {
   issue,
@@ -15,10 +16,11 @@ function issue (req, res) {
 }
 
 function createToken (id) {
-  return jwt.sign({id}, process.env.JWT_SECRET, {expiresIn: '1d'})
+  const secret = process.env.JWT_SECRET || jwtTestSecret
+  return jwt.sign({id}, secret, {expiresIn: '1d'})
 }
 
 function getSecret (req, payload, done) {
-  const secret = process.env.JWT_SECRET
+  const secret = process.env.JWT_SECRET || jwtTestSecret
   done(null, secret)
 }

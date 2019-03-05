@@ -9,17 +9,6 @@ jest.mock('../../server/db/users', () => ({
   })
 }))
 
-jest.mock('../../server/auth/token', () => ({
-  issue: (req, res) => {
-    res.json({
-      ok: true,
-      message: 'Authentication successful.',
-      userId: 1,
-      token: 'eyJhb'
-    })
-  }
-}))
-
 jest.mock('../../server/auth/hash', () => ({
   verify: () => true
 }))
