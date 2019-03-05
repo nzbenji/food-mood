@@ -36,13 +36,18 @@ class Calendar extends React.Component {
     
     return (
       <div>
+        <br/><br/>
+        <br/><br/>
         <br/>
-        <h3>Calendar</h3>
+        <h4>Calendar</h4>
         <br></br><br/>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container className={classes.grid} alignContent="center" justify="center" >
-            <h2>Enter a date:</h2>
-            <DatePicker style={{marginLeft: '30px'}}
+          <div style={{marginLeft: '20px'}}>
+            <h3>Enter a date:</h3>
+            </div>
+            
+            <DatePicker style={{marginLeft: '26px'}}
               margin="normal"
               label="Date picker"
               value={selectedDate}
