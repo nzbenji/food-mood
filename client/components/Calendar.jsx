@@ -37,7 +37,7 @@ class Calendar extends React.Component {
     return (
       <div>
         <br/>
-        <h3>Calender</h3>
+        <h3>Calendar</h3>
         <br></br><br/>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container className={classes.grid} alignContent="center" justify="center" >
