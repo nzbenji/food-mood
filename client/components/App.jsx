@@ -31,7 +31,6 @@ class App extends React.Component {
   render () {
     return (
    <div>
-      <h1 style={{fontSize:'2.4rem', fontFamily:'Laila', color:'orange', textAlign:'center'}}>Food mood</h1>
           <Switch>
             <Route exact path='/' component={Dashboard} />
             <Route path ='/addmeal' component={AddMeal} />

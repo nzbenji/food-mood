@@ -1,11 +1,11 @@
 import React from 'react'
 import {Link, withRouter} from 'react-router-dom'
 
-const dashboardIcon = '/images/dashboard-icon.png'
-const calendarIcon = '/images/calendar-icon.png'
-const addIcon = '/images/add-icon.svg'
-const statsIcon = '/images/stats-icon.png'
-const settingsIcon = './images/settings-icon.png'
+const dashboardIcon = '/images/whitehome.png'
+const calendarIcon = '/images/whitecalendar.png'
+const addIcon = '/images/whiteplus.png'
+const statsIcon = '/images/whitegraph.png'
+const settingsIcon = './images/whitesettings.png'
 
 class NavBar extends React.Component {
   render () {
@@ -19,8 +19,10 @@ class NavBar extends React.Component {
           <li className="nav-li"><Link to="/settings"><img className="icon" src={settingsIcon}/></Link></li>
         </ul>
       </div>
+     
     )
   }
 }
 
 export default withRouter(NavBar)
+

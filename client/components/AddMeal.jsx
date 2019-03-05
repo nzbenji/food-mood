@@ -34,13 +34,14 @@ class AddMeal extends React.Component {
   }
 
   handleSubmit = (event) => {
-    return addMealApi(this.props.userId, this.state.meal)
+    addMealApi(this.props.userId, this.state.meal)
       .then((mealId) => {
         this.setState({
           mealId
         })
       })
       .catch(({message}) => console.log("whoops"))
+    event.preventDefault()
   }
 
   handleDateChange = date => {
@@ -69,52 +70,47 @@ class AddMeal extends React.Component {
     const {time} = this.state.meal
     return (
       <div>
-        <center>
-          <h3 style={{textAlign: 'center', fontSize: '4rem', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>Add Meal </h3>
-        </center>
-
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Grid container className={classes.grid} alignContent="center" justify="center" >
-            <div>
-              <h3 style={{textAlign: 'center', color: '#FFFFFF', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>
+        <Grid container className={classes.grid} alignContent="center" justify="center" >
+          <div> 
+          <h2>
               Meal Name:
-              </h3>
-              <form style={{margin: '40px', backgroundColor: '#00bba7'}}>
-                <input
-                  placeholder='Meal Name'
+            </h2>
+            <form >
+                  <input 
+                  type='text'
                   name='title'
-                  value={this.state.meal.title}
-                  onChange={this.handleChange}
-                  style={{width: '40rem', height: '53px', fontSize: '18px', fontFamily: 'Laila', letterSpacing: '4px', backgroundColor: 'grey', color: '#FFFFFF', opacity: '0.4'}}/>
-              </form>
-            </div>
-          </Grid>
+                  value={this.state.meal.title} 
+                  onChange={this.handleChange} />
+            </form>
+          </div>
+        </Grid>
 
-          <Grid container className={classes.grid} alignContent="center" justify="center" >
-            <div>
-              <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>
+        <Grid container className={classes.grid} alignContent="center" justify="center" >
+          <div>
+            <h1>
               Enter a date:
-              </h3>
-              <DatePicker style={{marginLeft: '30px'}}
+            </h1>
+            <DatePicker style={{marginLeft: '30px'}}
                 margin="normal"
                 label="Date picker"
                 value={time}
                 onChange={this.handleDateChange}
-              />
-            </div>
-            <div>
-              <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>Enter a time: </h3>
+            />        
+          </div>
+          <div>
+              <h1>Enter a time: </h1>
               <TimePicker style={{marginLeft: '30px'}}
-                margin="normal"
-                label="Time picker"
-                value={time}
-                onChange={this.handleDateChange}/>
-            </div>
-          </Grid>
-          <Grid container className={classes.grid} alignContent="center" justify="center">
-            <button positive style={{height: '53px', width: '8rem', marginTop: '50px', marginBottom: '30px', marginLeft: '18px', backgroundColor: '#00bba7'}} onClick={this.handleSubmit}>Submit</button>
-          </Grid>
-        </MuiPickersUtilsProvider>
+                  margin="normal"
+                  label="Time picker"
+                  value={time}
+                  onChange={this.handleDateChange}/>
+          </div>
+        </Grid>
+        <Grid container className={classes.grid} alignContent="center" justify="center">
+        <button className='button1' onClick={this.handleSubmit}>Submit</button>
+        </Grid>
+      </MuiPickersUtilsProvider>
       </div>
     )
   }

@@ -34,25 +34,25 @@ class Dashboard extends React.Component {
     }
     return (
       <div>
-        <br></br>
-        <h1 style={{fontSize: '3rem', fontFamily: 'Laila', textAlign: 'center'}}>Dashboard</h1><br></br>
-        <div>
-          {this.state.recentMeal && <h3 style={{textAlign: 'center', fontSize: '3rem', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>Last Mood</h3>}
-          {currentMood
-            ? <h3 style={{fontSize: '100px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center'}}> {getEmoji(emotions, currentMood.emotion_id)} </h3>
-            : <div></div>}
-          <Link to='/addmeal'>
-            <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>Add Meal</button>
-          </Link>
-          <br/><br/>
-          {this.state.recentMeal &&
-            <Link to={{
+        <br/>
+        <h3>Last Mood</h3>
+        {currentMood
+          ? <h3 style={{fontSize: '80px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center', marginBottom: '20px', marginTop: '20px'}}> {getEmoji(emotions, currentMood.emotion_id)} </h3>
+          : <div></div>}
+        <Link style={{textDecoration: 'none'}} to='/addmeal'>
+          <a><button className='button1'>
+            Add Meal
+          </button></a>
+        </Link>
+        <br/>
+        {this.state.recentMeal &&
+            <Link style={{textDecoration: 'none'}} to={{
               pathname: `/addmood`,
               state: {meal: this.state.recentMeal}}}>
-              <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>Add Mood to Last Meal</button>
+              <button className='button1'>Add Mood to Last Meal</button>
             </Link>
-          }
-        </div>
+        }
+
       </div>
     )
   }
