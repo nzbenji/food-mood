@@ -82,8 +82,8 @@ class AddMood extends React.Component {
 
           <h3 >{this.props.location.state.meal.title}</h3>
 
-          <h3 style={{textAlign: 'center', fontSize: '40px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>
-            {this.props.emotions.map(emotion => { return <p key={emotion.emoji} onClick={this.handleClick(emotion.id)}>{emotion.emoji}</p> })}</h3>
+          <ul style={{textAlign: 'center', fontSize: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>
+            {this.props.emotions.map(emotion => { return <li className='nav-li'><p key={emotion.emoji} onClick={this.handleClick(emotion.id)}>{emotion.emoji}</p></li>})}</ul>
         
 
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
