@@ -3,28 +3,33 @@ import {connect} from 'react-redux'
 import {Link, withRouter} from 'react-router-dom'
 import {getEmoji} from '../utils/emojis'
 
+const editIcon = './images/edit-icon.png'
+const deleteIcon = './images/delete.png'
+
 class Mood extends React.Component {
   render () {
     const {meal, mood} = this.props
     const emoji = getEmoji(this.props.emotions, mood.emotion_id)
     return (
       <div className='meal'>
-        <div style={{fontSize: '38px'}}>
-          {`${emoji} ${mood.time.slice(11, 16)} ${mood.notes}`}
+       <div style={{fontSize: '55px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center', marginBottom: '20px', marginTop: '20px'}}>
+          {`${emoji} `}
+          </div>
+
+          <div style={{fontSize: '25px'}}>
+          {`${mood.time.slice(11, 16)} ${mood.notes}`}
         </div>
-        <br/><br/>
+        <br/>
         <Link style={{textDecoration: 'none'}} to={{
           pathname: `/editmood`,
           state: {mood: mood, meal: meal}}}>
-          <button className='button1'>
-                  Edit Mood</button>
+          <img className="edit-icon" src={editIcon}/>
         </Link>
        
         <Link style={{textDecoration: 'none'}} to={{
           pathname: `/deletemood`,
           state: {mood: mood, meal: meal}}}>
-          <button className='button1'>
-                  Delete Mood</button>
+          <img className="delete-icon" src={deleteIcon}/>
         </Link>
       </div>
     )

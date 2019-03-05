@@ -5,6 +5,9 @@ import {Link, Redirect, withRouter} from 'react-router-dom'
 import {getMealMoodsApi} from '../api/moods'
 import Mood from './Mood'
 
+const blueEditIcon = './images/blueedit.png'
+const blueDeleteIcon = './images/bluedelete.png'
+
 class Meal extends React.Component {
   constructor (props) {
     super(props)
@@ -38,20 +41,29 @@ class Meal extends React.Component {
     const day = format.slice(8, 10)
     return (
       <div>
-        <h4>Moods</h4>
-
+        <br/><br/>
+        <br/><br/>
         <div>
           <Grid container alignContent="center" justify="center">
             <h4> {`${meal.title} ${month}${day}`} </h4>
           </Grid>
         </div>
-        <br/>
+        <Link style={{textDecoration: 'none'}} to={{
+            pathname: `/editmeal`,
+            state: {meal: meal}}}>
+           <img className="blue-edit-icon" src={blueEditIcon}/>
+          </Link>
+          <Link style={{textDecoration: 'none'}} to={{
+            pathname: `/deletemeal`,
+            state: {meal: meal}}}>
+            <img className="blue-delete-icon" src={blueDeleteIcon}/>
+          </Link>
         <div>
           <ul>
             {this.state.meal.moods && this.state.meal.moods.map(mood => {
               return (
                 <li key={mood.id}>
-                  <h4><Mood mood={mood} meal={meal}/></h4>
+                  <h3><Mood mood={mood} meal={meal}/></h3>
                 </li>
               )
             })}
@@ -64,19 +76,6 @@ class Meal extends React.Component {
             <button className='button1'>
             Add Mood to Last Meal
             </button>
-          </Link>
-
-          <Link style={{textDecoration: 'none'}} to={{
-            pathname: `/editmeal`,
-            state: {meal: meal}}}>
-            <button className='button1'>
-                  Edit Meal</button>
-          </Link>
-          <Link style={{textDecoration: 'none'}} to={{
-            pathname: `/deletemeal`,
-            state: {meal: meal}}}>
-            <button className='button1'>
-                  Delete Meal</button>
           </Link>
         </div>
 
