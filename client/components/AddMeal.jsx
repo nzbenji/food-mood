@@ -35,13 +35,14 @@ class AddMeal extends React.Component {
   }
 
   handleSubmit = (event) => {
-    return addMealApi(this.props.userId, this.state.meal)
+    addMealApi(this.props.userId, this.state.meal)
       .then((mealId) => {
         this.setState({
           mealId
         })
       })
       .catch(({message}) => console.log("whoops"))
+    event.preventDefault()
   }
 
   handleDateChange = date => {
@@ -108,7 +109,7 @@ class AddMeal extends React.Component {
           </div>
         </Grid>
         <Grid container className={classes.grid} alignContent="center" justify="center">
-        <button className='button1'>Submit</button>
+        <button className='button1' onClick={this.handleSubmit}>Submit</button>
         </Grid>
       </MuiPickersUtilsProvider>
       </div>
