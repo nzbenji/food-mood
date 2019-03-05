@@ -1,9 +1,22 @@
 const express = require('express')
 const db = require('../db/meals')
 const router = express.Router()
+const verifyJwt = require('express-jwt')
+const token = require('../auth/token')
+const error = require('./error')
+
+router.use(
+  verifyJwt({
+    secret: token.getSecret
+  }),
+  error.authCheckingError
+)
 
 router.get('/:userId', (req, res) => {
   const userId = Number(req.params.userId)
+  if (userId !== req.user.id) {
+    return error.authMatchError(req, res)
+  }
   db.allUserMealsAndMoods(userId)
     .then(meals => {
       res.json(moodToMoodArr(meals))
@@ -15,6 +28,9 @@ router.get('/:userId', (req, res) => {
 
 router.get('/userMeals/:userId', (req, res) => {
   const userId = Number(req.params.userId)
+  if (userId !== req.user.id) {
+    return error.authMatchError(req, res)
+  }
   db.userMeals(userId)
     .then(meals => {
       res.json(meals)
@@ -26,6 +42,9 @@ router.get('/userMeals/:userId', (req, res) => {
 
 router.post('/:userId', (req, res) => {
   const userId = Number(req.params.userId)
+  if (userId !== req.user.id) {
+    return error.authMatchError(req, res)
+  }
   const meal = req.body
   meal.user_id = userId
   db.newMeal(meal)
@@ -38,6 +57,9 @@ router.post('/:userId', (req, res) => {
 })
 
 router.put('/editMeal', (req, res) => {
+  if (req.body.user_id !== req.user.id) {
+    return error.authMatchError(req, res)
+  }
   db.editMeal(req.body)
     .then(() => {
       res.json('ok')
@@ -47,8 +69,11 @@ router.put('/editMeal', (req, res) => {
     })
 })
 
-router.delete('/deleteMeal/:mealId', (req, res) => {
-  db.deleteMeal(req.params.mealId)
+router.delete('/deleteMeal', (req, res) => {
+  if (req.body.user_id !== req.user.id) {
+    return error.authMatchError(req, res)
+  }
+  db.deleteMeal(req.body.id)
     .then(() => {
       res.json('ok')
     })
@@ -59,20 +84,12 @@ router.delete('/deleteMeal/:mealId', (req, res) => {
 
 router.get('/mostRecent/:userId', (req, res) => {
   const userId = Number(req.params.userId)
+  if (userId !== req.user.id) {
+    return error.authMatchError(req, res)
+  }
   db.latestMeal(userId)
     .then(meal => {
       res.json(meal)
-    })
-    .catch(err => {
-      res.status(500).send(err)
-    })
-})
-
-router.get('/moods/:mealId', (req, res) => {
-  const mealId = Number(req.params.mealId)
-  db.allMealMoods(mealId)
-    .then(mood => {
-      res.json(mood)
     })
     .catch(err => {
       res.status(500).send(err)
