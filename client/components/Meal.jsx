@@ -39,13 +39,16 @@ class Meal extends React.Component {
     const format = new Date(date).toDateString()
     const month = format.slice(3, 7)
     const day = format.slice(8, 10)
+    const year = new Date();
+    document.getElementById("year").innerHTML = year.getFullYear();
+    
     return (
       <div>
         <br/><br/>
         <br/><br/>
         <div>
           <Grid container alignContent="center" justify="center">
-            <h4> {`${meal.title} ${month}${day}`} </h4>
+            <h4> {`${meal.title}`} <br></br>on {`${month} ${day}`} </h4>
           </Grid>
         </div>
         <Link style={{textDecoration: 'none'}} to={{
