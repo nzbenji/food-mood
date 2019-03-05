@@ -11,9 +11,23 @@ const convert = require('convert-units')
      return (
        <div>
            <center>
-         <h1>Water intake</h1><br></br><br></br>
-
-         </center>
+            <h1>Water intake</h1><br></br><br></br>
+                <form>
+                    <label>
+                        Height:
+                        <input type="text" name="height" value="" />
+                    </label>
+                    <label>
+                        Weight:
+                        <input type="text" name="weight" value="" />
+                    </label>
+                    <label>
+                        Age:
+                        <input type="text" name="age" value="" />
+                    </label>
+                        <input type="submit" value="Submit" />
+                </form>
+            </center>
        </div>
      )
    }
