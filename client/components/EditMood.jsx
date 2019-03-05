@@ -20,18 +20,20 @@ class EditMood extends React.Component {
 
   constructor (props) {
     super(props)
-    const mood = props.location.state.mood
-    this.state = {
-        // The first commit of Material-UI
-        mood: {
-          time: mood.time,
-          notes: mood.notes,
-          emotion_id: mood.emotionId,
-          meal_id: mood.mealId,
-          id: mood.id
-        },
-        submitted: false
-      };
+    if(props.location.state) {
+      const mood = props.location.state.mood
+      this.state = {
+          // The first commit of Material-UI
+          mood: {
+            time: mood.time,
+            notes: mood.notes,
+            emotion_id: mood.emotionId,
+            meal_id: mood.mealId,
+            id: mood.id
+          },
+          submitted: false
+        };
+    }
   }
     
   handleChange = (event) => {
@@ -65,20 +67,25 @@ class EditMood extends React.Component {
   }
 
   render() {
+
+    if(!this.props.location.state) {
+      return <Redirect to='/'/>
+    }
   
-    const { classes } = this.props;
-    const { time } = this.state.mood;
     if (this.state.submitted){
-      return <Redirect to ='/'/>
+      return <Redirect to ={{
+        pathname: '/meal',
+        state: {meal: this.props.location.state.meal}
+      }}/>
     }
 
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
     }
 
-    if(!this.props.location.state) {
-      return <Redirect to='/'/>
-    }
+    const { classes } = this.props;
+    const { time } = this.state.mood;
+    
     
     return (
       <div>

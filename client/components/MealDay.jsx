@@ -24,6 +24,10 @@ class MealDay extends React.Component {
   }
 
   render () {
+    if (!this.props.location.state) {
+      return <Redirect to='/'/>
+    }
+
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
     }
@@ -43,7 +47,7 @@ class MealDay extends React.Component {
               return (
                 <Link key={meal.id}
                   to={{
-                    pathname: `/meal`,
+                    pathname: '/meal',
                     state: {meal}
                   }}>
                   <div style={{fontFamily: 'Laila', display: 'inline-block', textAlign: 'center'}}>

@@ -20,17 +20,19 @@ class DeleteMood extends React.Component {
 
   constructor (props) {
     super(props)
-    const mood = props.location.state.mood
-    this.state = {
-      // The first commit of Material-UI
-      mood: {
-        time: mood.time,
-        notes: mood.notes,
-        emotion_id: mood.emotionId,
-        meal_id: mood.mealId,
-        id: mood.id
-      },
-      submitted: false
+    if(props.location.state) {
+      const mood = props.location.state.mood
+      this.state = {
+        // The first commit of Material-UI
+        mood: {
+          time: mood.time,
+          notes: mood.notes,
+          emotion_id: mood.emotionId,
+          meal_id: mood.mealId,
+          id: mood.id
+        },
+        submitted: false
+      }
     }
   }
 
@@ -44,24 +46,26 @@ class DeleteMood extends React.Component {
   }
 
   render() {
-  
-    const { classes } = this.props;
-    const { time } = this.state.mood;
-    let emoji = ''
-    const emotion = this.props.emotions.find(emotion => emotion.id === this.state.mood.emotionId)
-    if(emotion) emoji = emotion.emoji
 
+    if(!this.props.location.state) {
+      return <Redirect to='/'/>
+    }
+  
     if (this.state.submitted){
-      return <Redirect to ='/'/>
+      return <Redirect to ={{
+        pathname: '/meal',
+        state: {meal: this.props.location.state.meal}
+      }}/>
     }
 
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
     }
-
-    if(!this.props.location.state) {
-      return <Redirect to='/'/>
-    }
+    const { classes } = this.props;
+    const { time } = this.state.mood;
+    let emoji = ''
+    const emotion = this.props.emotions.find(emotion => emotion.id === this.state.mood.emotionId)
+    if(emotion) emoji = emotion.emoji
     
     return (
       <div>
