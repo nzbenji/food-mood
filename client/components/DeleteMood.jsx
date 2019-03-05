@@ -64,23 +64,21 @@ class DeleteMood extends React.Component {
     
     return (
       <div>
-        <center>
-          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
+        <br/><br/><br/><br/><br/>
+          <h2>
             Are you sure you want to delete this mood for {` ${this.props.location.state.meal.title}`}?
-          </h3>
-          <br></br>
-        </center>
-        <center>
-          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
+          </h2>
+          
+          <h3 style={{fontSize: '40px', fontFamily:'Laila', letterSpacing:'4px'}}>
             {getEmoji(this.props.emotions, this.state.mood.emotion_id)}
           </h3>
-          <br></br>
-          <h4>{this.state.mood.notes}</h4>
-          <br></br>
-          <h5>{this.state.mood.time}</h5>
-        </center>
+          {/* <br/> */}
+          <h3>{this.state.mood.notes}</h3>
+          <br/>
+          <h3>{this.state.mood.time}</h3>
+        
         <Grid container className={classes.grid} alignContent="center" justify="center" >
-          <button positive style={{height: '53px', width: '8rem', marginTop:'50px', marginBottom:'40px', marginLeft: '18px'}} onClick={this.handleSubmit}>
+          <button className='button1' onClick={this.handleSubmit}>
             Delete
           </button>
         </Grid>
