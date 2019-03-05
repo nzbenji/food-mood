@@ -26,15 +26,17 @@ const ActiveSectorMark = ({cx, cy, innerRadius, outerRadius, startAngle, endAngl
   )
 }
 
+const WIDTH = 800
+
 const Arrow = ({cx, cy, midAngle, outerRadius}) => {
   const RADIAN = Math.PI / 180
   const sin = Math.sin(-RADIAN * midAngle)
   const cos = Math.cos(-RADIAN * midAngle)
-  const mx = cx + (outerRadius + 800 * 0.03) * cos
-  const my = cy + (outerRadius + 800 * 0.03) * sin
+  const mx = cx + (outerRadius + WIDTH * 0.03) * cos
+  const my = cy + (outerRadius + WIDTH * 0.03) * sin
   return (
     <g>
-      <circle cx={cx} cy={cy} r={800 * 0.05} fill="#666" stroke="none"/>
+      <circle cx={cx} cy={cy} r={WIDTH * 0.05} fill="#666" stroke="none"/>
       <path d={`M${cx},${cy}L${mx},${my}`} strokeWidth="6" stroke="#666" fill="none" strokeLinecap="round"/>
     </g>
   )
@@ -61,7 +63,6 @@ class SelectedStats extends React.Component {
         data.map(meal => {
           moods = moods.concat(meal.moods)
         })
-        console.log(moods)
         this.setState({ moods})
       })
       .catch(err => new Error(err))
@@ -87,7 +88,6 @@ class SelectedStats extends React.Component {
   calculateRankValue () {
     let total = 0
     const moods = this.state.moods.filter(item => this.compareDates(this.state.startDate, this.state.endDate, item.time))
-    console.log(moods)
         moods.forEach(mood => {
           const emotion = this.props.emotions.find(emotion =>emotion.id === mood.emotionId)
           if(emotion) {
@@ -95,12 +95,10 @@ class SelectedStats extends React.Component {
           }
         })
     const avg = total / moods.length
-    console.log(avg)
     return avg * 20
   }
 
   render () {
-    console.log(this.compareDates(this.state.startDate, this.state.endDate, "2019-03-01 14:00:45"))
 
     if (!this.props.loggedIn) {
       console.log('not logged in trying to redirect')
