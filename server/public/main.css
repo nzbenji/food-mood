@@ -189,6 +189,7 @@ ul{
 }
 
 p{
-  margin: 0px;
-
+  margin-left: 36px;
+  margin-top: 0px;
+  margin-bottom: 10px;
 }
