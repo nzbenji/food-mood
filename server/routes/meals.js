@@ -47,6 +47,16 @@ router.put('/editMeal', (req, res) => {
     })
 })
 
+router.delete('/deleteMeal/:mealId', (req, res) => {
+  db.deleteMeal(req.params.mealId)
+    .then(() => {
+      res.json('ok')
+    })
+    .catch(err => {
+      res.status(500).send(err)
+    })
+})
+
 router.get('/mostRecent/:userId', (req, res) => {
   const userId = Number(req.params.userId)
   db.latestMeal(userId)

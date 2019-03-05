@@ -5,8 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import {connect} from 'react-redux'
 import {Redirect, withRouter} from 'react-router-dom'
-import {deleteMoodApi} from '../api/moods'
-import {getEmoji} from '../utils/emojis'
+import {deleteMealApi} from '../api/meals'
 
 const styles = {
     grid: {
@@ -14,28 +13,21 @@ const styles = {
     },
   };
 
-class DeleteMood extends React.Component {
+class DeleteMeal extends React.Component {
 
   constructor (props) {
     super(props)
     if(props.location.state) {
-      const mood = props.location.state.mood
+      const meal = props.location.state.meal
       this.state = {
-        // The first commit of Material-UI
-        mood: {
-          time: mood.time,
-          notes: mood.notes,
-          emotion_id: mood.emotion_id,
-          meal_id: mood.mealId,
-          id: mood.id
-        },
+        meal: meal,
         submitted: false
       }
     }
   }
 
   handleSubmit = (event) => {
-    deleteMoodApi(this.state.mood)
+    deleteMealApi(this.state.meal)
       .then(() => {
         this.setState({submitted:true})
       })
@@ -51,33 +43,24 @@ class DeleteMood extends React.Component {
   
     if (this.state.submitted){
       return <Redirect to ={{
-        pathname: '/meal',
-        state: {meal: this.props.location.state.meal}
+        pathname: '/day',
+        state: {date: this.state.meal.time}
       }}/>
     }
 
     if (!this.props.loggedIn) {
-      return <Redirect to='/login'/>
+      return <Redirect to='/'/>
     }
     const { classes } = this.props
-    const { time } = this.state.mood
     
     return (
       <div>
         <center>
           <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
-            Are you sure you want to delete this mood for {` ${this.props.location.state.meal.title}`}?
+            Are you sure you want to delete {` ${this.state.meal.title}`}?
           </h3>
+          <h4>{this.state.meal.time}</h4>
           <br></br>
-        </center>
-        <center>
-          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
-            {getEmoji(this.props.emotions, this.state.mood.emotion_id)}
-          </h3>
-          <br></br>
-          <h4>{this.state.mood.notes}</h4>
-          <br></br>
-          <h5>{this.state.mood.time}</h5>
         </center>
         <Grid container className={classes.grid} alignContent="center" justify="center" >
           <button positive style={{height: '53px', width: '8rem', marginTop:'50px', marginBottom:'40px', marginLeft: '18px'}} onClick={this.handleSubmit}>
@@ -97,4 +80,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(withStyles(styles)(DeleteMood)))
+export default withRouter(connect(mapStateToProps)(withStyles(styles)(DeleteMeal)))
