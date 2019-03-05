@@ -22,15 +22,17 @@ const ActiveSectorMark = ({cx, cy, innerRadius, outerRadius, startAngle, endAngl
   )
 }
 
+const WIDTH = 600
+
 const Arrow = ({cx, cy, midAngle, outerRadius}) => {
   const RADIAN = Math.PI / 180
   const sin = Math.sin(-RADIAN * midAngle)
   const cos = Math.cos(-RADIAN * midAngle)
-  const mx = cx + (outerRadius + 800 * 0.03) * cos
-  const my = cy + (outerRadius + 800 * 0.03) * sin
+  const mx = cx + (outerRadius + WIDTH * 0.03) * cos
+  const my = cy + (outerRadius + WIDTH * 0.03) * sin
   return (
     <g>
-      <circle cx={cx} cy={cy} r={800 * 0.05} fill="#666" stroke="none"/>
+      <circle cx={cx} cy={cy} r={WIDTH * 0.05} fill="#666" stroke="none"/>
       <path d={`M${cx},${cy}L${mx},${my}`} strokeWidth="6" stroke="#666" fill="none" strokeLinecap="round"/>
     </g>
   )
@@ -74,19 +76,16 @@ class Stats extends React.Component {
           }
         })
     const avg = total / moods.length
-    console.log(avg)
     return avg * 20
   }
 
   render () {
-    console.log(this.state)
-    // console.log(this.state)
     if (!this.props.loggedIn) {
       console.log('not logged in trying to redirect')
       return <Redirect to='/login' push={true} />
     }
 
-    const width = 800
+    const width = 600
     const chartValue = this.calculateRankValue()
     const colorData = [{
       value: 33, // Meaning span is 0 to 33
