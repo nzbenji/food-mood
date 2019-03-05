@@ -7,6 +7,14 @@ const convert = require('convert-units')
  // We need an input for height, weight and age to do this
 
  export class WaterInput extends Component {
+     constructor(props) {
+         super(props);
+         this.state = {value: ''};
+
+         this.handleChange = this.handleChange.bind(this);
+         this.handleSubmit = handleSubmit.bind(this);
+     }
+     
    render() {
      return (
        <div>
