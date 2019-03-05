@@ -89,42 +89,40 @@ class EditMood extends React.Component {
     
     return (
       <div>
-        <center>
-          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Edit Mood </h3>
-          <br></br>
-        </center>
-          <center>
-          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
+
+          <h3>Edit Mood </h3>
+         <br/>
+ 
+          <h3>
           {this.props.location.state.meal.title}</h3>
-          <br></br>
-        </center>
-        <center>
-          <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
-          {this.props.emotions.map(emotion => { return <p key={emotion.emoji} onClick={this.handleClick(emotion.id)}>{emotion.emoji}</p>})}</h3>
-          <br></br>
-        </center>
+         
+
+          <ul style={{fontSize: '40px', fontFamily:'Laila', letterSpacing:'4px'}}>
+          {this.props.emotions.map(emotion => { return <li className='nav-li'><p key={emotion.emoji} onClick={this.handleClick(emotion.id)}>{emotion.emoji}</p></li>})}</ul>
+          
+
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container className={classes.grid} alignContent="center" justify="center" >
           <div> 
-          <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
+          <h2>
               Notes:
-            </h3>
+            </h2>
             <form style={{margin:'40px'}}>
                   <input 
                   placeholder='Notes' 
                   name='notes'
                   value={this.state.mood.notes} 
                   onChange={this.handleChange} 
-                  style={{width: '40rem', height: '53px', fontSize: '18px', fontFamily:'Laila', letterSpacing:'4px'}}/>
+                  />
             </form>
           </div>
         </Grid>
 
         <Grid container className={classes.grid} alignContent="center" justify="center" >
           <div>
-            <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
+            <h2>
               Enter a date:
-            </h3>
+            </h2>
             <DatePicker style={{marginLeft: '30px'}}
                 margin="normal"
                 label="Date picker"
@@ -132,7 +130,7 @@ class EditMood extends React.Component {
                 onChange={this.handleDateChange}/>        
           </div>
           <div>
-              <h3 style={{textAlign:'center', fontSize: '20px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>Enter a time: </h3>
+              <h2>Enter a time: </h2>
               <TimePicker style={{marginLeft: '30px'}}
                   margin="normal"
                   label="Time picker"
@@ -141,7 +139,7 @@ class EditMood extends React.Component {
           </div>
         </Grid>
         <Grid container className={classes.grid} alignContent="center" justify="center" >
-        <button positive style={{height: '53px', width: '8rem', marginTop:'50px', marginBottom:'40px', marginLeft: '18px'}} onClick={this.handleSubmit}>Submit</button>
+        <button className='button1' onClick={this.handleSubmit}>Submit</button>
         </Grid>
       </MuiPickersUtilsProvider>
       </div>
