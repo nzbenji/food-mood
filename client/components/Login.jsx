@@ -38,31 +38,35 @@ class Login extends React.Component {
     return (
       <Grid container justify = "center">
         <div>
+          <br/><br/>
+          <br/><br/>
+          <br/><br/>
           <form>
             <div>
-              <h1>Login To Food Mood</h1>
+              <h3>Login To Food Mood</h3>
             </div>
-            <br/><br/>
+            <br/>
             <div>
               <h3>Don't have an account? Sign up <Link to='/register'>here</Link></h3>
             </div>
             <br/><br/>
-            <br/><br/>
-            <br/><br/>
-
-            <div>
-              <label htmlFor="firstname">
-              Username: <TextField id='username' name='username' variant="outlined" placeholder='username' onChange={this.handleChange} value={username} /> </label>
+            <div style={{display: 'block', marginLeft: '54px'}}>
+              <form>
+              
+              <input id='username' name='username' variant="outlined" placeholder='username' onChange={this.handleChange} value={username} /> 
+              </form>
             </div>
 
-            <div>
-            Password: <TextField id='password' variant="outlined" name='password' type='password' placeholder='password' onChange={this.handleChange} value={password} />
+            <div style={{display: 'block', marginLeft: '54px'}}>
+              <form>
+            <input id='password' variant="outlined" name='password' type='password' placeholder='password' onChange={this.handleChange} value={password} />
+            </form>
             </div>
-
+            <br/>
             <div>
               <Grid container justify = "center">
-                <label htmlFor="signinBtn" >
-                  <Button name='signinBtn' id='signinBtn' onClick={this.handleSubmit}>Login</Button></label>
+                
+                  <button className='button1' name='signinBtn' id='signinBtn' onClick={this.handleSubmit}>Login</button>
               </Grid>
               {this.props.error && <p>Incorrect login credentials. Please try again</p>}
             </div>
