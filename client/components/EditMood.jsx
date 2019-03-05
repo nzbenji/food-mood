@@ -27,8 +27,8 @@ class EditMood extends React.Component {
           mood: {
             time: mood.time,
             notes: mood.notes,
-            emotion_id: mood.emotionId,
-            meal_id: mood.mealId,
+            emotion_id: mood.emotion_id,
+            meal_id: mood.meal_id,
             id: mood.id
           },
           submitted: false
