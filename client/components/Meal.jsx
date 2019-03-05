@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid'
 import {connect} from 'react-redux'
 import {Link, Redirect, withRouter} from 'react-router-dom'
 import {getMealMoodsApi} from '../api/moods'
+import Mood from './Mood'
 
 class Meal extends React.Component {
   constructor (props) {
@@ -23,17 +24,11 @@ class Meal extends React.Component {
       .catch(err => new Error(err))
   }
 
-  getEmoji = (emotionId) => {
-    const emotion = this.props.emotions.find(emotion => emotion.id === emotionId)
-    if (emotion) return emotion.emoji
-    return ''
-  }
-
   render () {
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
     }
-    if(!this.props.location.state) {
+    if (!this.props.location.state) {
       return <Redirect to='/'/>
     }
     const meal = this.props.location.state.meal
@@ -52,19 +47,7 @@ class Meal extends React.Component {
           {this.state.meal.moods && this.state.meal.moods.map(mood => {
             return (
               <li key={mood.id} style={{fontSize: '40px', listStyle: 'none', margin: '40px'}}>
-                {`${this.getEmoji(mood.emotionId)} ${mood.time.slice(11, 16)} ${mood.notes}`}
-                <Link to={{
-                  pathname: `/editmood`,
-                  state: {mood: mood, meal: meal}}}>
-                  <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>
-                  Edit Mood</button>
-                </Link>
-                <Link to={{
-                  pathname: `/deletemood`,
-                  state: {mood: mood, meal: meal}}}>
-                  <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>
-                  Delete Mood</button>
-                </Link>
+                <Mood mood={mood} meal={meal}/>
               </li>
             )
           })}

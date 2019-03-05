@@ -28,8 +28,8 @@ function latestMeal (id, db = connection) {
 
 function editMeal (meal, db = connection) {
   return db('meals')
-    .update(meal)
     .where('id', meal.id)
+    .update(meal)
 }
 function allMealMoods (id, db = connection) {
   return db('moods')

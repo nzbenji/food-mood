@@ -1,11 +1,8 @@
 import React, {Component} from 'react'
 import CircularProgressbar from 'react-circular-progressbar'
-
-const styles = {
-    grid: {
-      width: '100%',
-    },
-  }
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {TextField} from '@material-ui/core'
+import Button from '@material-ui/core/Button'
 
 class WaterInput extends Component {
   constructor (props) {
@@ -16,7 +13,9 @@ class WaterInput extends Component {
       exercise: 0,
       cupsDrank: 0,
       cupsRequired: 0,
-      percentage: 0
+      percentage: 0,
+      gender: null,
+      submitted:false
 
     }
   }
@@ -30,25 +29,22 @@ class WaterInput extends Component {
     const calculateWeightWater = weight / 30 * 4.22
     const calculateExerciseWater = exercise * 4.22
     const totalCups = Math.floor(calculateWeightWater + calculateExerciseWater)
-    this.setState({cupsRequired: totalCups})
-    return <h3>You should drink {totalCups} today</h3>
+    this.setState({
+        cupsRequired: totalCups + 1,
+        submitted: true
+    })
+    
   }
 
   addOne = (event) => {
     event.preventDefault()
-    this.calculatePercentage()
-      this.setState({
-        cupsDrank: this.state.cupsDrank + 1
-      })
-  }
-
-  calculatePercentage = () => {
     const {cupsDrank, cupsRequired} = this.state
-    const percentage = cupsDrank / cupsRequired * 100
-    if(percentage <= 100) {
-        this.setState({percentage})
-    }
-    
+    const newCupsDrank = cupsDrank + 1
+    const percentage = newCupsDrank / cupsRequired * 100
+      this.setState({
+        cupsDrank: newCupsDrank,
+        percentage: percentage <= 100 ? percentage : 100
+      })
   }
 
 
@@ -60,28 +56,38 @@ class WaterInput extends Component {
         <center>
           <h1>Water intake</h1>
           <form >
-            <label >Weight in Kgs
-            <input style={{display:'block'}}
-              type="text" 
-              name="weight" 
-              onChange={this.handleChange}/></label>
+            <label >
+            <TextField type='text' placeholder="weight in kg's"
+                name='weight' variant="outlined" 
+                style={{textAlign:'right', fontSize:'35px', fontWeight: '600', letterSpacing:10}}
+                onChange={this.handleChange} /></label>
 
-            <label>Exercise in hours
-              <input style={{display:'block'}}
-              type="text" 
-              name="exercise"
-              onChange={this.handleChange}/></label>
+            <label>
+            <TextField type='text' placeholder="exercise in hours"
+            name='exercise' variant="outlined" 
+            style={{textAlign:'right', fontSize:'40px', fontWeight: '600', letterSpacing:'10px'}}
+            onChange={this.handleChange} />
+              </label>
 
-            <label>Age:
-            <input style={{display:'block'}}
-              type="text" 
-              name="age" 
-              onChange={this.handleChange}/></label>
+            <div>
+                <Button variant="contained" color="primary" onClick={this.handleSubmit} 
+                style={{width: '238px', marginTop:'8px', fontWeight:'600', fontSize:'14px', letterSpacing:'7px'}}
+                >
+                Submit
+                </Button>
+            </div>
+            <div> 
+                {this.state.submitted && this.state.cupsRequired !== 0 && <h3>You require {this.state.cupsRequired} glasses today</h3>}
+                {this.state.cupsRequired !== 0 && <Button variant="contained" color="primary" onClick={this.addOne} 
+                style={{width: '238px', marginTop:'8px', fontWeight:'600', fontSize:'14px', letterSpacing:'7px'}}
+                >
+                Add a cup of water
+                </Button>}
+                
+            </div>
+            
 
-            <button onClick={this.handleSubmit}>Submit</button>
-            <button onClick={this.addOne}>Add cup</button>
-
-            <div style={{ marginTop: '40px', width: '400px'}}>
+            <div style={{ marginTop: '40px', width: '200px'}}>
                 <CircularProgressbar
                     percentage={Math.round(this.state.percentage)}
                     text={`${Math.round(this.state.percentage)}%`}
@@ -100,6 +106,12 @@ class WaterInput extends Component {
                     trail: { stroke: 'transparent' },
                     }}
                 />
+                <div>
+                <br/>
+                <br/>
+                <br/>
+                </div>
+                
                 
             </div>
           </form>
