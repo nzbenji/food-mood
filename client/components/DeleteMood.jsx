@@ -9,6 +9,7 @@ import {addMealApi} from '../api/meals'
 import {connect} from 'react-redux'
 import {Redirect, withRouter} from 'react-router-dom'
 import {deleteMoodApi} from '../api/moods'
+import {getEmoji} from '../utils/emojis'
 
 const styles = {
     grid: {
@@ -27,7 +28,7 @@ class DeleteMood extends React.Component {
         mood: {
           time: mood.time,
           notes: mood.notes,
-          emotion_id: mood.emotionId,
+          emotion_id: mood.emotion_id,
           meal_id: mood.mealId,
           id: mood.id
         },
@@ -61,11 +62,8 @@ class DeleteMood extends React.Component {
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
     }
-    const { classes } = this.props;
-    const { time } = this.state.mood;
-    let emoji = ''
-    const emotion = this.props.emotions.find(emotion => emotion.id === this.state.mood.emotionId)
-    if(emotion) emoji = emotion.emoji
+    const { classes } = this.props
+    const { time } = this.state.mood
     
     return (
       <div>
@@ -77,7 +75,7 @@ class DeleteMood extends React.Component {
         </center>
         <center>
           <h3 style={{textAlign:'center', fontSize: '40px',margin:'40px', fontFamily:'Laila', letterSpacing:'4px'}}>
-            {emoji}
+            {getEmoji(this.props.emotions, this.state.mood.emotion_id)}
           </h3>
           <br></br>
           <h4>{this.state.mood.notes}</h4>

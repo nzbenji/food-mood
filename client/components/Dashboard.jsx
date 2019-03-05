@@ -4,6 +4,7 @@ import {mostRecentMealApi} from '../api/meals'
 import {withStyles} from '@material-ui/core/styles'
 import {connect} from 'react-redux'
 import {Link, Redirect, withRouter} from 'react-router-dom'
+import {getEmoji} from '../utils/emojis'
 
 const styles = {
   grid: {
@@ -27,11 +28,7 @@ class Dashboard extends React.Component {
 
   render () {
     const {emotions, currentMood} = this.props
-    let emoji = ''
-    if (emotions.length > 0 && currentMood) {
-      const seletedEmotion = emotions.find(emotion => emotion.id === currentMood.emotion_id)
-      if (seletedEmotion && Object.keys(seletedEmotion).length !== 0 && seletedEmotion.constructor === Object) emoji = seletedEmotion.emoji
-    }
+
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
     }
@@ -41,8 +38,8 @@ class Dashboard extends React.Component {
         <h1 style={{fontSize: '3rem', fontFamily: 'Laila', textAlign: 'center'}}>Dashboard</h1><br></br>
         <div>
           {this.state.recentMeal && <h3 style={{textAlign: 'center', fontSize: '3rem', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>Last Mood</h3>}
-          {currentMood && emotions.length > 0
-            ? <h3 style={{fontSize: '100px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center'}}> {emoji} </h3>
+          {currentMood
+            ? <h3 style={{fontSize: '100px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center'}}> {getEmoji(emotions, currentMood.emotion_id)} </h3>
             : <div></div>}
           <Link to='/addmeal'>
             <button positive style={{height: '53px', width: '8rem', position: 'relative', alignSelf: 'center', backgroundColor: '#0ba8bc'}}>Add Meal</button>

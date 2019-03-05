@@ -14,10 +14,6 @@ class Settings extends React.Component {
     this.props.dispatch(clearMood())
   }
 
-  componentDidMount () {
-    this.props.dispatch(getEmotions())
-  }
-
   render () {
     if(!this.props.loggedIn) {
       return <Redirect to='/login' push={true} />
