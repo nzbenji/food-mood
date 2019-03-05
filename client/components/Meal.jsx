@@ -7,8 +7,10 @@ import {getMealMoodsApi} from '../api/moods'
 class Meal extends React.Component {
   constructor (props) {
     super(props)
+    let meal = {}
+    if (props.location.state) meal = props.location.state.meal
     this.state = {
-      meal: this.props.location.state.meal
+      meal: meal
     }
   }
 
@@ -30,6 +32,9 @@ class Meal extends React.Component {
   render () {
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
+    }
+    if(!this.props.location.state) {
+      return <Redirect to='/'/>
     }
     const meal = this.props.location.state.meal
 

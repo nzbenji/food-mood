@@ -63,7 +63,10 @@ class AddMood extends React.Component {
     const { classes } = this.props;
     const { time } = this.state.mood;
     if (this.state.submitted){
-      return <Redirect to ='/'/>
+      return <Redirect to ={{
+        pathname: '/meal',
+        state: {meal: this.props.location.state.meal}
+      }}/>
     }
 
     if (!this.props.loggedIn) {
