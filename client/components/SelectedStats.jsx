@@ -20,7 +20,7 @@ const ActiveSectorMark = ({cx, cy, innerRadius, outerRadius, startAngle, endAngl
         cx={cx}
         cy={cy}
         innerRadius={innerRadius}
-        outerRadius={outerRadius * 1.2}
+        outerRadius={outerRadius * 1}
         startAngle={startAngle}
         endAngle={endAngle}
         fill={fill}
@@ -29,7 +29,7 @@ const ActiveSectorMark = ({cx, cy, innerRadius, outerRadius, startAngle, endAngl
   )
 }
 
-const WIDTH = 800
+const WIDTH = 470
 
 const Arrow = ({cx, cy, midAngle, outerRadius}) => {
   const RADIAN = Math.PI / 180
@@ -84,9 +84,13 @@ class SelectedStats extends React.Component {
     return (targetDate >= startDate && targetDate <= endDate)
   }
 
+  filterMoods = () => {
+    return this.state.moods.filter(item => this.compareDates(this.state.startDate, this.state.endDate, item.time))
+  }
+
   calculateRankValue () {
     let total = 0
-    const moods = this.state.moods.filter(item => this.compareDates(this.state.startDate, this.state.endDate, item.time))
+    const moods = this.filterMoods()
         moods.forEach(mood => {
           const emotion = this.props.emotions.find(emotion =>emotion.id === mood.emotionId)
           if(emotion) {
@@ -104,16 +108,16 @@ class SelectedStats extends React.Component {
       return <Redirect to='/login' push={true} />
     }
 
-    const width = 800
+    const width = 400
     const chartValue = this.calculateRankValue()
     const colorData = [{
-      value: 33, // Meaning span is 0 to 33
+      value: 30, // Meaning span is 0 to 33
       color: '#e74c3c'
     }, {
-      value: 33, // span 33 to 66
+      value: 30, // span 33 to 66
       color: '#f1c40f'
     }, {
-      value: 33, // span 66 to 99
+      value: 30, // span 66 to 99
       color: '#2ecc71'
     }]
 
@@ -149,11 +153,12 @@ class SelectedStats extends React.Component {
     }).findIndex(cur => cur)
 
     return (
-      <div style={{}}>
+      <div>
+        <br/><br/><br/>
       <MuiPickersUtilsProvider utils={MomentUtils}>
       <Grid container alignContent="center" justify="center" >
-            <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}
-            >Start date</h3>
+            <h2
+            >Start date</h2>
             <DatePicker style={{marginLeft: '30px'}}
               margin="normal"
               value={this.state.startDate}
@@ -162,8 +167,8 @@ class SelectedStats extends React.Component {
         </MuiPickersUtilsProvider>
         <MuiPickersUtilsProvider utils={MomentUtils}>
         <Grid container alignContent="center" justify="center" >
-            <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}
-            >End date</h3>
+            <h2
+            >End date</h2>
             <DatePicker style={{marginLeft: '30px'}}
               margin="normal"
               value={this.state.endDate}
@@ -172,7 +177,7 @@ class SelectedStats extends React.Component {
         </MuiPickersUtilsProvider>
          
         <div>
-          <p style={{fontSize: '20px', bottom: '5rem'}}>😀</p>
+        {this.filterMoods().length > 0 ? 
           <Grid container alignContent="center" justify="center" >
             <PieChart width={width} height={(width / 2) + 30}>
               <Pie
@@ -202,7 +207,7 @@ class SelectedStats extends React.Component {
               />
             </PieChart>
           </Grid>
-          
+        : <h1>No moods in that date range</h1>}
         </div>
       </div>
     )
