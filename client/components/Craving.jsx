@@ -4,7 +4,7 @@ export class Craving extends Component {
   render() {
     return (
       <div>
-        <h1>Food Cravings</h1>
+        <h3>Food Cravings</h3>
       </div>
     )
   }
