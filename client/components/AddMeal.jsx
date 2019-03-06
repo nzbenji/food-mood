@@ -18,9 +18,8 @@ class AddMeal extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      // The first commit of Material-UI
       meal: {
-        time: new Date(),
+        time: new Date().toISOString().slice(0, 19).replace('T', ' '),
         title: ''
       },
       mealId: -1,
@@ -60,7 +59,7 @@ class AddMeal extends React.Component {
     }
 
     if (this.state.mealId > 0) {
-      const meal = {...this.state.meal, id: this.state.mealId}
+      const meal = {...this.state.meal, id: this.state.mealId, user_id: this.props.userId}
       return (
         <Redirect to={{
           pathname: `/addMood`,
