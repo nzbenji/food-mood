@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import CircularProgressbar from 'react-circular-progressbar'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {TextField} from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 
@@ -15,7 +15,7 @@ class WaterInput extends Component {
       cupsRequired: 0,
       percentage: 0,
       gender: null,
-      submitted:false
+      submitted: false
 
     }
   }
@@ -33,7 +33,6 @@ class WaterInput extends Component {
         cupsRequired: totalCups + 1,
         submitted: true
     })
-    
   }
 
   addOne = (event) => {
@@ -47,79 +46,93 @@ class WaterInput extends Component {
       })
   }
 
-
   render () {
-    console.log(this.state)
-    console.log(this.state.percentage)
-    return (
-      <div>
-        <center>
-          <h1>Calculate water intake</h1>
-          <form >
-            <label >
-            <TextField type='text' placeholder="weight in kg's"
-                name='weight' variant="outlined"  autoComplete="off"
-                style={{textAlign:'right', fontSize:'35px', fontWeight: '600', letterSpacing:10}}
-                onChange={this.handleChange} /></label>
+    if (!this.state.submitted) {
+      return (
+        <div>
+          <center>
+            <h1>Calculate water intake</h1>
+            <form >
+              <label >
+                <TextField type='text' placeholder="weight in kg's"
+                  name='weight' variant="outlined" autoComplete="off"
+                  style={{textAlign: 'right', fontSize: '35px', fontWeight: '600', letterSpacing: 10}}
+                  onChange={this.handleChange} /></label>
 
-            <label>
-            <TextField type='text' placeholder="exercise in hours"
-            name='exercise' variant="outlined" autoComplete="off"
-            style={{textAlign:'right', fontSize:'40px', fontWeight: '600', letterSpacing:'10px'}}
-            onChange={this.handleChange} />
+              <label>
+                <TextField type='text' placeholder="exercise in hours"
+                  name='exercise' variant="outlined" autoComplete="off"
+                  style={{textAlign: 'right', fontSize: '40px', fontWeight: '600', letterSpacing: '10px'}}
+                  onChange={this.handleChange} />
               </label>
 
-            <div>
-                <Button variant="contained" color="primary" onClick={this.handleSubmit} 
-                style={{width: '238px', marginTop:'8px', fontWeight:'800', 
-                fontSize:'14px', letterSpacing:'7px', backgroundColor:'rgb(247, 164, 88)'}}
+              <div>
+                <Button variant="contained" color="primary" onClick={this.handleSubmit}
+                  style={{width: '238px',
+                    marginTop: '8px',
+                    fontWeight: '800',
+                    fontSize: '14px',
+                    letterSpacing: '7px',
+                    backgroundColor: 'rgb(247, 164, 88)'}}
                 >
                 Submit
                 </Button>
-            </div>
-            <div> 
-                {this.state.submitted && this.state.cupsRequired !== 0 && <h3>You require {this.state.cupsRequired} glasses today</h3>}
-                {this.state.cupsRequired !== 0 && <Button variant="contained" color="primary" onClick={this.addOne} 
-                style={{width: '238px', marginTop:'8px', fontWeight:'800', 
-                fontSize:'14px', letterSpacing:'7px', backgroundColor:'rgb(247, 164, 88)'}}
-                >
-                Add a cup of water
-                </Button>}
-                
-            </div>
-            
+              </div>
 
-            <div style={{ marginTop: '40px', width: '200px'}}>
-                <CircularProgressbar
-                    percentage={Math.round(this.state.percentage)}
-                    text={`${Math.round(this.state.percentage)}%`}
-                    background
-                    backgroundPadding={6}
-                    styles={{ position: 'relative',
-                    background: {
-                        fill: '#3e98c7',
-                    },
-                    text: {
-                        fill: '#fff',
-                    },
-                    path: {
-                        stroke: '#fff',
-                    },
-                    trail: { stroke: 'transparent' },
-                    }}
-                />
-                <div>
-                <br/>
-                <br/>
-                <br/>
-                </div>
-                
-                
+            </form>
+          </center>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <center>
+            <h1>Calculate water intake</h1>
+            <div>
+              {this.state.submitted && this.state.cupsRequired !== 0 && <h3>You require {this.state.cupsRequired} glasses today</h3>}
+              {this.state.cupsRequired !== 0 && <Button variant="contained" color="primary" onClick={this.addOne}
+                style={{width: '238px',
+                  marginTop: '8px',
+                  fontWeight: '800',
+                  fontSize: '14px',
+                  letterSpacing: '7px',
+                  backgroundColor: 'rgb(247, 164, 88)'}}
+              >
+                Add a cup of water
+              </Button>}
+
             </div>
-          </form>
-        </center>
-      </div>
-    )
+
+            <div style={{marginTop: '40px', width: '200px'}}>
+              <CircularProgressbar
+                percentage={Math.round(this.state.percentage)}
+                text={`${Math.round(this.state.percentage)}%`}
+                background
+                backgroundPadding={6}
+                styles={{position: 'relative',
+                  background: {
+                    fill: '#3e98c7'
+                  },
+                  text: {
+                    fill: '#fff'
+                  },
+                  path: {
+                    stroke: '#fff'
+                  },
+                  trail: {stroke: 'transparent'}
+                }}
+              />
+              <div>
+                <br/>
+                <br/>
+                <br/>
+              </div>
+
+            </div>
+          </center>
+        </div>
+      )
+    }
   }
 }
 export default WaterInput
