@@ -70,7 +70,7 @@ router.put('/editMeal', (req, res) => {
 })
 
 router.delete('/deleteMeal', (req, res) => {
-  if (req.body.user_id !== req.user.id) {
+  if (Number(req.body.user_id) !== Number(req.user.id)) {
     return error.authMatchError(req, res)
   }
   db.deleteMeal(req.body.id)
