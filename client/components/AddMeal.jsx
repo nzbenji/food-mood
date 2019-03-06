@@ -52,7 +52,6 @@ class AddMeal extends React.Component {
   }
 
   render () {
-    console.log(this.state)
     if (this.state.mealId > 0) {
       const meal = {...this.state.meal, id: this.state.mealId}
       return (

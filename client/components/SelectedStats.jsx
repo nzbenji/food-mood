@@ -100,14 +100,12 @@ class SelectedStats extends React.Component {
             total += emotion.ranking
           }
         })
-        console.log(moods)
     const avg = total / moods.length
     return avg * 20
   }
 
   render () {
     if (!this.props.loggedIn) {
-      console.log('not logged in trying to redirect')
       return <Redirect to='/login' push={true} />
     }
 

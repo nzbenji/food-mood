@@ -81,7 +81,6 @@ class Stats extends React.Component {
 
   render () {
     if (!this.props.loggedIn) {
-      console.log('not logged in trying to redirect')
       return <Redirect to='/login' push={true} />
     }
 

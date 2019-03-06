@@ -56,7 +56,6 @@ class AddMood extends React.Component {
   }
 
   render () {
-    console.log(this.state)
     const {classes} = this.props
     const {time} = this.state.mood
     if (this.state.submitted) {
