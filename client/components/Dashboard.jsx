@@ -39,6 +39,12 @@ class Dashboard extends React.Component {
         {currentMood
           ? <h3 style={{fontSize: '80px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center', marginBottom: '20px', marginTop: '20px'}}> {getEmoji(emotions, currentMood.emotion_id)} </h3>
           : <div></div>}
+        <Link style={{textDecoration: 'none'}} to='/water'>
+          <a><button className='button1'>
+            Thirsty?
+          </button></a>
+        </Link>
+        <br/>
         <Link style={{textDecoration: 'none'}} to='/addmeal'>
           <a><button className='button1'>
             Add a meal
