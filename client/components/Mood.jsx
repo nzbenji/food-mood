@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link, withRouter} from 'react-router-dom'
-import moment from 'moment'
 
 import {getEmoji} from '../utils/emojis'
 
@@ -19,7 +18,7 @@ class Mood extends React.Component {
         </div>
 
           <div style={{fontSize: '21px'}}>
-          {`${moment(mood.time).format('h:mm a')} ${mood.notes}`}
+          {`${mood.time} ${mood.notes}`}
         </div>
         <br/>
         <Link style={{textDecoration: 'none'}} to={{

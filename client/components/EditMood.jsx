@@ -93,7 +93,7 @@ class EditMood extends React.Component {
           {this.props.location.state.meal.title}</h3>
 
           <Grid container className={classes.grid} alignContent="center" justify="center" >
-          {this.props.emotions.map(emotion => { return <button className='button2' key={emotion.emoji} mouseEnter={this.mouseEnterHandler} mouseLeave={this.mouseLeaveHandler} 
+          {this.props.emotions.map(emotion => { return <button className='button2' key={emotion.emoji} mouseenter={this.mouseenterHandler} mouseLeave={this.mouseLeaveHandler} 
           onClick={this.handleClick(emotion.id)}>{emotion.emoji}</button> })}
           </Grid>
           

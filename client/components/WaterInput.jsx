@@ -45,10 +45,10 @@ class WaterInput extends Component {
       return (
         <div>
           <center>
-            <h1>Calculate water intake</h1>
+            <h1>Calculate optimum water intake</h1>
             <form >
               <label >
-                <TextField type='text' placeholder="weight in kgs"
+                <TextField type='text' placeholder="weight in kilograms"
                   name='weight' variant="outlined" autoComplete="off"
                   style={{textAlign: 'right', fontSize: '35px', fontWeight: '600', letterSpacing: 10}}
                   onChange={this.handleChange} /></label>
@@ -81,7 +81,7 @@ class WaterInput extends Component {
       return (
         <div>
           <center>
-            <h1>Calculate water intake</h1>
+            <h1>Your optimum water intake</h1>
             <div>
               {this.props.water.cupsRequired !== 0 && <h3>You require {this.props.water.cupsRequired} glasses today</h3>}
               {this.props.water.cupsRequired !== 0 && <Button variant="contained" color="primary" onClick={this.addOne}
@@ -92,7 +92,7 @@ class WaterInput extends Component {
                   letterSpacing: '7px',
                   backgroundColor: 'rgb(247, 164, 88)'}}
               >
-                Add a cup of water
+                Add a glass of water
               </Button>}
 
             </div>

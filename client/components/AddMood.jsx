@@ -8,8 +8,6 @@ import {addMealApi} from '../api/meals'
 import {connect} from 'react-redux'
 import {Redirect, withRouter} from 'react-router-dom'
 import {saveNewMood} from '../actions/moods'
-import moment from 'moment'
-import MomentUtils from '@date-io/moment'
 
 const styles = {
   grid: {
@@ -22,7 +20,7 @@ class AddMood extends React.Component {
     super(props)
     this.state = {
       mood: {
-        time: moment(new Date()).format('MM-DD-YYYY'),
+        time: new Date(),
         notes: '',
         emotion_id: ''
       },
@@ -43,7 +41,7 @@ class AddMood extends React.Component {
   }
 
   handleDateChange = date => {
-    const dbDate = moment(date).format('MM-DD-YYYY HH:mm:ss')
+    const dbDate = date.toISOString().slice(0, 19).replace('T', ' ')
     const updatemood = {...this.state.mood}
     updatemood.time = dbDate
     this.setState({mood: updatemood})
@@ -58,7 +56,6 @@ class AddMood extends React.Component {
   }
 
   render () {
-    console.log(this.state)
     const {classes} = this.props
     const {time} = this.state.mood
     if (this.state.submitted) {
@@ -84,11 +81,11 @@ class AddMood extends React.Component {
           <h3 >{this.props.location.state.meal.title}</h3>
 
           <Grid container className={classes.grid} alignContent="center" justify="center" >
-          {this.props.emotions.map(emotion => { return <button className='button2' key={emotion.emoji} mouseEnter={this.mouseEnterHandler} mouseLeave={this.mouseLeaveHandler} 
+          {this.props.emotions.map(emotion => { return <button className='button2' key={emotion.emoji} mouseenter={this.mouseEnterHandler} mouseleave={this.mouseLeaveHandler} 
           onClick={this.handleClick(emotion.id)}>{emotion.emoji}</button> })}
           </Grid>
 
-        <MuiPickersUtilsProvider utils={MomentUtils}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container className={classes.grid} alignContent="center" justify="center" >
             <div>
               <h2>
