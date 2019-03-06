@@ -35,6 +35,7 @@ class WaterInput extends Component {
     const {cupsDrank, cupsRequired} = this.props.water
     const newCupsDrank = cupsDrank + 1
     const percentage = newCupsDrank / cupsRequired * 100
+    if (percentage>100) percentage = 100
     const water = {...this.props.water, cupsDrank: newCupsDrank, percentage}
     this.props.dispatch(updateWater(water))
   }
