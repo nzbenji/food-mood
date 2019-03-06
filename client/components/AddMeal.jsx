@@ -23,7 +23,8 @@ class AddMeal extends React.Component {
         time: new Date().toISOString().slice(0, 19).replace('T', ' '),
         title: ''
       },
-      mealId: -1
+      mealId: -1,
+      error: false
     }
   }
 
@@ -40,7 +41,9 @@ class AddMeal extends React.Component {
           mealId
         })
       })
-      .catch(({message}) => console.log("whoops"))
+      .catch((err) => {
+        if(err) this.setSate({error: true})
+      })
     event.preventDefault()
   }
 
@@ -52,6 +55,10 @@ class AddMeal extends React.Component {
   }
 
   render () {
+    if (this.state.error) {
+      return <Redirect to='/error'/>
+    }
+
     if (this.state.mealId > 0) {
       const meal = {...this.state.meal, id: this.state.mealId}
       return (
@@ -71,46 +78,46 @@ class AddMeal extends React.Component {
     return (
       <div>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <Grid container className={classes.grid} alignContent="center" justify="center" >
-          <div> 
-          <h2>
+          <Grid container className={classes.grid} alignContent="center" justify="center" >
+            <div>
+              <h2>
               Meal Name:
-            </h2>
-            <form >
-                  <input 
+              </h2>
+              <form >
+                <input
                   type='text'
                   name='title'
-                  value={this.state.meal.title} 
+                  value={this.state.meal.title}
                   onChange={this.handleChange} />
-            </form>
-          </div>
-        </Grid>
+              </form>
+            </div>
+          </Grid>
 
-        <Grid container className={classes.grid} alignContent="center" justify="center" >
-          <div>
-            <h1>
+          <Grid container className={classes.grid} alignContent="center" justify="center" >
+            <div>
+              <h1>
               Enter a date:
-            </h1>
-            <DatePicker style={{marginLeft: '30px'}}
+              </h1>
+              <DatePicker style={{marginLeft: '30px'}}
                 margin="normal"
                 label="Date picker"
                 value={time}
                 onChange={this.handleDateChange}
-            />        
-          </div>
-          <div>
+              />
+            </div>
+            <div>
               <h1>Enter a time: </h1>
               <TimePicker style={{marginLeft: '30px'}}
-                  margin="normal"
-                  label="Time picker"
-                  value={time}
-                  onChange={this.handleDateChange}/>
-          </div>
-        </Grid>
-        <Grid container className={classes.grid} alignContent="center" justify="center">
-        <button className='button1' onClick={this.handleSubmit}>Submit</button>
-        </Grid>
-      </MuiPickersUtilsProvider>
+                margin="normal"
+                label="Time picker"
+                value={time}
+                onChange={this.handleDateChange}/>
+            </div>
+          </Grid>
+          <Grid container className={classes.grid} alignContent="center" justify="center">
+            <button className='button1' onClick={this.handleSubmit}>Submit</button>
+          </Grid>
+        </MuiPickersUtilsProvider>
       </div>
     )
   }
