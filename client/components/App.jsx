@@ -50,7 +50,7 @@ class App extends React.Component {
             <Route path='/register' component={Register} />
             <Route path='/login' component={Login} />
             <Route path='/water' component={WaterInput} />
-            <Route path='/craving' component={Craving} />
+            <Route path='/cravings' component={Craving} />
           </Switch><br></br>
           {this.props.loggedIn && <NavBar />}
       </div>      
