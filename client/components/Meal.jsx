@@ -84,7 +84,7 @@ class Meal extends React.Component {
             </button>
           </Link>
         </div>
-
+        <br/><br/><br/>
       </div>
     )
   }
