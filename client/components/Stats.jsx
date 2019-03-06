@@ -3,12 +3,6 @@ import OverallStats from './OverallStats'
 import SelectedStats from './SelectedStats'
 import Grid from '@material-ui/core/Grid'
 
-/* 
-  JESS - TO CHANGE SIZE OF OF GRAPH CHANGE THE WIDTH VALUES ON 
-  LINE 30 TO CHANGE ARROW SIZE AND LINE 93 TO PIE WIDTH IN OVERALLSTATS
-  AND LINE 29 AND WIDTH VALUE ON LINE 112 IN SELECTEDSTATS
-*/
-
 class Stats extends React.Component {
   state = {
     overall: false,

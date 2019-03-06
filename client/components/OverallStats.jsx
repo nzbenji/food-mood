@@ -79,7 +79,7 @@ class Stats extends React.Component {
           }
         })
     const avg = total / moods.length
-    return avg * 20
+    return avg * 18
   }
 
   render () {

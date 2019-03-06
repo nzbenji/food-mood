@@ -82,7 +82,7 @@ class MealDay extends React.Component {
           <Link to='/addmeal'><img className="mealdayButton" src={blackAdd}/></Link>
         </div>
         <br/><br/>
-        <br/>
+        <br/><br/>
       </div>
     )
   }

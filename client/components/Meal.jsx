@@ -53,19 +53,32 @@ class Meal extends React.Component {
         <br/>
         <div>
           <Grid container alignContent="center" justify="center">
-            <h3> You ate:<br></br><h3><u>{`${meal.title}`}</u></h3><br></br>on {`${date}`} </h3>
+            <h4 style={{fontWeight: 'bold'}}>{`${meal.title}`}</h4>
           </Grid>
         </div>
+        
+        <div>
+          <Grid container alignContent="center" justify="center">
+            <h2>{`${new Date(date).toISOString().slice(0, 19).replace('T', ' ')}`} </h2>
+          </Grid>
+        </div>
+        
         <Link style={{textDecoration: 'none'}} to={{
           pathname: `/editmeal`,
           state: {meal: meal}}}>
           <img className="blue-edit-icon" src={blueEditIcon}/>
         </Link>
+
         <Link style={{textDecoration: 'none'}} to={{
           pathname: `/deletemeal`,
           state: {meal: meal}}}>
           <img className="blue-delete-icon" src={blueDeleteIcon}/>
         </Link>
+        <hr  style={{
+            color: 'rgb(247, 164, 88)',
+            width: '250px',
+
+            height: 0.5}}></hr>
         <div>
           <ul>
             {this.state.meal.moods && this.state.meal.moods.map(mood => {
