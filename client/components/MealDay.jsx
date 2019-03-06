@@ -11,7 +11,8 @@ class MealDay extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      meals: []
+      meals: [],
+      error: false
     }
   }
 
@@ -23,10 +24,16 @@ class MealDay extends React.Component {
         })
         this.setState({meals})
       })
-      .catch(err => new Error(err))
+      .catch((err) => {
+        if (err) this.setState({error: true})
+      })
   }
 
   render () {
+    if (this.state.error) {
+      return <Redirect to='/error'/>
+    }
+
     if (!this.props.location.state) {
       return <Redirect to='/'/>
     }

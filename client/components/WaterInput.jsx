@@ -34,7 +34,8 @@ class WaterInput extends Component {
     event.preventDefault()
     const {cupsDrank, cupsRequired} = this.props.water
     const newCupsDrank = cupsDrank + 1
-    const percentage = newCupsDrank / cupsRequired * 100
+    let percentage = newCupsDrank / cupsRequired * 100
+    if (percentage>100) percentage = 100
     const water = {...this.props.water, cupsDrank: newCupsDrank, percentage}
     this.props.dispatch(updateWater(water))
   }
