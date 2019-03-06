@@ -65,7 +65,9 @@ class SelectedStats extends React.Component {
         })
         this.setState({ moods})
       })
-      .catch(err => new Error(err))
+      .catch((err) => {
+        if (err) this.setState({error: true})
+      })
   }
 
   handleDateChange = date => {
@@ -105,6 +107,10 @@ class SelectedStats extends React.Component {
   }
 
   render () {
+    if (this.state.error) {
+      return <Redirect to='/error'/>
+    }
+    
     if (!this.props.loggedIn) {
       return <Redirect to='/login' push={true} />
     }

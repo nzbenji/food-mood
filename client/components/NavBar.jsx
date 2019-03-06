@@ -19,10 +19,8 @@ class NavBar extends React.Component {
           <li className="nav-li"><Link to="/settings"><img className="icon" src={settingsIcon}/></Link></li>
         </ul>
       </div>
-     
     )
   }
 }
 
 export default withRouter(NavBar)
-

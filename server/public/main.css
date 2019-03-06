@@ -179,19 +179,19 @@ h4{
 }
 
 .btn-warning {
-  background-color: #ffc107;
-  border-color: #ffc107;
+  background-color: rgb(247, 164, 88);
+  border-color: rgb(243, 152, 67);
 }
 .btn-warning:hover {
-  background-color: #c79603;
-  border-color: #c79603;
+  background-color: rgb(243, 152, 67);
+  border-color: rgb(243, 152, 67);
 }
 
 .btn-circle.btn-xl {
   width: 70px;
   height: 70px;
   padding: 10px 16px;
-  border-radius: 35px;
+  border-radius: 45px;
   border-style:none;
   margin-left: 20px;
 }
