@@ -45,32 +45,26 @@ class WaterInput extends Component {
       return (
         <div>
           <center>
-            <h1>Calculate optimum water intake</h1>
+            <h3>Calculate today's optimum water intake</h3>
             <form >
               <label >
-                <TextField type='text' placeholder="weight in kilograms"
+                <TextField type='text' placeholder="Your weight in kilograms"
                   name='weight' variant="outlined" autoComplete="off"
                   style={{textAlign: 'right', fontSize: '35px', fontWeight: '600', letterSpacing: 10}}
                   onChange={this.handleChange} /></label>
 
               <label>
-                <TextField type='text' placeholder="exercise in hours"
+                <TextField type='text' placeholder="Exercise in hours"
                   name='exercise' variant="outlined" autoComplete="off"
                   style={{textAlign: 'right', fontSize: '40px', fontWeight: '600', letterSpacing: '10px'}}
                   onChange={this.handleChange} />
               </label>
 
               <div>
-                <Button variant="contained" color="primary" onClick={this.handleSubmit}
-                  style={{width: '238px',
-                    marginTop: '8px',
-                    fontWeight: '800',
-                    fontSize: '14px',
-                    letterSpacing: '7px',
-                    backgroundColor: 'rgb(247, 164, 88)'}}
-                >
+                <br />
+                <button className='button1' style={{ paddingTop:'10px', paddingBottom: '30px', fontSize:'18px'}} onClick={this.handleSubmit}>
                 Submit
-                </Button>
+                </button>
               </div>
 
             </form>
@@ -81,19 +75,13 @@ class WaterInput extends Component {
       return (
         <div>
           <center>
-            <h1>Your optimum water intake</h1>
+            <br />
+            <h3>Your optimum water intake today is:</h3>
             <div>
-              {this.props.water.cupsRequired !== 0 && <h3>You require {this.props.water.cupsRequired} glasses today</h3>}
-              {this.props.water.cupsRequired !== 0 && <Button variant="contained" color="primary" onClick={this.addOne}
-                style={{width: '238px',
-                  marginTop: '8px',
-                  fontWeight: '800',
-                  fontSize: '14px',
-                  letterSpacing: '7px',
-                  backgroundColor: 'rgb(247, 164, 88)'}}
-              >
-                Add a glass of water
-              </Button>}
+              {this.props.water.cupsRequired !== 0 && <h3> {this.props.water.cupsRequired} glasses </h3>}
+              {this.props.water.cupsRequired !== 0 && <button className='button1' style={{paddingTop:'10px', paddingBottom: '30px', fontSize:'18px'}}onClick={this.addOne} >
+                Add a glass
+              </button>}
 
             </div>
 
