@@ -3,20 +3,18 @@ import CircularProgressbar from 'react-circular-progressbar'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {TextField} from '@material-ui/core'
 import Button from '@material-ui/core/Button'
+import {connect} from 'react-redux'
+import {updateWater} from '../actions/water'
 
 class WaterInput extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      age: 0,
       weight: 0,
       exercise: 0,
       cupsDrank: 0,
       cupsRequired: 0,
-      percentage: 0,
-      gender: null,
-      submitted: false
-
+      percentage: 0
     }
   }
 
@@ -28,26 +26,21 @@ class WaterInput extends Component {
     const {age, weight, exercise} = this.state
     const calculateWeightWater = weight / 30 * 4.22
     const calculateExerciseWater = exercise * 4.22
-    const totalCups = Math.floor(calculateWeightWater + calculateExerciseWater)
-    this.setState({
-        cupsRequired: totalCups + 1,
-        submitted: true
-    })
+    const water = {...this.state, cupsRequired: Math.floor(calculateWeightWater + calculateExerciseWater) + 1}
+    this.props.dispatch(updateWater(water))
   }
 
   addOne = (event) => {
     event.preventDefault()
-    const {cupsDrank, cupsRequired} = this.state
+    const {cupsDrank, cupsRequired} = this.props.water
     const newCupsDrank = cupsDrank + 1
     const percentage = newCupsDrank / cupsRequired * 100
-      this.setState({
-        cupsDrank: newCupsDrank,
-        percentage: percentage <= 100 ? percentage : 100
-      })
+    const water = {...this.props.water, cupsDrank: newCupsDrank, percentage}
+    this.props.dispatch(updateWater(water))
   }
 
   render () {
-    if (!this.state.submitted) {
+    if (this.props.water.weight <= 0) {
       return (
         <div>
           <center>
@@ -89,8 +82,8 @@ class WaterInput extends Component {
           <center>
             <h1>Calculate water intake</h1>
             <div>
-              {this.state.submitted && this.state.cupsRequired !== 0 && <h3>You require {this.state.cupsRequired} glasses today</h3>}
-              {this.state.cupsRequired !== 0 && <Button variant="contained" color="primary" onClick={this.addOne}
+              {this.props.water.cupsRequired !== 0 && <h3>You require {this.props.water.cupsRequired} glasses today</h3>}
+              {this.props.water.cupsRequired !== 0 && <Button variant="contained" color="primary" onClick={this.addOne}
                 style={{width: '238px',
                   marginTop: '8px',
                   fontWeight: '800',
@@ -105,8 +98,8 @@ class WaterInput extends Component {
 
             <div style={{marginTop: '40px', width: '200px'}}>
               <CircularProgressbar
-                percentage={Math.round(this.state.percentage)}
-                text={`${Math.round(this.state.percentage)}%`}
+                percentage={Math.round(this.props.water.percentage)}
+                text={`${Math.round(this.props.water.percentage)}%`}
                 background
                 backgroundPadding={6}
                 styles={{position: 'relative',
@@ -135,4 +128,11 @@ class WaterInput extends Component {
     }
   }
 }
-export default WaterInput
+
+function mapStateToProps (state) {
+  return {
+    water: state.water
+  }
+}
+
+export default connect(mapStateToProps)(WaterInput)
