@@ -2,7 +2,6 @@ import React from 'react'
 import {Redirect, Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {signin} from '../actions/auth'
-import {TextField, Button} from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
 
 class Login extends React.Component {
@@ -33,7 +32,7 @@ class Login extends React.Component {
     if (this.props.loggedIn) {
       return <Redirect to='/' />
     }
-    
+
     const {username, password} = this.state
     return (
       <Grid container justify = "center">
@@ -52,21 +51,21 @@ class Login extends React.Component {
             <br/><br/>
             <div style={{display: 'block', marginLeft: '54px'}}>
               <form>
-              
-              <input id='username' name='username' variant="outlined" placeholder='username' onChange={this.handleChange} value={username} /> 
+
+                <input id='username' name='username' variant="outlined" placeholder='username' onChange={this.handleChange} value={username} />
               </form>
             </div>
 
             <div style={{display: 'block', marginLeft: '54px'}}>
               <form>
-            <input id='password' variant="outlined" name='password' type='password' placeholder='password' onChange={this.handleChange} value={password} />
-            </form>
+                <input id='password' variant="outlined" name='password' type='password' placeholder='password' onChange={this.handleChange} value={password} />
+              </form>
             </div>
             <br/>
             <div>
               <Grid container justify = "center">
-                
-                  <button className='button1' name='signinBtn' id='signinBtn' onClick={this.handleSubmit}>Login</button>
+
+                <button className='button1' name='signinBtn' id='signinBtn' onClick={this.handleSubmit}>Login</button>
               </Grid>
               {this.props.error && <p>Incorrect login credentials. Please try again</p>}
             </div>

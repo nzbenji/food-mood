@@ -12,11 +12,11 @@ class Mood extends React.Component {
     const emoji = getEmoji(this.props.emotions, mood.emotion_id)
     return (
       <div className='meal'>
-       <div style={{fontSize: '55px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center', marginBottom: '20px', marginTop: '20px'}}>
+        <div style={{fontSize: '55px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center', marginBottom: '20px', marginTop: '20px'}}>
           {`${emoji} `}
-          </div>
+        </div>
 
-          <div style={{fontSize: '25px'}}>
+        <div style={{fontSize: '25px'}}>
           {`${mood.time.slice(11, 16)} ${mood.notes}`}
         </div>
         <br/>
@@ -25,7 +25,7 @@ class Mood extends React.Component {
           state: {mood: mood, meal: meal}}}>
           <img className="edit-icon" src={editIcon}/>
         </Link>
-       
+
         <Link style={{textDecoration: 'none'}} to={{
           pathname: `/deletemood`,
           state: {mood: mood, meal: meal}}}>

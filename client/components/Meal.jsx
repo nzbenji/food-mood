@@ -14,7 +14,8 @@ class Meal extends React.Component {
     let meal = {}
     if (props.location.state) meal = props.location.state.meal
     this.state = {
-      meal: meal
+      meal: meal,
+      error: false
     }
   }
 
@@ -24,10 +25,15 @@ class Meal extends React.Component {
         const meal = {...this.state.meal, moods: moods}
         this.setState({meal: meal})
       })
-      .catch(err => new Error(err))
+      .catch((err) => {
+        if (err) this.setSate({error: true})
+      })
   }
 
   render () {
+    if (this.state.error) {
+      return <Redirect to='/error'/>
+    }
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
     }
@@ -49,15 +55,15 @@ class Meal extends React.Component {
           </Grid>
         </div>
         <Link style={{textDecoration: 'none'}} to={{
-            pathname: `/editmeal`,
-            state: {meal: meal}}}>
-           <img className="blue-edit-icon" src={blueEditIcon}/>
-          </Link>
-          <Link style={{textDecoration: 'none'}} to={{
-            pathname: `/deletemeal`,
-            state: {meal: meal}}}>
-            <img className="blue-delete-icon" src={blueDeleteIcon}/>
-          </Link>
+          pathname: `/editmeal`,
+          state: {meal: meal}}}>
+          <img className="blue-edit-icon" src={blueEditIcon}/>
+        </Link>
+        <Link style={{textDecoration: 'none'}} to={{
+          pathname: `/deletemeal`,
+          state: {meal: meal}}}>
+          <img className="blue-delete-icon" src={blueDeleteIcon}/>
+        </Link>
         <div>
           <ul>
             {this.state.meal.moods && this.state.meal.moods.map(mood => {

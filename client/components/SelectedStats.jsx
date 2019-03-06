@@ -53,7 +53,8 @@ class SelectedStats extends React.Component {
   state = {
     moods: [],
     startDate: new Date().toISOString().slice(0, 10).replace('T', ' '),
-    endDate: new Date().toISOString().slice(0, 10).replace('T', ' ')
+    endDate: new Date().toISOString().slice(0, 10).replace('T', ' '),
+    error: false
   }
 
   componentDidMount () {
@@ -65,7 +66,9 @@ class SelectedStats extends React.Component {
         })
         this.setState({ moods})
       })
-      .catch(err => new Error(err))
+      .catch((err) => {
+        if (err) this.setSate({error: true})
+      })
   }
   handleDateChange = date => {
     date = date.toISOString().slice(0, 10).replace('T', ' ')
@@ -99,7 +102,10 @@ class SelectedStats extends React.Component {
   }
 
   render () {
-
+    if (this.state.error) {
+      return <Redirect to='/error'/>
+    }
+    
     if (!this.props.loggedIn) {
       console.log('not logged in trying to redirect')
       return <Redirect to='/login' push={true} />
