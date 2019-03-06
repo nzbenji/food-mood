@@ -15,20 +15,27 @@ class Dashboard extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      recentMeal: {}
+      recentMeal: {},
+      error: false
     }
   }
 
   componentDidMount () {
     this.props.dispatch(getMostRecentMood(this.props.userId))
-    mostRecentMealApi(this.props.userId).then(meal => {
-      this.setState({recentMeal: meal})
-    })
+    mostRecentMealApi(this.props.userId)
+      .then(meal => {
+        this.setState({recentMeal: meal})
+      })
+      .catch((err) => {
+        if (err) this.setState({error: true})
+      })
   }
 
   render () {
     const {emotions, currentMood} = this.props
-
+    if (this.state.error) {
+      return <Redirect to='/error'/>
+    }
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
     }
@@ -40,15 +47,15 @@ class Dashboard extends React.Component {
           ? <h3 style={{fontSize: '80px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center', marginBottom: '20px', marginTop: '20px'}}> {getEmoji(emotions, currentMood.emotion_id)} </h3>
           : <div></div>}
         <Link style={{textDecoration: 'none'}} to='/water'>
-          <a><button className='button1'>
+          <button className='button1'>
             Thirsty?
-          </button></a>
+          </button>
         </Link>
         <br/>
         <Link style={{textDecoration: 'none'}} to='/addmeal'>
-          <a><button className='button1'>
+          <button className='button1'>
             Add a meal
-          </button></a>
+          </button>
         </Link>
         <br/>
         {this.state.recentMeal &&

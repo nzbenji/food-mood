@@ -21,7 +21,8 @@ class DeleteMeal extends React.Component {
       const meal = props.location.state.meal
       this.state = {
         meal: meal,
-        submitted: false
+        submitted: false,
+        error: false
       }
     }
   }
@@ -29,14 +30,19 @@ class DeleteMeal extends React.Component {
   handleSubmit = (event) => {
     deleteMealApi(this.state.meal)
       .then(() => {
-        console.log('it was fine shuttup')
         this.setState({submitted:true})
       })
-      .catch(err => console.log('whoops'))
+      .catch((err) => {
+        if (err) this.setState({error: true})
+      })
     event.preventDefault()
   }
 
   render() {
+
+    if (this.state.error) {
+      return <Redirect to='/error'/>
+    }
 
     if(!this.props.location.state) {
       return <Redirect to='/'/>
