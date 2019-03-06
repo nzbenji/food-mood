@@ -68,6 +68,8 @@ h4{
     margin-right: auto;
     bottom: 0px;
     overflow: hidden;
+    width: 400px;
+    margin-bottom: 0px;
   }
   
   .nav-li {
@@ -122,7 +124,7 @@ h4{
   border: 2px;
   border-color: transparent;
   border-radius: 6px;
-  font-size: 100px;
+  font-size: 80px;
   cursor: pointer;
   margin: 5px;
 
