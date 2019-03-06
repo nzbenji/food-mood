@@ -10,6 +10,9 @@ import {connect} from 'react-redux'
 import {getMealsAndMoods} from '../api/meals'
 import { da } from 'date-fns/esm/locale';
 
+import moment from 'moment';
+import MomentUtils from '@date-io/moment';
+
 const ActiveSectorMark = ({cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill}) => {
   return (
     <g>
@@ -52,8 +55,8 @@ const styles = {
 class SelectedStats extends React.Component {
   state = {
     moods: [],
-    startDate: new Date().toISOString().slice(0, 10).replace('T', ' '),
-    endDate: new Date().toISOString().slice(0, 10).replace('T', ' ')
+    startDate: moment(),
+    endDate: moment()
   }
 
   componentDidMount () {
@@ -68,20 +71,16 @@ class SelectedStats extends React.Component {
       .catch(err => new Error(err))
   }
   handleDateChange = date => {
-    date = date.toISOString().slice(0, 10).replace('T', ' ')
-    date += ' 00:00:01'
-    this.setState({ startDate: date });
+    this.setState({ startDate: moment(date).format('MM-DD-YYYY 00:00:01') });
   }
   handleNextChange = date => {
-    date = date.toISOString().slice(0, 10).replace('T', ' ')
-    date += ' 23:59:59'
-    this.setState({ endDate: date});
+    this.setState({ endDate: moment(date).format('MM-DD-YYYY 23:59:59')});
   }
 
   compareDates = (start, end, target) => {
-    const startDate = new Date(start)
-    const endDate = new Date(end)
-    const targetDate = new Date(target)
+    const startDate = moment(start)
+    const endDate = moment(end)
+    const targetDate = moment(target)
     return (targetDate >= startDate && targetDate <= endDate)
   }
 
@@ -94,12 +93,12 @@ class SelectedStats extends React.Component {
             total += emotion.ranking
           }
         })
+        console.log(moods)
     const avg = total / moods.length
     return avg * 20
   }
 
   render () {
-
     if (!this.props.loggedIn) {
       console.log('not logged in trying to redirect')
       return <Redirect to='/login' push={true} />
@@ -151,7 +150,7 @@ class SelectedStats extends React.Component {
 
     return (
       <div style={{}}>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <MuiPickersUtilsProvider utils={MomentUtils}>
       <Grid container alignContent="center" justify="center" >
             <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}
             >Start date</h3>
@@ -161,7 +160,7 @@ class SelectedStats extends React.Component {
               onChange={this.handleDateChange}/>
           </Grid>
         </MuiPickersUtilsProvider>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <MuiPickersUtilsProvider utils={MomentUtils}>
         <Grid container alignContent="center" justify="center" >
             <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}
             >End date</h3>
