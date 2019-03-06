@@ -126,10 +126,17 @@ h4{
   border-radius: 6px;
   font-size: 80px;
   cursor: pointer;
+  margin: 5px;
 
 }
+
 .button2:hover {
   background-color: #dbc3ea;
+}
+
+.button2:active,
+.button2:focus{
+  background-color:#dbc3ea;
 }
 
 .mealDay {
