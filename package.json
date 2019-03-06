@@ -30,7 +30,6 @@
   },
   "dependencies": {
     "@date-io/date-fns": "^1.1.0",
-    "@date-io/moment": "^1.1.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
@@ -49,7 +48,6 @@
     "lodash": "^4.17.11",
     "material-ui-datetime-range-picker": "^0.2.2",
     "material-ui-pickers": "^2.2.1",
-    "moment": "^2.24.0",
     "moxios": "^0.4.0",
     "nock": "^10.0.6",
     "path": "^0.12.7",

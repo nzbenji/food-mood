@@ -29,6 +29,7 @@ class DeleteMeal extends React.Component {
   handleSubmit = (event) => {
     deleteMealApi(this.state.meal)
       .then(() => {
+        console.log('it was fine shuttup')
         this.setState({submitted:true})
       })
       .catch(err => console.log('whoops'))
