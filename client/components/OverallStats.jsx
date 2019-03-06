@@ -46,7 +46,8 @@ const styles = {
 
 class Stats extends React.Component {
   state = {
-    moods: []
+    moods: [],
+    error: false
   }
 
   componentDidMount () {
@@ -56,7 +57,9 @@ class Stats extends React.Component {
         data.map(meal => {moods = moods.concat(meal.moods)})
         this.setState({ moods})
       })
-      .catch(err => new Error(err))
+      .catch((err) => {
+        if (err) this.setState({error: true})
+      })
   }
   handleDateChange = date => {
     this.setState({ startDate: date.toISOString().slice(0, 10).replace('T', ' ') });
@@ -80,6 +83,10 @@ class Stats extends React.Component {
   }
 
   render () {
+    if (this.state.error) {
+      return <Redirect to='/error'/>
+    }
+
     if (!this.props.loggedIn) {
       return <Redirect to='/login' push={true} />
     }

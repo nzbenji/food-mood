@@ -19,17 +19,10 @@ class DeleteMood extends React.Component {
   constructor (props) {
     super(props)
     if(props.location.state) {
-      const mood = props.location.state.mood
       this.state = {
-        // The first commit of Material-UI
-        mood: {
-          time: mood.time,
-          notes: mood.notes,
-          emotion_id: mood.emotion_id,
-          meal_id: mood.mealId,
-          id: mood.id
-        },
-        submitted: false
+        mood: props.location.state.mood,
+        submitted: false,
+        error: false
       }
     }
   }
@@ -39,12 +32,18 @@ class DeleteMood extends React.Component {
       .then(() => {
         this.setState({submitted:true})
       })
-      .catch(err => console.log('whoops'))
+      .catch((err) => {
+        if (err) this.setState({error: true})
+      })
     event.preventDefault()
   }
 
   render() {
 
+    if (this.state.error) {
+      return <Redirect to='/error'/>
+    }
+    
     if(!this.props.location.state) {
       return <Redirect to='/'/>
     }
