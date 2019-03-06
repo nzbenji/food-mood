@@ -30,7 +30,7 @@ class Stats extends React.Component {
                   selectedDates: false
                 }))}
                 
-                >Select overall mood</button>
+                >Overall mood</button>
           </div>
           <div>
             <button 
@@ -40,7 +40,7 @@ class Stats extends React.Component {
                   overall: false
                 }))}
                 
-                >Select mood based on dates</button>
+                >Mood over time</button>
           </div>
             {this.state.overall && <OverallStats /> }
             {this.state.selectedDates && <SelectedStats />}

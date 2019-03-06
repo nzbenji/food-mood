@@ -143,6 +143,7 @@ class EditMood extends React.Component {
         <button className='button1' onClick={this.handleSubmit}>Submit</button>
         </Grid>
       </MuiPickersUtilsProvider>
+      <br/><br/><br/>
       </div>
     )
   }
