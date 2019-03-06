@@ -18,7 +18,7 @@ class Mood extends React.Component {
           </div>
 
           <div style={{fontSize: '21px'}}>
-          {`${mood.time} ${mood.notes}`}
+          {`${new Date(mood.time).toISOString().slice(0, 19).replace('T', ' ')}`}<br/>{`${mood.notes}`}
         </div>
         <br/>
         <Link style={{textDecoration: 'none'}} to={{
