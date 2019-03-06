@@ -18,7 +18,7 @@ class Mood extends React.Component {
           {`${emoji} `}
           </div>
 
-          <div style={{fontSize: '25px'}}>
+          <div style={{fontSize: '21px'}}>
           {`${moment(mood.time).format('h:mm a')} ${mood.notes}`}
         </div>
         <br/>

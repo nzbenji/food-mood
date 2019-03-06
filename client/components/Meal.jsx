@@ -48,11 +48,10 @@ class Meal extends React.Component {
 
     return (
       <div>
-        <br/><br/>
-        <br/><br/>
+        <br/>
         <div>
           <Grid container alignContent="center" justify="center">
-            <h4> You ate:<br></br><h3><u>{`${meal.title}`}</u></h3><br></br>on {`${date2}`} </h4>
+            <h3> You ate:<br></br><h3><u>{`${meal.title}`}</u></h3><br></br>on {`${date2}`} </h3>
           </Grid>
         </div>
         <Link style={{textDecoration: 'none'}} to={{
