@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link, withRouter} from 'react-router-dom'
+import moment from 'moment'
+
 import {getEmoji} from '../utils/emojis'
 
 const editIcon = './images/edit-icon.png'
@@ -16,8 +18,8 @@ class Mood extends React.Component {
           {`${emoji} `}
         </div>
 
-        <div style={{fontSize: '25px'}}>
-          {`${mood.time.slice(11, 16)} ${mood.notes}`}
+          <div style={{fontSize: '21px'}}>
+          {`${moment(mood.time).format('h:mm a')} ${mood.notes}`}
         </div>
         <br/>
         <Link style={{textDecoration: 'none'}} to={{

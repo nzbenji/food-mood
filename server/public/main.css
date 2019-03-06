@@ -68,6 +68,8 @@ h4{
     margin-right: auto;
     bottom: 0px;
     overflow: hidden;
+    width: 400px;
+    margin-bottom: 0px;
   }
   
   .nav-li {
@@ -114,6 +116,20 @@ h4{
   border-radius: 15px 15px 15px 15px;
   border-color: white;
   border-style: solid;
+  cursor: pointer;
+}
+
+.button2{
+  background-color: transparent;
+  border: 2px;
+  border-color: transparent;
+  border-radius: 6px;
+  font-size: 80px;
+  cursor: pointer;
+
+}
+.button2:hover {
+  background-color: #dbc3ea;
 }
 
 .mealDay {

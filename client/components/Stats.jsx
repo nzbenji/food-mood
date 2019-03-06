@@ -17,13 +17,14 @@ class Stats extends React.Component {
   render () {
     return (
       <div>
-        <h1 style={{textAlgin:'center'}}>Mood meter</h1>
+        <br/><br/>
+        <h3>Mood meter</h3>
         <Grid container alignContent="center" justify="center" >
         
         <div>
           <div>
             <button 
-                style={{width:'200px', height: '30px',padding: '5px', margin:'20px'}}
+                className='button1'
                 onClick={() => this.setState(prevState => ({
                   overall: !prevState.overall,
                   selectedDates: false
@@ -33,7 +34,7 @@ class Stats extends React.Component {
           </div>
           <div>
             <button 
-                style={{width:'200px', height: '30px',padding: '5px', margin:'20px'}}
+                className='button1'
                 onClick={() => this.setState(prevState => ({
                   selectedDates: !prevState.selectedDates,
                   overall: false

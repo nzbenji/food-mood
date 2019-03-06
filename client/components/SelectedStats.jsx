@@ -10,6 +10,9 @@ import {connect} from 'react-redux'
 import {getMealsAndMoods} from '../api/meals'
 import { da } from 'date-fns/esm/locale';
 
+import moment from 'moment';
+import MomentUtils from '@date-io/moment';
+
 const ActiveSectorMark = ({cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill}) => {
   return (
     <g>
@@ -17,7 +20,7 @@ const ActiveSectorMark = ({cx, cy, innerRadius, outerRadius, startAngle, endAngl
         cx={cx}
         cy={cy}
         innerRadius={innerRadius}
-        outerRadius={outerRadius * 1.2}
+        outerRadius={outerRadius * 1}
         startAngle={startAngle}
         endAngle={endAngle}
         fill={fill}
@@ -26,7 +29,7 @@ const ActiveSectorMark = ({cx, cy, innerRadius, outerRadius, startAngle, endAngl
   )
 }
 
-const WIDTH = 800
+const WIDTH = 470
 
 const Arrow = ({cx, cy, midAngle, outerRadius}) => {
   const RADIAN = Math.PI / 180
@@ -52,9 +55,9 @@ const styles = {
 class SelectedStats extends React.Component {
   state = {
     moods: [],
-    startDate: new Date().toISOString().slice(0, 10).replace('T', ' '),
-    endDate: new Date().toISOString().slice(0, 10).replace('T', ' '),
-    error: false
+    error: false,
+    startDate: moment(),
+    endDate: moment()
   }
 
   componentDidMount () {
@@ -71,32 +74,33 @@ class SelectedStats extends React.Component {
       })
   }
   handleDateChange = date => {
-    date = date.toISOString().slice(0, 10).replace('T', ' ')
-    date += ' 00:00:01'
-    this.setState({ startDate: date });
+    this.setState({ startDate: moment(date).format('MM-DD-YYYY 00:00:01') });
   }
   handleNextChange = date => {
-    date = date.toISOString().slice(0, 10).replace('T', ' ')
-    date += ' 23:59:59'
-    this.setState({ endDate: date});
+    this.setState({ endDate: moment(date).format('MM-DD-YYYY 23:59:59')});
   }
 
   compareDates = (start, end, target) => {
-    const startDate = new Date(start)
-    const endDate = new Date(end)
-    const targetDate = new Date(target)
+    const startDate = moment(start)
+    const endDate = moment(end)
+    const targetDate = moment(target)
     return (targetDate >= startDate && targetDate <= endDate)
+  }
+
+  filterMoods = () => {
+    return this.state.moods.filter(item => this.compareDates(this.state.startDate, this.state.endDate, item.time))
   }
 
   calculateRankValue () {
     let total = 0
-    const moods = this.state.moods.filter(item => this.compareDates(this.state.startDate, this.state.endDate, item.time))
+    const moods = this.filterMoods()
         moods.forEach(mood => {
           const emotion = this.props.emotions.find(emotion =>emotion.id === mood.emotionId)
           if(emotion) {
             total += emotion.ranking
           }
         })
+        console.log(moods)
     const avg = total / moods.length
     return avg * 20
   }
@@ -111,16 +115,16 @@ class SelectedStats extends React.Component {
       return <Redirect to='/login' push={true} />
     }
 
-    const width = 800
+    const width = 400
     const chartValue = this.calculateRankValue()
     const colorData = [{
-      value: 33, // Meaning span is 0 to 33
+      value: 30, // Meaning span is 0 to 33
       color: '#e74c3c'
     }, {
-      value: 33, // span 33 to 66
+      value: 30, // span 33 to 66
       color: '#f1c40f'
     }, {
-      value: 33, // span 66 to 99
+      value: 30, // span 66 to 99
       color: '#2ecc71'
     }]
 
@@ -156,21 +160,22 @@ class SelectedStats extends React.Component {
     }).findIndex(cur => cur)
 
     return (
-      <div style={{}}>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <div>
+        <br/><br/><br/>
+      <MuiPickersUtilsProvider utils={MomentUtils}>
       <Grid container alignContent="center" justify="center" >
-            <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}
-            >Start date</h3>
+            <h2
+            >Start date</h2>
             <DatePicker style={{marginLeft: '30px'}}
               margin="normal"
               value={this.state.startDate}
               onChange={this.handleDateChange}/>
           </Grid>
         </MuiPickersUtilsProvider>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <MuiPickersUtilsProvider utils={MomentUtils}>
         <Grid container alignContent="center" justify="center" >
-            <h3 style={{textAlign: 'center', fontSize: '20px', margin: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}
-            >End date</h3>
+            <h2
+            >End date</h2>
             <DatePicker style={{marginLeft: '30px'}}
               margin="normal"
               value={this.state.endDate}
@@ -179,7 +184,7 @@ class SelectedStats extends React.Component {
         </MuiPickersUtilsProvider>
          
         <div>
-          <p style={{fontSize: '20px', bottom: '5rem'}}>😀</p>
+        {this.filterMoods().length > 0 ? 
           <Grid container alignContent="center" justify="center" >
             <PieChart width={width} height={(width / 2) + 30}>
               <Pie
@@ -209,7 +214,7 @@ class SelectedStats extends React.Component {
               />
             </PieChart>
           </Grid>
-          
+        : <h1>No moods in that date range</h1>}
         </div>
       </div>
     )

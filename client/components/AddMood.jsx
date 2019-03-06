@@ -1,5 +1,4 @@
 import React from 'react'
-
 import 'date-fns'
 import Grid from '@material-ui/core/Grid'
 import {withStyles} from '@material-ui/core/styles'
@@ -9,6 +8,8 @@ import {addMealApi} from '../api/meals'
 import {connect} from 'react-redux'
 import {Redirect, withRouter} from 'react-router-dom'
 import {saveNewMood} from '../actions/moods'
+import moment from 'moment'
+import MomentUtils from '@date-io/moment'
 
 const styles = {
   grid: {
@@ -20,9 +21,8 @@ class AddMood extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      // The first commit of Material-UI
       mood: {
-        time: new Date().toISOString().slice(0, 19).replace('T', ' '),
+        time: moment(),
         notes: '',
         emotion_id: ''
       },
@@ -43,7 +43,7 @@ class AddMood extends React.Component {
   }
 
   handleDateChange = date => {
-    const dbDate = date.toISOString().slice(0, 19).replace('T', ' ')
+    const dbDate = moment(date).format('MM-DD-YYYY HH:mm:ss')
     const updatemood = {...this.state.mood}
     updatemood.time = dbDate
     this.setState({mood: updatemood})
@@ -58,6 +58,7 @@ class AddMood extends React.Component {
   }
 
   render () {
+    console.log(this.state)
     const {classes} = this.props
     const {time} = this.state.mood
     if (this.state.submitted) {
@@ -82,11 +83,12 @@ class AddMood extends React.Component {
 
           <h3 >{this.props.location.state.meal.title}</h3>
 
-          <ul style={{textAlign: 'center', fontSize: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>
-            {this.props.emotions.map(emotion => { return <li className='nav-li' key={emotion.id}><p key={emotion.emoji} onClick={this.handleClick(emotion.id)}>{emotion.emoji}</p></li>})}</ul>
-        
+          <Grid container className={classes.grid} alignContent="center" justify="center" >
+          {this.props.emotions.map(emotion => { return <button className='button2' key={emotion.emoji} mouseEnter={this.mouseEnterHandler} mouseLeave={this.mouseLeaveHandler} 
+          onClick={this.handleClick(emotion.id)}>{emotion.emoji}</button> })}
+          </Grid>
 
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <MuiPickersUtilsProvider utils={MomentUtils}>
           <Grid container className={classes.grid} alignContent="center" justify="center" >
             <div>
               <h2>

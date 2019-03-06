@@ -2,6 +2,8 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import {connect} from 'react-redux'
 import {Link, Redirect, withRouter} from 'react-router-dom'
+import moment from 'moment'
+
 import {getMealMoodsApi} from '../api/moods'
 import Mood from './Mood'
 
@@ -45,13 +47,17 @@ class Meal extends React.Component {
     const format = new Date(date).toDateString()
     const month = format.slice(3, 7)
     const day = format.slice(8, 10)
+    const year = '2019'
+
+    const datetime = moment(meal.time)
+    const date2 = datetime.format('dddd, MMMM Do YYYY')
+
     return (
       <div>
-        <br/><br/>
-        <br/><br/>
+        <br/>
         <div>
           <Grid container alignContent="center" justify="center">
-            <h4> {`${meal.title} ${month}${day}`} </h4>
+            <h3> You ate:<br></br><h3><u>{`${meal.title}`}</u></h3><br></br>on {`${date2}`} </h3>
           </Grid>
         </div>
         <Link style={{textDecoration: 'none'}} to={{
