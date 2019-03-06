@@ -20,8 +20,8 @@ class EditMeal extends React.Component {
     super(props)
     const meal = props.location.state.meal
     this.state = {
-      // The first commit of Material-UI
-      meal:meal
+      meal: meal,
+      error: false
     };
 }
     
@@ -33,7 +33,9 @@ class EditMeal extends React.Component {
 
   handleSubmit = (event) => {
     return editMealApi (this.state.meal)
-      .catch(({message}) => console.log("whoopsie daisy!"))
+      .catch((err) => {
+        if (err) this.setSate({error: true})
+      })
   }
 
   handleDateChange = date => {
@@ -44,6 +46,11 @@ class EditMeal extends React.Component {
   }
 
   render() {
+
+    if (this.state.error) {
+      return <Redirect to='/error'/>
+    }
+
     if (this.state.submitted){
       return <Redirect to ={{
         pathname: '/meal',

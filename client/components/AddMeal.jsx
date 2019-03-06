@@ -42,7 +42,7 @@ class AddMeal extends React.Component {
         })
       })
       .catch((err) => {
-        if(err) this.setSate({error: true})
+        if (err) this.setSate({error: true})
       })
     event.preventDefault()
   }

@@ -15,20 +15,27 @@ class Dashboard extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      recentMeal: {}
+      recentMeal: {},
+      error: false
     }
   }
 
   componentDidMount () {
     this.props.dispatch(getMostRecentMood(this.props.userId))
-    mostRecentMealApi(this.props.userId).then(meal => {
-      this.setState({recentMeal: meal})
-    })
+    mostRecentMealApi(this.props.userId)
+      .then(meal => {
+        this.setState({recentMeal: meal})
+      })
+      .catch((err) => {
+        if (err) this.setSate({error: true})
+      })
   }
 
   render () {
     const {emotions, currentMood} = this.props
-
+    if (this.state.error) {
+      return <Redirect to='/error'/>
+    }
     if (!this.props.loggedIn) {
       return <Redirect to='/login'/>
     }
