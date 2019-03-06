@@ -13,7 +13,7 @@ const ActiveSectorMark = ({cx, cy, innerRadius, outerRadius, startAngle, endAngl
         cx={cx}
         cy={cy}
         innerRadius={innerRadius}
-        outerRadius={outerRadius * 1.2}
+        outerRadius={outerRadius * 1}
         startAngle={startAngle}
         endAngle={endAngle}
         fill={fill}
@@ -22,7 +22,7 @@ const ActiveSectorMark = ({cx, cy, innerRadius, outerRadius, startAngle, endAngl
   )
 }
 
-const WIDTH = 600
+const WIDTH = 470
 
 const Arrow = ({cx, cy, midAngle, outerRadius}) => {
   const RADIAN = Math.PI / 180
@@ -85,16 +85,16 @@ class Stats extends React.Component {
       return <Redirect to='/login' push={true} />
     }
 
-    const width = 600
+    const width = 400
     const chartValue = this.calculateRankValue()
     const colorData = [{
-      value: 33, // Meaning span is 0 to 33
+      value: 30, // Meaning span is 0 to 33
       color: '#e74c3c'
     }, {
-      value: 33, // span 33 to 66
+      value: 30, // span 33 to 66
       color: '#f1c40f'
     }, {
-      value: 33, // span 66 to 99
+      value: 30, // span 66 to 99
       color: '#2ecc71'
     }]
 
@@ -130,9 +130,9 @@ class Stats extends React.Component {
     }).findIndex(cur => cur)
 
     return (
-      <div style={{}}>      
+      <div>      
         <div>
-          <p style={{fontSize: '20px', bottom: '5rem'}}>😀</p>
+        {this.state.moods.length > 0 ? 
           <Grid container alignContent="center" justify="center" >
             <PieChart width={width} height={(width / 2) + 30}>
               <Pie
@@ -162,7 +162,7 @@ class Stats extends React.Component {
               />
             </PieChart>
           </Grid>
-          
+        : <h1>No moods in that date range</h1>}
         </div>
       </div>
     )
