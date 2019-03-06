@@ -20,7 +20,6 @@ class AddMood extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      // The first commit of Material-UI
       mood: {
         time: new Date().toISOString().slice(0, 19).replace('T', ' '),
         notes: '',
@@ -82,9 +81,10 @@ class AddMood extends React.Component {
 
           <h3 >{this.props.location.state.meal.title}</h3>
 
-          <ul style={{textAlign: 'center', fontSize: '40px', fontFamily: 'Laila', letterSpacing: '4px'}}>
-            {this.props.emotions.map(emotion => { return <li className='nav-li'><p key={emotion.emoji} onClick={this.handleClick(emotion.id)}>{emotion.emoji}</p></li>})}</ul>
-        
+          <Grid container className={classes.grid} alignContent="center" justify="center" >
+          {this.props.emotions.map(emotion => { return <button className='button2' key={emotion.emoji} mouseEnter={this.mouseEnterHandler} mouseLeave={this.mouseLeaveHandler} 
+          onClick={this.handleClick(emotion.id)}>{emotion.emoji}</button> })}
+          </Grid>
 
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container className={classes.grid} alignContent="center" justify="center" >
