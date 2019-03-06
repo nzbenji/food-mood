@@ -53,9 +53,10 @@ class Meal extends React.Component {
         <br/>
         <div>
           <Grid container alignContent="center" justify="center">
-            <h3> You ate:<br></br><h3><u>{`${meal.title}`}</u></h3><br></br>on {`${date}`} </h3>
+            <h3>{`${meal.title}`}<br/><br/>{`${new Date(date).toISOString().slice(0, 19).replace('T', ' ')}`} </h3>
           </Grid>
         </div>
+        
         <Link style={{textDecoration: 'none'}} to={{
           pathname: `/editmeal`,
           state: {meal: meal}}}>
