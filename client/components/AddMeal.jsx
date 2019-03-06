@@ -7,8 +7,6 @@ import {MuiPickersUtilsProvider, TimePicker, DatePicker} from 'material-ui-picke
 import {addMealApi} from '../api/meals'
 import {connect} from 'react-redux'
 import {Redirect, withRouter, Route} from 'react-router-dom'
-import moment from 'moment'
-import MomentUtils from '@date-io/moment'
 
 const styles = {
   grid: {
@@ -22,7 +20,7 @@ class AddMeal extends React.Component {
     this.state = {
       // The first commit of Material-UI
       meal: {
-        time: moment(),
+        time: new Date(),
         title: ''
       },
       mealId: -1
@@ -47,7 +45,7 @@ class AddMeal extends React.Component {
   }
 
   handleDateChange = date => {
-    const dbDate = moment(date).format('MM-DD-YYYY HH:mm:ss')
+    const dbDate = date.toISOString().slice(0, 19).replace('T', ' ')
     const updatemeal = {...this.state.meal}
     updatemeal.time = dbDate
     this.setState({meal: updatemeal})
@@ -76,7 +74,7 @@ class AddMeal extends React.Component {
         <br/><br/>
         <br/><br/>
         <br/>
-        <MuiPickersUtilsProvider utils={MomentUtils}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container className={classes.grid} alignContent="center" justify="center" >
           <div> 
           <h2>
