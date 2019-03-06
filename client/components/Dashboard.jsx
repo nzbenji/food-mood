@@ -45,9 +45,8 @@ class Dashboard extends React.Component {
     return (
       <div>
         <br/><br/><br/><br/>
-        <h3>Last Mood</h3>
         {currentMood
-          ? <h3 style={{fontSize: '80px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center', marginBottom: '20px', marginTop: '20px'}}> {getEmoji(emotions, currentMood.emotion_id)} </h3>
+          ? <div><h3>Last Mood</h3> <h3 style={{fontSize: '80px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center', marginBottom: '20px', marginTop: '20px'}}> {getEmoji(emotions, currentMood.emotion_id)} </h3></div>
           : <div></div>}
         <div style={{marginTop: '20px', textAlign:'center'}}>
           <Link style={{textDecoration: 'none'}} to='/water'>
