@@ -6,6 +6,9 @@ import {connect} from 'react-redux'
 import {Link, Redirect, withRouter} from 'react-router-dom'
 import {getEmoji} from '../utils/emojis'
 
+import {faTint} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+
 const styles = {
   grid: {
     width: '100%'
@@ -39,11 +42,23 @@ class Dashboard extends React.Component {
         {currentMood
           ? <h3 style={{fontSize: '80px', fontFamily: 'Laila', textAlign: 'center', position: 'relative', alignSelf: 'center', marginBottom: '20px', marginTop: '20px'}}> {getEmoji(emotions, currentMood.emotion_id)} </h3>
           : <div></div>}
-        <Link style={{textDecoration: 'none'}} to='/water'>
-          <a><button className='button1'>
-            Thirsty?
-          </button></a>
-        </Link>
+        <div>
+          <Link style={{textDecoration: 'none'}} to='/water'>
+            <button type="button"
+              className="btn btn-warning btn-circle btn-xl"
+            >
+              <FontAwesomeIcon icon={faTint} size={'3x'} style={{color: 'white'}}/>
+            </button>
+          </Link>
+          <Link style={{textDecoration: 'none'}} to='/addmeal'>
+          <button type="button"
+              className="btn btn-warning btn-circle btn-xl"
+            >
+              <FontAwesomeIcon icon={faTint} size={'3x'} style={{color: 'white'}}/>
+            </button>
+          </Link>
+        </div>
+
         <br/>
         <Link style={{textDecoration: 'none'}} to='/addmeal'>
           <a><button className='button1'>

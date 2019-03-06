@@ -178,6 +178,24 @@ h4{
  padding-left: 5px;
 }
 
+.btn-warning {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+.btn-warning:hover {
+  background-color: #c79603;
+  border-color: #c79603;
+}
+
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  border-radius: 35px;
+  border-style:none;
+  margin-left: 20px;
+}
+
 .blue-delete-icon {
   width: 28px;
   height: 27px;
