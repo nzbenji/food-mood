@@ -17,7 +17,7 @@ class Stats extends React.Component {
   render () {
     return (
       <div>
-        <h1 style={{textAlgin:'center'}}>Mood meter</h1>
+        <h3 style={{textAlgin:'center'}}>Mood meter</h3>
         <Grid container alignContent="center" justify="center" >
         
         <div>
