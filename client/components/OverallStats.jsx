@@ -58,7 +58,7 @@ class Stats extends React.Component {
         this.setState({ moods})
       })
       .catch((err) => {
-        if (err) this.setSate({error: true})
+        if (err) this.setState({error: true})
       })
   }
   handleDateChange = date => {

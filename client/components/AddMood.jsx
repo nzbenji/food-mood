@@ -22,7 +22,7 @@ class AddMood extends React.Component {
     super(props)
     this.state = {
       mood: {
-        time: moment(),
+        time: moment(new Date()).format('MM-DD-YYYY'),
         notes: '',
         emotion_id: ''
       },

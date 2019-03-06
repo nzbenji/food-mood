@@ -33,7 +33,7 @@ class DeleteMeal extends React.Component {
         this.setState({submitted:true})
       })
       .catch((err) => {
-        if (err) this.setSate({error: true})
+        if (err) this.setState({error: true})
       })
     event.preventDefault()
   }

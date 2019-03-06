@@ -34,7 +34,7 @@ class EditMeal extends React.Component {
   handleSubmit = (event) => {
     return editMealApi (this.state.meal)
       .catch((err) => {
-        if (err) this.setSate({error: true})
+        if (err) this.setState({error: true})
       })
   }
 

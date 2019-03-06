@@ -56,8 +56,8 @@ class SelectedStats extends React.Component {
   state = {
     moods: [],
     error: false,
-    startDate: moment(),
-    endDate: moment()
+    startDate: moment(new Date()).format('MM-DD-YYYY'),
+    endDate: moment(new Date()).format('MM-DD-YYYY')
   }
 
   componentDidMount () {
@@ -70,7 +70,7 @@ class SelectedStats extends React.Component {
         this.setState({ moods})
       })
       .catch((err) => {
-        if (err) this.setSate({error: true})
+        if (err) this.setState({error: true})
       })
   }
   handleDateChange = date => {

@@ -28,7 +28,7 @@ class Meal extends React.Component {
         this.setState({meal: meal})
       })
       .catch((err) => {
-        if (err) this.setSate({error: true})
+        if (err) this.setState({error: true})
       })
   }
 
@@ -49,15 +49,15 @@ class Meal extends React.Component {
     const day = format.slice(8, 10)
     const year = '2019'
 
-    const datetime = moment(meal.time)
-    const date2 = datetime.format('dddd, MMMM Do YYYY')
+    // const datetime = moment(meal.time)
+    // const date2 = datetime.format('dddd, MMMM Do YYYY')
 
     return (
       <div>
         <br/>
         <div>
           <Grid container alignContent="center" justify="center">
-            <h3> You ate:<br></br><h3><u>{`${meal.title}`}</u></h3><br></br>on {`${date2}`} </h3>
+            <h3> You ate:<br></br><h3><u>{`${meal.title}`}</u></h3><br></br>on {`${month} ${day} ${year}`} </h3>
           </Grid>
         </div>
         <Link style={{textDecoration: 'none'}} to={{

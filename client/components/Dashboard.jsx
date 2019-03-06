@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
         this.setState({recentMeal: meal})
       })
       .catch((err) => {
-        if (err) this.setSate({error: true})
+        if (err) this.setState({error: true})
       })
   }
 

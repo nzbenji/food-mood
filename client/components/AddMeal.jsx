@@ -22,7 +22,7 @@ class AddMeal extends React.Component {
     this.state = {
       // The first commit of Material-UI
       meal: {
-        time: moment(),
+        time: moment(new Date()).format('MM-DD-YYYY'),
         title: ''
       },
       mealId: -1,
@@ -39,12 +39,15 @@ class AddMeal extends React.Component {
   handleSubmit = (event) => {
     addMealApi(this.props.userId, this.state.meal)
       .then((mealId) => {
+        console.log(mealId, ' : meal id')
         this.setState({
           mealId
         })
+        console.log(this.state)
       })
       .catch((err) => {
-        if (err) this.setSate({error: true})
+        console.log(err)
+        if (err) this.setState({error: true})
       })
     event.preventDefault()
   }

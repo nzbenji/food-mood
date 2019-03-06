@@ -25,7 +25,7 @@ class MealDay extends React.Component {
         this.setState({meals})
       })
       .catch((err) => {
-        if (err) this.setSate({error: true})
+        if (err) this.setState({error: true})
       })
   }
 
