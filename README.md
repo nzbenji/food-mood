@@ -3,6 +3,9 @@
 # At a glance:
 FoodMood allows a user to record and monitor the impact certain foods has on not only their physical, but also their emotional state. It is a tool designed to assist any  user to navigate their emotional relationship with food. 
 
+![food-mood](https://user-images.githubusercontent.com/39175284/54567775-d0e87f80-4a39-11e9-88eb-f05120ab360e.jpg)
+
+
 # How it works:
 A user will log their food intake as well as how it makes them feel at the time of eating. The user can then log their physical or emotional state at a later time. This data will be recorded and displayed in a way that allows the user to easily identify trends, tendencies and patterns in relation to the foods they consume.
 
